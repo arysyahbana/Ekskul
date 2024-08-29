@@ -34,6 +34,27 @@
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
+         <!-- kelas -->
+         <div class="mt-4">
+            <x-input-label for="kelas" :value="__('Kelas')" />
+            <x-text-input id="kelas" class="block mt-1 w-full" type="number" name="kelas" :value="old('kelas')"
+                required autofocus autocomplete="kelas" />
+            <x-input-error :messages="$errors->get('kelas')" class="mt-2" />
+        </div>
+
+        <!-- Jenjang -->
+        <div class="mt-4">
+            <x-input-label for="jenjang" :value="__('Jenjang')" />
+
+            <select id="jenjang" name="jenjang"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                <option selected hidden>--- Pilih Jenjang Pendidikan ---</option>
+                <option value="SD">SD</option>
+                <option value="SMP">SMP</option>
+                <option value="SMA">SMA</option>
+            </select>
+        </div>
+
         <!-- Jenis Kelamin -->
         <div class="mt-4">
             <x-input-label for="jk" :value="__('Jenis Kelamin')" />

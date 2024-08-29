@@ -19,16 +19,13 @@
                                     </tr>
                                 @endslot
 
-                                <tr>
-                                    <x-admin.td class="text-center">1</x-admin.td>
-                                    <x-admin.td class="text-center">K1</x-admin.td>
-                                    <x-admin.td class="text-center">Tinggi Badan</x-admin.td>
-                                </tr>
-                                <tr>
-                                    <x-admin.td class="text-center">2</x-admin.td>
-                                    <x-admin.td class="text-center">K2</x-admin.td>
-                                    <x-admin.td class="text-center">Berat Badan</x-admin.td>
-                                </tr>
+                                @foreach ($kriteria as $item)
+                                    <tr>
+                                        <x-admin.td class="text-center">{{ $loop->iteration }}</x-admin.td>
+                                        <x-admin.td class="text-center">{{ $item->kode ?? '' }}</x-admin.td>
+                                        <x-admin.td class="text-center">{{ $item->nama ?? '' }}</x-admin.td>
+                                    </tr>
+                                @endforeach
                             </x-admin.table>
                         </div>
                     </div>

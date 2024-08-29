@@ -31,7 +31,9 @@ Route::get('/', function () {
 // Route::get('/', function () {
 //     return view('auth.login');
 // });
-Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])
+    ->middleware(['auth', 'verified'])
+    ->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -42,10 +44,18 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth', 'role:Admin'])->group(function () {
     Route::prefix('ekskul')->group(function () {
         Route::get('/show', [EkskulController::class, 'index'])->name('ekskul.show');
+        Route::post('/store', [EkskulController::class, 'store'])->name('ekskul.store');
+        Route::post('/update/{id}', [EkskulController::class, 'update'])->name('ekskul.update');
+        Route::get('/destroy/{id}', [EkskulController::class, 'destroy'])->name('ekskul.destroy');
+        Route::get('/download', [EkskulController::class, 'download'])->name('ekskul.download');
     });
 
     Route::prefix('kriteria')->group(function () {
         Route::get('/show', [KriteriaController::class, 'index'])->name('kriteria.show');
+        Route::post('/store', [KriteriaController::class, 'store'])->name('kriteria.store');
+        Route::post('/update/{id}', [KriteriaController::class, 'update'])->name('kriteria.update');
+        Route::get('/destroy/{id}', [KriteriaController::class, 'destroy'])->name('kriteria.destroy');
+        Route::get('/download', [KriteriaController::class, 'download'])->name('kriteria.download');
     });
 
     Route::prefix('smart')->group(function () {
@@ -55,6 +65,7 @@ Route::middleware(['auth', 'role:Admin'])->group(function () {
 
     Route::prefix('siswa')->group(function () {
         Route::get('/show', [SiswaController::class, 'index'])->name('siswa.show');
+        Route::get('/download', [SiswaController::class, 'download'])->name('siswa.download');
     });
 
     Route::prefix('users')->group(function () {
@@ -62,6 +73,7 @@ Route::middleware(['auth', 'role:Admin'])->group(function () {
         Route::post('/store', [UserController::class, 'store'])->name('users.store');
         Route::post('/update/{id}', [UserController::class, 'update'])->name('users.update');
         Route::get('/destroy/{id}', [UserController::class, 'destroy'])->name('users.destroy');
+        Route::get('/download', [UserController::class, 'download'])->name('user.download');
     });
 });
 

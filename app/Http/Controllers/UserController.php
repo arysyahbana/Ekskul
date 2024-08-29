@@ -2,54 +2,91 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\UserExport;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Maatwebsite\Excel\Facades\Excel;
 
 class UserController extends Controller
 {
+    private function validasiInputData(Request $request, $passwordRule)
+    {
+        $request->validate(
+            [
+                'nis' => 'sometimes',
+                'nama' => 'required|alpha',
+                'gender' => 'required',
+                // 'kelas' => 'sometimes|integer|between:1,12',
+                'jenjang' => 'sometimes',
+                'tgl_lahir' => 'required|date',
+                'email' => 'required|email',
+                'role' => 'required',
+                'password' => $passwordRule,
+            ],
+            [
+                'nama.alpha' => 'Nama tidak boleh mengandung angka atau simbol',
+                'nama.required' => 'Nama wajib diisi',
+                'gender.required' => 'Gender wajib dipilih',
+                // 'kelas.integer' => 'Kelas harus berupa angka',
+                // 'kelas.between' => 'Kelas harus antara 1-12',
+                'tgl_lahir.required' => 'Tanggal lahir wajib diisi',
+                'tgl_lahir.date' => 'Tanggal lahir harus berupa tanggal',
+                'email.required' => 'Email wajib diisi',
+                'email.email' => 'Email harus berupa email',
+                'role.required' => 'Role harus dipilih',
+                'password.required' => 'Password wajib diisi',
+            ],
+        );
+    }
+
     public function index()
     {
-        $page = "Users";
+        $page = 'Users';
         $users = User::get();
         return view('admin.pages.User.index', compact('page', 'users'));
     }
 
     public function store(Request $request)
     {
-        $request->validate([
-            'nama' => 'required',
-            'email' => 'required',
-            'role' => 'required',
-            'password' => 'required',
-        ]);
+        $this->validasiInputData($request, 'required');
 
-        $store = new User();
-        $store->name = $request->nama;
-        $store->email = $request->email;
-        $store->role = $request->role;
-        $store->password = Hash::make($request->password);
-        $store->save();
+        user::create([
+            'nis' => $request->nis,
+            'nama' => $request->nama,
+            'gender' => $request->gender,
+            'kelas' => $request->kelas,
+            'jenjang' => $request->jenjang,
+            'tgl_lahir' => $request->tgl_lahir,
+            'email' => $request->email,
+            'role' => $request->role,
+            'password' => Hash::make($request->password),
+        ]);
 
         return redirect()->route('users.show')->with('success', 'Data user berhasil ditambahkan.');
     }
 
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'nama' => 'required',
-            'email' => 'required',
-            'role' => 'required',
-        ]);
+        $this->validasiInputData($request, 'sometimes');
 
         $update = User::find($id);
-        $update->name = $request->nama;
-        $update->email = $request->email;
-        $update->role = $request->role;
-        if ($request->password != null) {
-            $update->password = Hash::make($request->password);
+        $data = [
+            'nis' => $request->nis,
+            'nama' => $request->nama,
+            'gender' => $request->gender,
+            'kelas' => $request->kelas,
+            'jenjang' => $request->jenjang,
+            'tgl_lahir' => $request->tgl_lahir,
+            'email' => $request->email,
+            'role' => $request->role,
+        ];
+        if ($request->password == null) {
+            User::updateOrCreate(['id' => $update->id], $data);
+        } else {
+            $data['password'] = Hash::make($request->password);
+            User::updateOrCreate(['id' => $update->id], $data);
         }
-        $update->save();
         return redirect()->route('users.show')->with('success', 'Data user berhasil diubah.');
     }
 
@@ -58,5 +95,11 @@ class UserController extends Controller
         $destroy = User::find($id);
         $destroy->delete();
         return redirect()->route('users.show')->with('success', 'Data user berhasil dihapus.');
+    }
+
+    public function download()
+    {
+        $today = date('d-m-Y');
+        return Excel::download(new UserExport(), 'User - ' . $today . '.xlsx');
     }
 }

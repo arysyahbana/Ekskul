@@ -53,8 +53,10 @@
                                 <div class="mt-4" id="step1-content">
                                     <p class="fw-bold">Kriteria Umum</p>
 
-                                    <x-admin.input type="text" placeholder="20001212" label="NIS Siswa" name="nis" />
-                                    <x-admin.input type="text" placeholder="Budi" label="Nama Siswa" name="nama" />
+                                    <x-admin.input type="text" label="NIS Siswa" name="nis" readonly="true"
+                                        value="{{ $siswa->nis ?? '' }}" />
+                                    <x-admin.input type="text" label="Nama Siswa" name="nama" readonly="true"
+                                        value="{{ $siswa->nama ?? '' }}" />
 
                                     <Label>Tinggi Badan</Label>
                                     <select class="form-select mb-3" aria-label="Default select example" name="tinggi[]"
@@ -84,143 +86,51 @@
                                 <div class="mt-4" id="step2-content">
                                     <p class="fw-bold">Kriteria Minat</p>
 
-                                    <Label>Futsal</Label>
-                                    <select class="form-select mb-3" aria-label="Default select example" name="futsal[]"
-                                        id="futsal">
-                                        <option selected hidden>--- Pilih ---</option>
-                                        <option value="Sangat Berminat">Sangat Berminat</option>
-                                        <option value="Berminat">Berminat</option>
-                                        <option value="Cukup Berminat">Cukup Berminat</option>
-                                        <option value="Tidak Berminat">Tidak Berminat</option>
-                                    </select>
-
-                                    <Label>Basket</Label>
-                                    <select class="form-select mb-3" aria-label="Default select example" name="basket[]"
-                                        id="basket">
-                                        <option selected hidden>--- Pilih ---</option>
-                                        <option value="Sangat Berminat">Sangat Berminat</option>
-                                        <option value="Berminat">Berminat</option>
-                                        <option value="Cukup Berminat">Cukup Berminat</option>
-                                        <option value="Tidak Berminat">Tidak Berminat</option>
-                                    </select>
-
-                                    <Label>Renang</Label>
-                                    <select class="form-select mb-3" aria-label="Default select example" name="renang[]"
-                                        id="renang">
-                                        <option selected hidden>--- Pilih ---</option>
-                                        <option value="Sangat Berminat">Sangat Berminat</option>
-                                        <option value="Berminat">Berminat</option>
-                                        <option value="Cukup Berminat">Cukup Berminat</option>
-                                        <option value="Tidak Berminat">Tidak Berminat</option>
-                                    </select>
-
-                                    <Label>Paskibra</Label>
-                                    <select class="form-select mb-3" aria-label="Default select example" name="paskibra[]"
-                                        id="paskibra">
-                                        <option selected hidden>--- Pilih ---</option>
-                                        <option value="Sangat Berminat">Sangat Berminat</option>
-                                        <option value="Berminat">Berminat</option>
-                                        <option value="Cukup Berminat">Cukup Berminat</option>
-                                        <option value="Tidak Berminat">Tidak Berminat</option>
-                                    </select>
-
-                                    <Label>Pramuka</Label>
-                                    <select class="form-select mb-3" aria-label="Default select example" name="pramuka[]"
-                                        id="pramuka">
-                                        <option selected hidden>--- Pilih ---</option>
-                                        <option value="Sangat Berminat">Sangat Berminat</option>
-                                        <option value="Berminat">Berminat</option>
-                                        <option value="Cukup Berminat">Cukup Berminat</option>
-                                        <option value="Tidak Berminat">Tidak Berminat</option>
-                                    </select>
+                                    @foreach ($ekskul as $item)
+                                        <Label>{{ $item->nama_ekskul ?? '' }}</Label>
+                                        <select class="form-select mb-3" aria-label="Default select example"
+                                            name="minat{{ $item->nama_ekskul ?? '' }}[]"
+                                            id="minat{{ $item->nama_ekskul ?? '' }}">
+                                            <option selected hidden>--- Pilih ---</option>
+                                            <option value="Sangat Berminat">Sangat Berminat</option>
+                                            <option value="Berminat">Berminat</option>
+                                            <option value="Cukup Berminat">Cukup Berminat</option>
+                                            <option value="Tidak Berminat">Tidak Berminat</option>
+                                        </select>
+                                    @endforeach
                                 </div>
 
                                 <div class="mt-4" id="step3-content">
                                     <p class="fw-bold">Kriteria Riwayat Mengikuti Ekskul</p>
 
-                                    <Label>Futsal</Label>
-                                    <select class="form-select mb-3" aria-label="Default select example" name="futsal[]"
-                                        id="futsal">
-                                        <option selected hidden>--- Pilih ---</option>
-                                        <option value="Pernah">Pernah</option>
-                                        <option value="Tidak Pernah">Tidak Pernah</option>
-                                    </select>
+                                    @foreach ($ekskul as $item)
+                                        <Label>{{ $item->nama_ekskul ?? '' }}</Label>
+                                        <select class="form-select mb-3" aria-label="Default select example"
+                                            name="riwayat{{ $item->nama_ekskul ?? '' }}[]"
+                                            id="riwayat{{ $item->nama_ekskul ?? '' }}">
+                                            <option selected hidden>--- Pilih ---</option>
+                                            <option value="Pernah">Pernah</option>
+                                            <option value="Tidak Pernah">Tidak Pernah</option>
+                                        </select>
+                                    @endforeach
 
-                                    <Label>Basket</Label>
-                                    <select class="form-select mb-3" aria-label="Default select example" name="basket[]"
-                                        id="basket">
-                                        <option selected hidden>--- Pilih ---</option>
-                                        <option value="Pernah">Pernah</option>
-                                        <option value="Tidak Pernah">Tidak Pernah</option>
-                                    </select>
 
-                                    <Label>Renang</Label>
-                                    <select class="form-select mb-3" aria-label="Default select example" name="renang[]"
-                                        id="renang">
-                                        <option selected hidden>--- Pilih ---</option>
-                                        <option value="Pernah">Pernah</option>
-                                        <option value="Tidak Pernah">Tidak Pernah</option>
-                                    </select>
-
-                                    <Label>Paskibra</Label>
-                                    <select class="form-select mb-3" aria-label="Default select example"
-                                        name="paskibra[]" id="paskibra">
-                                        <option selected hidden>--- Pilih ---</option>
-                                        <option value="Pernah">Pernah</option>
-                                        <option value="Tidak Pernah">Tidak Pernah</option>
-                                    </select>
-
-                                    <Label>Pramuka</Label>
-                                    <select class="form-select mb-3" aria-label="Default select example" name="pramuka[]"
-                                        id="pramuka">
-                                        <option selected hidden>--- Pilih ---</option>
-                                        <option value="Pernah">Pernah</option>
-                                        <option value="Tidak Pernah">Tidak Pernah</option>
-                                    </select>
                                 </div>
 
                                 <div class="mt-4" id="step4-content">
                                     <p class="fw-bold">Kriteria Prestasi</p>
 
-                                    <Label>Futsal</Label>
-                                    <select class="form-select mb-3" aria-label="Default select example" name="futsal[]"
-                                        id="futsal">
-                                        <option selected hidden>--- Pilih ---</option>
-                                        <option value="Ada Prestasi">Ada Prestasi</option>
-                                        <option value="Tidak Ada Prestasi">Tidak Ada Prestasi</option>
-                                    </select>
+                                    @foreach ($ekskul as $item)
+                                        <Label>{{ $item->nama_ekskul ?? '' }}</Label>
+                                        <select class="form-select mb-3" aria-label="Default select example"
+                                            name="prestasi{{ $item->nama_ekskul ?? '' }}[]"
+                                            id="prestasi{{ $item->nama_ekskul ?? '' }}">
+                                            <option selected hidden>--- Pilih ---</option>
+                                            <option value="Ada Prestasi">Ada Prestasi</option>
+                                            <option value="Tidak Ada Prestasi">Tidak Ada Prestasi</option>
+                                        </select>
+                                    @endforeach
 
-                                    <Label>Basket</Label>
-                                    <select class="form-select mb-3" aria-label="Default select example" name="basket[]"
-                                        id="basket">
-                                        <option selected hidden>--- Pilih ---</option>
-                                        <option value="Ada Prestasi">Ada Prestasi</option>
-                                        <option value="Tidak Ada Prestasi">Tidak Ada Prestasi</option>
-                                    </select>
-
-                                    <Label>Renang</Label>
-                                    <select class="form-select mb-3" aria-label="Default select example" name="renang[]"
-                                        id="renang">
-                                        <option selected hidden>--- Pilih ---</option>
-                                        <option value="Ada Prestasi">Ada Prestasi</option>
-                                        <option value="Tidak Ada Prestasi">Tidak Ada Prestasi</option>
-                                    </select>
-
-                                    <Label>Paskibra</Label>
-                                    <select class="form-select mb-3" aria-label="Default select example"
-                                        name="paskibra[]" id="paskibra">
-                                        <option selected hidden>--- Pilih ---</option>
-                                        <option value="Ada Prestasi">Ada Prestasi</option>
-                                        <option value="Tidak Ada Prestasi">Tidak Ada Prestasi</option>
-                                    </select>
-
-                                    <Label>Pramuka</Label>
-                                    <select class="form-select mb-3" aria-label="Default select example" name="pramuka[]"
-                                        id="pramuka">
-                                        <option selected hidden>--- Pilih ---</option>
-                                        <option value="Ada Prestasi">Ada Prestasi</option>
-                                        <option value="Tidak Ada Prestasi">Tidak Ada Prestasi</option>
-                                    </select>
                                 </div>
 
                                 <div class="mt-4 text-end">
@@ -233,7 +143,6 @@
                                 </div>
                             </form>
                         </div>
-
                     </div>
                 </div>
             </div>

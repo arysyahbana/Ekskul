@@ -21,22 +21,21 @@
                                     </tr>
                                 @endslot
 
-                                <tr>
-                                    <x-admin.td class="text-center">1</x-admin.td>
-                                    <x-admin.td class="text-center">Ek001</x-admin.td>
-                                    <x-admin.td class="text-center">Voli</x-admin.td>
-                                    <x-admin.td class="text-center">
-                                        <img src="{{ asset('dist/assets/img/futsal.jpg') }}" alt=""
-                                            style="max-width: 200px" class="img-thumbnail">
-                                    </x-admin.td>
-                                    <x-admin.td maxWidth="300px">
-                                        Lorem ipsum odor amet, consectetuer adipiscing elit. Libero imperdiet porta luctus
-                                        sem parturient molestie ullamcorper. Arcu eu enim; est ut fames rhoncus duis.
-                                        Lorem ipsum odor amet, consectetuer adipiscing elit. Libero imperdiet porta luctus
-                                        sem parturient molestie ullamcorper. Arcu eu enim; est ut fames rhoncus duis.
-                                        sem parturient molestie ullamcorper. Arcu eu enim; est ut fames rhoncus duis.
-                                    </x-admin.td>
-                                </tr>
+                                @foreach ($ekskul as $item)
+                                    <tr>
+                                        <x-admin.td class="text-center">{{ $loop->iteration }}</x-admin.td>
+                                        <x-admin.td class="text-center">{{ $item->kode_ekskul ?? '' }}</x-admin.td>
+                                        <x-admin.td class="text-center">{{ $item->nama_ekskul ?? '' }}</x-admin.td>
+                                        <x-admin.td class="text-center">
+                                            <img src="{{ asset('dist/assets/img/ekskul/' . $item->image) }}" alt=""
+                                                style="max-width: 200px" class="img-thumbnail">
+                                        </x-admin.td>
+                                        <x-admin.td maxWidth="300px">
+                                            {{ $item->informasi_ekskul ?? '' }}
+                                        </x-admin.td>
+                                    </tr>
+                                @endforeach
+
                             </x-admin.table>
                         </div>
                     </div>

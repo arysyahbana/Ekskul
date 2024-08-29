@@ -25,31 +25,17 @@
                                         <x-admin.th>Jenjang</x-admin.th>
                                     </tr>
                                 @endslot
+                                @foreach ($siswa as $item)
+                                    <tr>
+                                        <x-admin.td class="text-center">{{ $loop->iteration }}</x-admin.td>
+                                        <x-admin.td class="text-center">{{ $item->nis ?? '' }}</x-admin.td>
+                                        <x-admin.td class="text-center">{{ $item->nama ?? '' }}</x-admin.td>
+                                        <x-admin.td class="text-center">{{ $item->gender ?? '' }}</x-admin.td>
+                                        <x-admin.td class="text-center">{{ $item->kelas ?? '' }}</x-admin.td>
+                                        <x-admin.td class="text-center">{{ $item->jenjang ?? '' }}</x-admin.td>
+                                    </tr>
+                                @endforeach
 
-                                <tr>
-                                    <x-admin.td class="text-center">1</x-admin.td>
-                                    <x-admin.td class="text-center">2000</x-admin.td>
-                                    <x-admin.td class="text-center">Budi</x-admin.td>
-                                    <x-admin.td class="text-center">Pria</x-admin.td>
-                                    <x-admin.td class="text-center">11</x-admin.td>
-                                    <x-admin.td class="text-center">SMA</x-admin.td>
-                                </tr>
-                                <tr>
-                                    <x-admin.td class="text-center">1</x-admin.td>
-                                    <x-admin.td class="text-center">2000</x-admin.td>
-                                    <x-admin.td class="text-center">Budi</x-admin.td>
-                                    <x-admin.td class="text-center">Pria</x-admin.td>
-                                    <x-admin.td class="text-center">11</x-admin.td>
-                                    <x-admin.td class="text-center">SMA</x-admin.td>
-                                </tr>
-                                <tr>
-                                    <x-admin.td class="text-center">1</x-admin.td>
-                                    <x-admin.td class="text-center">2000</x-admin.td>
-                                    <x-admin.td class="text-center">Budi</x-admin.td>
-                                    <x-admin.td class="text-center">Pria</x-admin.td>
-                                    <x-admin.td class="text-center">11</x-admin.td>
-                                    <x-admin.td class="text-center">SMA</x-admin.td>
-                                </tr>
                             </x-admin.table>
                         </div>
                     </div>
