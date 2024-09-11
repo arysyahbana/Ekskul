@@ -20,6 +20,7 @@ return new class extends Migration
             $table->date('tgl_lahir');
             $table->string('kelas')->nullable();
             $table->string('jenjang')->nullable();
+            $table->string('jurusan')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

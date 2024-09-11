@@ -20,7 +20,7 @@
 
 <body class="font-sans text-gray-900 antialiased">
     <div
-        class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gradient-to-r from-[#402E7A] to-[#4C3BCF]">
+        class="min-h-screen flex flex-col sm:justify-center items-center py-6 sm:pt-0 bg-gradient-to-r from-[#402E7A] to-[#4C3BCF]">
         <div>
             <a href="/">
                 <x-application-logo class="w-20 h-20 fill-current text-gray-500" />

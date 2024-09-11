@@ -34,14 +34,6 @@
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
-         <!-- kelas -->
-         <div class="mt-4">
-            <x-input-label for="kelas" :value="__('Kelas')" />
-            <x-text-input id="kelas" class="block mt-1 w-full" type="number" name="kelas" :value="old('kelas')"
-                required autofocus autocomplete="kelas" />
-            <x-input-error :messages="$errors->get('kelas')" class="mt-2" />
-        </div>
-
         <!-- Jenjang -->
         <div class="mt-4">
             <x-input-label for="jenjang" :value="__('Jenjang')" />
@@ -49,9 +41,30 @@
             <select id="jenjang" name="jenjang"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                 <option selected hidden>--- Pilih Jenjang Pendidikan ---</option>
-                <option value="SD">SD</option>
-                <option value="SMP">SMP</option>
                 <option value="SMA">SMA</option>
+                <option value="SMK">SMK</option>
+            </select>
+        </div>
+
+        <!-- kelas -->
+        <div class="mt-4">
+            <x-input-label for="kelas" :value="__('Kelas')" />
+            <x-text-input id="kelas" class="block mt-1 w-full" type="number" name="kelas" :value="10"
+                required autofocus autocomplete="kelas" readonly />
+            <x-input-error :messages="$errors->get('kelas')" class="mt-2" />
+        </div>
+
+        <!-- Jurusan -->
+        <div class="mt-4">
+            <x-input-label for="jurusan" :value="__('Jurusan')" />
+
+            <select id="jurusan" name="jurusan"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                <option selected hidden>--- Pilih Jurusan ---</option>
+                <option value="IPA">IPA</option>
+                <option value="IPS">IPS</option>
+                <option value="TKJ">TKJ</option>
+                <option value="TSM">TSM</option>
             </select>
         </div>
 
@@ -108,4 +121,34 @@
             </x-primary-button>
         </div>
     </form>
+
+    <script>
+        // Sembunyikan jurusan saat halaman pertama kali dimuat
+        document.getElementById('jurusan').parentElement.style.display = 'none';
+
+        document.getElementById('jenjang').addEventListener('change', function() {
+            const jurusanSelect = document.getElementById('jurusan');
+            const jurusanDiv = jurusanSelect.parentElement;
+
+            // Jika user sudah memilih jenjang, tampilkan jurusan
+            if (this.value === 'SMA' || this.value === 'SMK') {
+                jurusanDiv.style.display = 'block';
+                // Hapus semua opsi yang ada
+                jurusanSelect.innerHTML = '<option selected hidden>--- Pilih Jurusan ---</option>';
+
+                // Tambahkan opsi berdasarkan pilihan jenjang
+                if (this.value === 'SMA') {
+                    jurusanSelect.innerHTML += '<option value="IPA">IPA</option>';
+                    jurusanSelect.innerHTML += '<option value="IPS">IPS</option>';
+                } else if (this.value === 'SMK') {
+                    jurusanSelect.innerHTML += '<option value="TKJ">TKJ</option>';
+                    jurusanSelect.innerHTML += '<option value="TSM">TSM</option>';
+                }
+            } else {
+                // Jika belum memilih jenjang atau reset, sembunyikan kembali jurusan
+                jurusanDiv.style.display = 'none';
+            }
+        });
+    </script>
+
 </x-guest-layout>

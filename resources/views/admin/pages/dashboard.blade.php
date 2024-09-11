@@ -1,6 +1,6 @@
 @extends('admin.app')
 
-@section('title', 'Tes Coding')
+@section('title', 'Web Ekskul')
 
 @section('content')
     <div class="row">

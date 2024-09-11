@@ -11,8 +11,8 @@
                     <div class="card-header pb-0 d-flex justify-content-between">
                         <a href="#" class="btn bg-gradient-warning" data-bs-toggle="modal" data-bs-target="#addUsers"><i
                                 class="bi bi-plus-circle"></i><span class="text-capitalize ms-1">Tambah</span></a>
-                        <a href="{{ route('user.download') }}" class="btn bg-gradient-success"><i class="bi bi-plus-circle"></i><span
-                                class="text-capitalize ms-1">Unduh Rekap Data</span></a>
+                        <a href="{{ route('user.download') }}" class="btn bg-gradient-success"><i
+                                class="bi bi-plus-circle"></i><span class="text-capitalize ms-1">Unduh Rekap Data</span></a>
                     </div>
                     <div class="card-body px-5 pt-0 pb-2">
                         <div class="table-responsive p-0">
@@ -26,6 +26,7 @@
                                         <x-admin.th>Tanggal Lahir</x-admin.th>
                                         <x-admin.th>Kelas</x-admin.th>
                                         <x-admin.th>Jenjang</x-admin.th>
+                                        <x-admin.th>Jurusan</x-admin.th>
                                         <x-admin.th>Email</x-admin.th>
                                         <x-admin.th>Role</x-admin.th>
                                         <x-admin.th>Action</x-admin.th>
@@ -35,14 +36,15 @@
                                 @foreach ($users as $item)
                                     <tr>
                                         <x-admin.td class="text-center">{{ $loop->iteration }}</x-admin.td>
-                                        <x-admin.td class="text-center">{{ $item->nis ?? '' }}</x-admin.td>
-                                        <x-admin.td class="text-center">{{ $item->nama ?? '' }}</x-admin.td>
-                                        <x-admin.td class="text-center">{{ $item->gender ?? '' }}</x-admin.td>
-                                        <x-admin.td class="text-center">{{ $item->tgl_lahir ?? '' }}</x-admin.td>
-                                        <x-admin.td class="text-center">{{ $item->kelas ?? '' }}</x-admin.td>
-                                        <x-admin.td class="text-center">{{ $item->jenjang ?? '' }}</x-admin.td>
-                                        <x-admin.td class="text-center">{{ $item->email ?? '' }}</x-admin.td>
-                                        <x-admin.td class="text-center">{{ $item->role ?? '' }}</x-admin.td>
+                                        <x-admin.td class="text-center">{{ $item->nis ?? '-' }}</x-admin.td>
+                                        <x-admin.td class="text-center">{{ $item->nama ?? '-' }}</x-admin.td>
+                                        <x-admin.td class="text-center">{{ $item->gender ?? '-' }}</x-admin.td>
+                                        <x-admin.td class="text-center">{{ $item->tgl_lahir ?? '-' }}</x-admin.td>
+                                        <x-admin.td class="text-center">{{ $item->kelas ?? '-' }}</x-admin.td>
+                                        <x-admin.td class="text-center">{{ $item->jenjang ?? '-' }}</x-admin.td>
+                                        <x-admin.td class="text-center">{{ $item->jurusan ?? '-' }}</x-admin.td>
+                                        <x-admin.td class="text-center">{{ $item->email ?? '-' }}</x-admin.td>
+                                        <x-admin.td class="text-center">{{ $item->role ?? '-' }}</x-admin.td>
                                         <x-admin.td class="text-center">
                                             <a href="#" class="btn bg-gradient-info" data-bs-toggle="modal"
                                                 data-bs-target="#editUsers{{ $item->id }}"><i class="fa fa-pencil"
@@ -71,7 +73,8 @@
                                                         <div class="modal-body">
                                                             <Label>Role</Label>
                                                             <select class="form-select mb-3"
-                                                                aria-label="Default select example" name="role">
+                                                                aria-label="Default select example" name="role"
+                                                                id="roleEdit{{ $item->id }}">
                                                                 <option hidden>--- Pilih ---</option>
                                                                 <option value="Admin"
                                                                     {{ $item->role == 'Admin' ? 'selected' : '' }}>Admin
@@ -85,10 +88,10 @@
                                                                 <option value="Pelatih"
                                                                     {{ $item->role == 'Pelatih' ? 'selected' : '' }}>
                                                                     Pelatih</option>
+                                                                <option value="Wali Kelas"
+                                                                    {{ $item->role == 'Wali Kelas' ? 'selected' : '' }}>
+                                                                    Wali Kelas</option>
                                                             </select>
-                                                            <x-admin.input type="text"
-                                                                placeholder="Dikosongkan selain siswa" label="NIS"
-                                                                name="nis" value="{{ $item->nis ?? '' }}" />
                                                             <x-admin.input type="text" placeholder="Nama" label="Nama"
                                                                 name="nama" value="{{ $item->nama ?? '' }}" />
                                                             <x-admin.input type="date" placeholder="Tanggal Lahir"
@@ -103,22 +106,49 @@
                                                                 <option value="Wanita" @selected($item->gender == 'Wanita')>Wanita
                                                                 </option>
                                                             </select>
-                                                            <x-admin.input type="number"
-                                                                placeholder="Dikosongkan selain siswa" label="Kelas"
-                                                                name="kelas" value="{{ $item->kelas ?? '' }}" />
-                                                            <Label>Jenjang</Label>
-                                                            <select class="form-select mb-3"
-                                                                aria-label="Default select example" name="role">
-                                                                <option value="" hidden>Tidak dipilih jika bukan siswa
-                                                                </option>
-                                                                <option value="SD">SD</option>
-                                                                <option value="SMP">SMP</option>
-                                                                <option value="SMK">SMK</option>
-                                                            </select>
+                                                            <div class="opsional">
+                                                                <x-admin.input type="text"
+                                                                    placeholder="Dikosongkan selain siswa" label="NIS"
+                                                                    name="nis" value="{{ $item->nis ?? '' }}"
+                                                                    id="nisEdit{{ $item->id }}" />
+                                                                <x-admin.input type="number" label="Kelas" name="kelas"
+                                                                    value="{{ $item->kelas ?? '10' }}"
+                                                                    id="kelasEdit{{ $item->id }}" readonly />
+                                                                <Label>Jenjang</Label>
+                                                                <select class="form-select mb-3"
+                                                                    aria-label="Default select example" name="jenjang"
+                                                                    id="jenjangSelect{{ $item->id }}">
+                                                                    <option selected hidden>--- Pilih Jenjang Pendidikan ---
+                                                                    </option>
+                                                                    <option value="SMA"
+                                                                        {{ $item->jenjang == 'SMA' ? 'selected' : '' }}>SMA
+                                                                    </option>
+                                                                    <option value="SMK"
+                                                                        {{ $item->jenjang == 'SMK' ? 'selected' : '' }}>SMK
+                                                                    </option>
+                                                                </select>
+                                                                <Label>Jurusan</Label>
+                                                                <select class="form-select mb-3"
+                                                                    aria-label="Default select example" name="jurusan"
+                                                                    id="jurusanSelect{{ $item->id }}" disabled>
+                                                                    <option selected hidden>--- Pilih Jurusan ---</option>
+                                                                    <option value="IPA"
+                                                                        {{ $item->jurusan == 'IPA' ? 'selected' : '' }}>IPA
+                                                                    </option>
+                                                                    <option value="IPS"
+                                                                        {{ $item->jurusan == 'IPS' ? 'selected' : '' }}>IPS
+                                                                    </option>
+                                                                    <option value="TKJ"
+                                                                        {{ $item->jurusan == 'TKJ' ? 'selected' : '' }}>TKJ
+                                                                    </option>
+                                                                    <option value="TSM"
+                                                                        {{ $item->jurusan == 'TSM' ? 'selected' : '' }}>TSM
+                                                                    </option>
+                                                                </select>
+                                                            </div>
                                                             <x-admin.input type="email" placeholder="Email"
                                                                 label="Email" name="email"
                                                                 value="{{ $item->email ?? '' }}" />
-                                                            <Label>Role</Label>
                                                             <x-admin.input type="password" placeholder="********"
                                                                 label="Password" name="password" />
                                                         </div>
@@ -181,34 +211,56 @@
                 <form action="{{ route('users.store') }}" method="post">
                     @csrf
                     <div class="modal-body">
+
                         <Label>Role</Label>
-                        <select class="form-select mb-3" aria-label="Default select example" name="role">
+                        <select class="form-select mb-3" aria-label="Default select example" name="role"
+                            id="roleAdd">
                             <option hidden>--- Pilih ---</option>
                             <option value="Admin">Admin</option>
                             <option value="Siswa">Siswa</option>
                             <option value="Kepala Sekolah">Kepala Sekolah</option>
                             <option value="Pelatih">Pelatih</option>
+                            <option value="Wali Kelas">Wali Kelas</option>
                         </select>
-                        <x-admin.input type="text" placeholder="Dikosongkan selain siswa" label="NIS"
-                            name="nis" />
+
                         <x-admin.input type="text" placeholder="Nama" label="Nama" name="nama" />
+
                         <x-admin.input type="date" placeholder="Tanggal Lahir" label="Tanggal Lahir"
                             name="tgl_lahir" />
+
                         <Label>Jenis Kelamin</Label>
                         <select class="form-select mb-3" aria-label="Default select example" name="gender">
                             <option hidden>--- Pilih ---</option>
                             <option value="Pria">Pria</option>
                             <option value="Wanita">Wanita</option>
                         </select>
-                        <x-admin.input type="number" placeholder="Dikosongkan selain siswa" label="Kelas"
-                            name="kelas" />
-                        <Label>Jenjang</Label>
-                        <select class="form-select mb-3" aria-label="Default select example" name="jenjang">
-                            <option value="" hidden>Tidak dipilih jika bukan siswa</option>
-                            <option value="SD">SD</option>
-                            <option value="SMP">SMP</option>
-                            <option value="SMK">SMK</option>
-                        </select>
+
+                        <div class="opsional">
+                            <x-admin.input type="text" placeholder="Dikosongkan selain siswa" label="NIS"
+                                name="nis" id="nis" />
+
+                            <x-admin.input type="number" placeholder="Dikosongkan selain siswa" label="Kelas"
+                                name="kelas" value="10" readonly id="kelas" />
+
+                            <Label>Jenjang</Label>
+                            <select class="form-select mb-3" aria-label="Default select example" name="jenjang"
+                                id="jenjangSelect">
+                                <option selected hidden>--- Pilih Jenjang Pendidikan ---</option>
+                                <option value="SMA">SMA</option>
+                                <option value="SMK">SMK</option>
+                            </select>
+
+                            <Label>Jurusan</Label>
+                            <select class="form-select mb-3" aria-label="Default select example" name="jurusan"
+                                id="jurusanSelect" disabled>
+                                <option selected hidden>--- Pilih Jurusan ---</option>
+                                <option value="IPA">IPA</option>
+                                <option value="IPS">IPS</option>
+                                <option value="TKJ">TKJ</option>
+                                <option value="TSM">TSM</option>
+                            </select>
+                        </div>
+
                         <x-admin.input type="email" placeholder="Email" label="Email" name="email" />
                         <x-admin.input type="password" placeholder="********" label="Password" name="password" />
                     </div>
@@ -219,5 +271,116 @@
                 </form>
             </div>
         </div>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                // Fungsi untuk menampilkan/menyembunyikan input berdasarkan role
+                function handleRoleChange(roleSelectId, nisId, kelasId, jenjangId, jurusanId) {
+                    const roleSelect = document.getElementById(roleSelectId);
+                    const nisInput = document.getElementById(nisId);
+                    const kelasInput = document.getElementById(kelasId);
+                    const jenjangSelect = document.getElementById(jenjangId);
+                    const jurusanSelect = document.getElementById(jurusanId);
+
+                    roleSelect.addEventListener('change', function() {
+                        const role = this.value;
+
+                        if (role === 'Siswa') {
+                            // Tampilkan NIS, Kelas, Jenjang, Jurusan
+                            nisInput.parentElement.style.display = 'block';
+                            kelasInput.parentElement.style.display = 'block';
+                            jenjangSelect.parentElement.style.display = 'block';
+                            jurusanSelect.parentElement.style.display = 'block';
+                        } else if (role === 'Wali Kelas') {
+                            // Tampilkan Kelas, Jenjang, Jurusan, sembunyikan NIS
+                            nisInput.parentElement.style.display = 'none';
+                            kelasInput.parentElement.style.display = 'block';
+                            jenjangSelect.parentElement.style.display = 'block';
+                            jurusanSelect.parentElement.style.display = 'block';
+                        } else {
+                            // Sembunyikan NIS, Kelas, Jenjang, Jurusan
+                            nisInput.parentElement.style.display = 'none';
+                            kelasInput.parentElement.style.display = 'none';
+                            jenjangSelect.parentElement.style.display = 'none';
+                            jurusanSelect.parentElement.style.display = 'none';
+                        }
+                    });
+
+                    // Trigger perubahan awal
+                    roleSelect.dispatchEvent(new Event('change'));
+                }
+
+                // Untuk Modal Add
+                handleRoleChange('roleAdd', 'nis', 'kelas', 'jenjangSelect', 'jurusanSelect');
+
+                // Untuk Modal Edit (looping melalui setiap user)
+                @foreach ($users as $item)
+                    handleRoleChange('roleEdit{{ $item->id }}', 'nisEdit{{ $item->id }}',
+                        'kelasEdit{{ $item->id }}', 'jenjangSelect{{ $item->id }}',
+                        'jurusanSelect{{ $item->id }}');
+                @endforeach
+            });
+
+
+            document.addEventListener("DOMContentLoaded", function() {
+                // Fungsi umum untuk menangani dropdown jenjang dan jurusan
+                function handleJenjangJurusan(jenjangId, jurusanId) {
+                    const jenjangSelect = document.getElementById(jenjangId);
+                    const jurusanSelect = document.getElementById(jurusanId);
+
+                    // Disable jurusan dropdown saat halaman dimuat
+                    jurusanSelect.disabled = true;
+
+                    jenjangSelect.addEventListener('change', function() {
+                        jurusanSelect.disabled = !this
+                            .value; // Enable/disable jurusan dropdown sesuai pilihan jenjang
+                    });
+                }
+
+                // Untuk Modal Add
+                handleJenjangJurusan('jenjangSelect', 'jurusanSelect');
+
+                // Untuk Modal Edit (looping melalui setiap user)
+                @foreach ($users as $item)
+                    handleJenjangJurusan('jenjangSelect{{ $item->id }}', 'jurusanSelect{{ $item->id }}');
+                @endforeach
+            });
+
+
+            function handleJenjangChange(jenjangSelectId, jurusanSelectId) {
+                var jenjang = document.getElementById(jenjangSelectId).value;
+                var jurusanSelect = document.getElementById(jurusanSelectId);
+                if (jenjang === 'SMA') {
+                    jurusanSelect.innerHTML = `
+                    <option value="IPA">IPA</option>
+                    <option value="IPS">IPS</option>
+                `;
+                } else if (jenjang === 'SMK') {
+                    jurusanSelect.innerHTML = `
+                    <option value="TKJ">TKJ</option>
+                    <option value="TSM">TSM</option>
+                `;
+                } else {
+                    jurusanSelect.innerHTML = `<option selected hidden>--- Pilih Jurusan ---</option>`;
+                }
+            }
+
+            // Event listener untuk modal edit
+            @foreach ($users as $item)
+                document.getElementById('jenjangSelect{{ $item->id }}').addEventListener('change', function() {
+                    handleJenjangChange('jenjangSelect{{ $item->id }}', 'jurusanSelect{{ $item->id }}');
+                });
+            @endforeach
+
+            // Event listener untuk modal add
+            var addModal = document.getElementById('addUsers');
+            addModal.addEventListener('shown.bs.modal', function() {
+                var addJenjangSelect = document.getElementById('jenjangSelect');
+                var addJurusanSelect = document.getElementById('jurusanSelect');
+                addJenjangSelect.addEventListener('change', function() {
+                    handleJenjangChange(addJenjangSelect.id, addJurusanSelect.id);
+                });
+            });
+        </script>
     </div>
 @endsection

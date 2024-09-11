@@ -104,4 +104,8 @@ Route::middleware(['auth', 'role:Kepala Sekolah'])->group(function () {
     Route::get('/data-siswa/kepsek', [DataSiswaController::class, 'kepsek'])->name('data-siswa.kepsek');
 });
 
+Route::middleware(['auth', 'role:Wali Kelas'])->group(function () {
+    Route::get('/data-siswa/waliKelas', [DataSiswaController::class, 'waliKelas'])->name('data-siswa.waliKelas');
+});
+
 require __DIR__ . '/auth.php';

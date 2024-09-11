@@ -24,6 +24,7 @@ class User extends Authenticatable
         'gender',
         'kelas',
         'jenjang',
+        'jurusan',
         'tgl_lahir',
         'nis',
         'password',

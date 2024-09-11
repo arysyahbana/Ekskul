@@ -20,4 +20,10 @@ class DataSiswaController extends Controller
         $page = "Data Siswa";
         return view('kepsek.dataSiswa.index', compact('page'));
     }
+
+    public function waliKelas()
+    {
+        $page = "Data Siswa";
+        return view('waliKelas.dataSiswa.index', compact('page'));
+    }
 }
