@@ -11,8 +11,8 @@
                     <div class="card-header pb-0 d-flex justify-content-between">
                         <a href="#" class="btn bg-gradient-warning" data-bs-toggle="modal" data-bs-target="#addEkskul"><i
                                 class="bi bi-plus-circle"></i><span class="text-capitalize ms-1">Tambah</span></a>
-                        <a href="{{ route('ekskul.download') }}" class="btn bg-gradient-success"><i class="bi bi-plus-circle"></i><span
-                                class="text-capitalize ms-1">Unduh Rekap Data</span></a>
+                        <a href="{{ route('ekskul.download') }}" class="btn bg-gradient-success"><i
+                                class="bi bi-plus-circle"></i><span class="text-capitalize ms-1">Unduh Rekap Data</span></a>
                     </div>
                     <div class="card-body px-5 pt-0 pb-2">
                         <div class="table-responsive p-0">
@@ -24,6 +24,8 @@
                                         <x-admin.th>Nama Ekstrakurikuler</x-admin.th>
                                         <x-admin.th>Foto</x-admin.th>
                                         <x-admin.th>Informasi Ekstrakurikuler</x-admin.th>
+                                        <x-admin.th>Prestasi Ekstrakurikuler</x-admin.th>
+                                        <x-admin.th>Dokumentasi Ekstrakurikuler</x-admin.th>
                                         <x-admin.th>Action</x-admin.th>
                                     </tr>
                                 @endslot
@@ -40,6 +42,21 @@
                                             {{ trim($item->informasi_ekskul) }}
                                         </x-admin.td>
                                         <x-admin.td>
+                                            <ul>
+                                                <li>Juara I Futsal memperebutkan piala Yanara tahun 2017</li>
+                                                <li>Juara I Futsal memperebutkan piala Yanara tahun 2017</li>
+                                                <li>Juara I Futsal memperebutkan piala Yanara tahun 2017</li>
+                                            </ul>
+                                        </x-admin.td>
+                                        <x-admin.td class="text-center">
+                                            <a href="{{ asset('dist/assets/img/ekskul/' . $item->image) }}"
+                                                target="_blank">Dokumentasi 1</a> <br>
+                                            <a href="{{ asset('dist/assets/img/ekskul/' . $item->image) }}"
+                                                target="_blank">Dokumentasi 2</a> <br>
+                                            <a href="{{ asset('dist/assets/img/ekskul/' . $item->image) }}"
+                                                target="_blank">Dokumentasi 3</a>
+                                        </x-admin.td>
+                                        <x-admin.td>
                                             <a href="#" class="btn bg-gradient-info" data-bs-toggle="modal"
                                                 data-bs-target="#editEkskul{{ $item->id }}"><i
                                                     class="bi bi-pencil-fill"></i><span
@@ -51,9 +68,9 @@
                                         </x-admin.td>
 
                                         <!-- Modal Edit Ekskul -->
-                                        <div class="modal fade" id="editEkskul{{ $item->id }}" data-bs-backdrop="static"
-                                            data-bs-keyboard="false" tabindex="-1" aria-labelledby="editEkskulLabel"
-                                            aria-hidden="true">
+                                        <div class="modal fade" id="editEkskul{{ $item->id }}"
+                                            data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                                            aria-labelledby="editEkskulLabel" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-scrollable">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
@@ -87,6 +104,28 @@
                                                             <textarea class="form-control" name="info" id="info{{ $item->id }}" cols="20" rows="10">
                                                                 {{ trim($item->informasi_ekskul ?? '') }}
                                                             </textarea>
+
+                                                            <div class="editPrestasi">
+                                                                <div class="row me-1">
+                                                                    <div class="col-10">
+                                                                        <x-admin.input type="text"
+                                                                            placeholder="Prestasi Ekskul" label="Prestasi"
+                                                                            name="prestasi[]" />
+                                                                    </div>
+                                                                    <div class="col-2 mt-3 pt-3">
+                                                                        <button type="button"
+                                                                            class="btn btn-sm btn-primary"
+                                                                            onclick="editPrestasi(this)">+</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="mb-3">
+                                                                <label for="formFile"
+                                                                    class="form-label">Dokumentasi</label>
+                                                                <input class="form-control" type="file" id="formFile"
+                                                                    name="dokumentasi" multiple>
+                                                            </div>
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="submit"
@@ -156,7 +195,25 @@
                             <input class="form-control" type="file" id="formFile" name="image">
                         </div>
                         <label>Informasi Ekskul</label>
-                        <textarea class="form-control" name="info" id="info" cols="20" rows="10"></textarea>
+                        <textarea class="form-control mb-3" name="info" id="info" cols="20" rows="10"></textarea>
+
+                        <div class="addPrestasi">
+                            <div class="row me-1">
+                                <div class="col-10">
+                                    <x-admin.input type="text" placeholder="Prestasi Ekskul" label="Prestasi"
+                                        name="prestasi[]" />
+                                </div>
+                                <div class="col-2 mt-3 pt-3">
+                                    <button type="button" class="btn btn-sm btn-primary"
+                                        onclick="addPrestasi(this)">+</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="formFile" class="form-label">Dokumentasi</label>
+                            <input class="form-control" type="file" id="formFile" name="dokumentasi" multiple>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-sm btn-success">Simpan</button>
@@ -183,5 +240,55 @@
         @foreach ($ekskul as $item)
             setTextWithNormalizedWhitespace('info{{ $item->id }}', '{{ trim($item->informasi_ekskul ?? '') }}');
         @endforeach
+    </script>
+
+    <script>
+        function addPrestasi(element) {
+            var prestasiClass = element.closest('.addPrestasi');
+            var input = prestasiClass.querySelector('input');
+            var inputName = input.getAttribute('name');
+            var div = document.createElement('div');
+            div.className = 'row me-1';
+            div.innerHTML = `
+            <div class="col-10">
+                <input class="form-control" type="text" placeholder="Prestasi Ekskul"
+                    name="${inputName}" />
+            </div>
+            <div class="col-2 mt-1">
+                <button type="button" class="btn btn-sm btn-warning"
+                    onclick="deleteForm(this)">-</button>
+            </div>`;
+
+            prestasiClass.appendChild(div);
+        }
+
+        function deleteForm(element) {
+            var row = element.closest('.row');
+            row.remove();
+        }
+
+        function editPrestasi(element) {
+            var editPrestasiClass = element.closest('.editPrestasi');
+            var input = editPrestasiClass.querySelector('input');
+            var inputName = input.getAttribute('name');
+            var div = document.createElement('div');
+            div.className = 'row me-1';
+            div.innerHTML = `
+            <div class="col-10">
+                <input class="form-control" type="text" placeholder="Prestasi Ekskul"
+                    name="${inputName}" />
+            </div>
+            <div class="col-2 mt-1">
+                <button type="button" class="btn btn-sm btn-warning"
+                    onclick="deleteFormEdit(this)">-</button>
+            </div>`;
+
+            editPrestasiClass.appendChild(div);
+        }
+
+        function deleteFormEdit(element) {
+            var row = element.closest('.row');
+            row.remove();
+        }
     </script>
 @endsection

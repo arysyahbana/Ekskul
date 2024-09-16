@@ -55,7 +55,7 @@
 
         <section id="home" class="container mx-auto pt-24 pb-16">
             <div class="grid grid-cols-1 md:grid-cols-2">
-                <div class="text-[#EBF4F6] py-16" data-aos="fade-right" data-aos-duration="1000">
+                <div class="text-[#EBF4F6] py-16 mx-12 md:mx-0" data-aos="fade-right" data-aos-duration="1000">
                     <p class="text-xl">Tidak Pusing Lagi Memilih Ekstrakurikuler</p>
                     <p class="text-5xl font-bold mb-5 mt-2">
                         Sistem Pendukung Keputusan Ekstrakurikuler
@@ -69,9 +69,9 @@
                         Login
                     </a>
                 </div>
-                <div class="overflow-hidden border rounded-3xl shadow-xl" data-aos="fade-left" data-aos-duration="1000">
-                    <img src="{{ asset('dist/assets/img/home.jpg') }}" alt=""
-                        class="hidden md:block object-cover" />
+                <div class="overflow-hidden border rounded-3xl shadow-xl mx-12 md:mx-0" data-aos="fade-left"
+                    data-aos-duration="1000">
+                    <img src="{{ asset('dist/assets/img/home.jpg') }}" alt="" class="object-cover h-full" />
                 </div>
             </div>
         </section>
@@ -109,20 +109,23 @@
                 Yayasan Pendidikan SingosariDelitua.
             </p>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 mt-5 justify-items-center">
-                <div class="bg-gray-100 hover:bg-gray-200 max-w-lg rounded-xl shadow-xl" target="blank"
-                    data-aos="fade-up" data-aos-duration="1000">
-                    <div class="p-5 overflow-hidden rounded-xl">
-                        <img src="{{ asset('dist/assets/img/ekskul.jpg') }}" alt=""
-                            class="object-cover shadow-lg rounded-xl h-[180px] w-full" />
-                        <p class="text-xl font-bold text-[#4C3BCF] my-2">
-                            Ekstrakurikuler
-                        </p>
-                        <p class="text-sm">
-                            Ekstrakurikuler adalah kegiatan non pelajaran formal yang dilakukan peserta didik sekolah,
-                            umumnya di luar jam belajar kurikulum standar.
-                        </p>
+                <a href="{{ route('detail-ekskul') }}">
+                    <div class="bg-gray-100 hover:bg-gray-200 max-w-lg rounded-xl shadow-xl" target="blank"
+                        data-aos="fade-up" data-aos-duration="1000">
+                        <div class="p-5 overflow-hidden rounded-xl">
+                            <img src="{{ asset('dist/assets/img/ekskul.jpg') }}" alt=""
+                                class="object-cover shadow-lg rounded-xl h-[180px] w-full" />
+                            <p class="text-xl font-bold text-[#4C3BCF] my-2">
+                                Ekstrakurikuler
+                            </p>
+                            <p class="text-sm desc">
+                                Ekstrakurikuler adalah kegiatan non pelajaran formal yang dilakukan peserta didik
+                                sekolah,
+                                umumnya di luar jam belajar kurikulum standar.
+                            </p>
+                        </div>
                     </div>
-                </div>
+                </a>
 
                 <div class="bg-gray-100 hover:bg-gray-200 max-w-lg rounded-xl shadow-xl" target="blank"
                     data-aos="fade-up" data-aos-duration="1000">
@@ -132,7 +135,7 @@
                         <p class="text-xl font-bold text-[#4C3BCF] my-2">
                             Futsal
                         </p>
-                        <p class="text-sm">
+                        <p class="text-sm desc">
                             Ekstrakurikuler futsal adalah kegiatan ekstrakurikuler di sekolah yang menawarkan kesempatan
                             bagi siswa untuk belajar dan mengembangkan keterampilan dalam bermain futsal.
                         </p>
@@ -147,7 +150,7 @@
                         <p class="text-xl font-bold text-[#4C3BCF] my-2">
                             Basket
                         </p>
-                        <p class="text-sm">
+                        <p class="text-sm desc">
                             Ekstrakurikuler basket adalah kegiatan ekstrakurikuler di sekolah yang menawarkan kesempatan
                             bagi siswa untuk belajar dan mengembangkan keterampilan dalam bermain basket.
                         </p>
@@ -162,7 +165,7 @@
                         <p class="text-xl font-bold text-[#4C3BCF] my-2">
                             Renang
                         </p>
-                        <p class="text-sm">
+                        <p class="text-sm desc">
                             Ekstrakurikuler renang adalah kegiatan ekstrakurikuler di sekolah yang menawarkan kesempatan
                             bagi siswa untuk belajar dan mengembangkan keterampilan dalam olahraga renang.
                         </p>
@@ -177,7 +180,7 @@
                         <p class="text-xl font-bold text-[#4C3BCF] my-2">
                             Paskibra
                         </p>
-                        <p class="text-sm">
+                        <p class="text-sm desc">
                             Ekstrakurikuler paskibra merupakan suatu kegiatan atau aktivitas di sekolah atau lembaga
                             pendidikan yang dilaksanakan di luar jam pelajaran yang bertugas sebagai pengibar bendera.
                         </p>
@@ -192,7 +195,7 @@
                         <p class="text-xl font-bold text-[#4C3BCF] my-2">
                             Pramuka
                         </p>
-                        <p class="text-sm">
+                        <p class="text-sm desc">
                             Ekstrakurikuler pramuka merupakan salah satu kegiatan ekstrakurikuler yang dapat membentuk
                             karakter dan jiwa kepemimpinan dalam diri peserta didik.
                         </p>
@@ -212,6 +215,21 @@
     <script>
         AOS.init();
     </script>
+    <script>
+        const descElements = document.querySelectorAll('.desc'); // gunakan class untuk memilih semua elemen
+        descElements.forEach((descElement) => {
+            const fullText = descElement.innerText; // gunakan innerText untuk mempertahankan format spasi dan enter
+            const words = fullText.split(' ');
+
+            // Jika kata lebih dari 15, potong kata yang berlebih dan tambahkan '...'
+            if (words.length > 15) {
+                const shortenedText = words.slice(0, 15).join(' ') + '...';
+                descElement.innerText = shortenedText; // gunakan innerText agar tidak merusak HTML di dalamnya
+            }
+        });
+    </script>
+
+
 </body>
 
 </html>

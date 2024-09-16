@@ -27,7 +27,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
+
+Route::get('/detail-ekskul', function () {
+    return view('detailEkskul');
+})->name('detail-ekskul');
+
+
 // Route::get('/', function () {
 //     return view('auth.login');
 // });
