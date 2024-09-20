@@ -9,7 +9,7 @@
                 <h6>Hasil SMART</h6>
                 <div class="card mb-4">
                     <div class="card-header pb-0 d-flex justify-content-end">
-                        <a href="#" class="btn bg-gradient-success"><i class="bi bi-plus-circle"></i><span
+                        <a href="{{ route('smart.download') }}" class="btn bg-gradient-success"><i class="bi bi-plus-circle"></i><span
                                 class="text-capitalize ms-1">Unduh Rekap Data</span></a>
                     </div>
                     <div class="card-body px-5 py-2">
@@ -30,66 +30,67 @@
                                         <x-admin.th>Action</x-admin.th>
                                     </tr>
                                 @endslot
-
-                                <tr>
-                                    <x-admin.td class="text-center">1</x-admin.td>
-                                    <x-admin.td class="text-center">2000</x-admin.td>
-                                    <x-admin.td class="text-center">Budi</x-admin.td>
-                                    <x-admin.td class="text-center">Pria</x-admin.td>
-                                    <x-admin.td class="text-center">11</x-admin.td>
-                                    <x-admin.td class="text-center">SMA</x-admin.td>
-                                    <x-admin.td class="text-center">01-01-2022</x-admin.td>
-                                    <x-admin.td class="text-center">90</x-admin.td>
-                                    <x-admin.td class="text-center">
-                                        {{-- <span
+                                @foreach ($rekomendasi as $item)
+                                    <tr>
+                                        <x-admin.td class="text-center">{{ $loop->iteration }}</x-admin.td>
+                                        <x-admin.td class="text-center">{{$item->rSiswa->nis}}</x-admin.td>
+                                        <x-admin.td class="text-center">{{$item->rSiswa->nama}}</x-admin.td>
+                                        <x-admin.td class="text-center">{{$item->rSiswa->gender}}</x-admin.td>
+                                        <x-admin.td class="text-center">{{$item->rSiswa->kelas}}</x-admin.td>
+                                        <x-admin.td class="text-center">{{$item->rSiswa->jenjang}}</x-admin.td>
+                                        <x-admin.td class="text-center">{{$item->created_at}}</x-admin.td>
+                                        <x-admin.td class="text-center">{{$item->hasil_smart}}</x-admin.td>
+                                        <x-admin.td class="text-center">
+                                            {{-- <span
                                             class="bg-gradient-warning py-2 px-4 rounded-pill text-light fw-bold">Renang</span>
                                         <span
                                             class="bg-gradient-primary py-2 px-4 rounded-pill text-light fw-bold">Pramuka</span> --}}
-                                        <span
-                                            class="bg-gradient-success py-2 px-4 rounded-pill text-light fw-bold">Futsal</span>
-                                        {{-- <span
+                                            <span
+                                                class="bg-gradient-success py-2 px-4 rounded-pill text-light fw-bold">{{$item->rEkstrakurikuler->nama_ekskul}}</span>
+                                            {{-- <span
                                             class="bg-gradient-danger py-2 px-4 rounded-pill text-light fw-bold">Basket</span>
                                         <span
                                             class="bg-gradient-info py-2 px-4 rounded-pill text-light fw-bold">Paskibra</span> --}}
-                                    </x-admin.td>
-                                    <x-admin.td class="text-center">
-                                        <a href="{{ route('smart.detail') }}" class="btn bg-gradient-info mt-3"><i
-                                                class="bi bi-eye-fill"></i></i><span class="text-capitalize ms-1">Cek
-                                                Seluruh Hasil</span></a>
-                                    </x-admin.td>
-                                    <x-admin.td class="text-center">
-                                        <a href="#" class="btn bg-gradient-danger mt-3" data-bs-toggle="modal"
-                                            data-bs-target="#hapusSmart"><i class="bi bi-trash-fill"></i><span
-                                                class="text-capitalize ms-1">Hapus</span></a>
-                                    </x-admin.td>
+                                        </x-admin.td>
+                                        <x-admin.td class="text-center">
+                                            <a href="{{ route('smart.detail',$item->id_hasil_bobot_total) }}" class="btn bg-gradient-info mt-3"><i
+                                                    class="bi bi-eye-fill"></i></i><span class="text-capitalize ms-1">Cek
+                                                    Seluruh Hasil</span></a>
+                                        </x-admin.td>
+                                        <x-admin.td class="text-center">
+                                            <a href="" class="btn bg-gradient-danger mt-3" data-bs-toggle="modal"
+                                                data-bs-target="#hapusSmart"><i class="bi bi-trash-fill"></i><span
+                                                    class="text-capitalize ms-1">Hapus</span></a>
+                                        </x-admin.td>
 
-                                    <!-- Modal Hapus Hasil -->
-                                    <div class="modal fade" id="hapusSmart" data-bs-backdrop="static"
-                                        data-bs-keyboard="false" tabindex="-1" aria-labelledby="hapusSmartLabel"
-                                        aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-scrollable">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h1 class="modal-title fs-5" id="hapusSmartLabel">Hapus Hasil SMART
-                                                    </h1>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                        aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body text-center">
-                                                    <img src="{{ asset('dist/assets/img/bin.gif') }}" alt=""
-                                                        class="img-fluid w-25">
-                                                    <p>Yakin ingin menghapus data?</p>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <a href="#" type="submit" class="btn btn-sm btn-danger">Hapus</a>
-                                                    <button type="button" class="btn btn-sm btn-secondary"
-                                                        data-bs-dismiss="modal">Batal</button>
+                                        <!-- Modal Hapus Hasil -->
+                                        <div class="modal fade" id="hapusSmart" data-bs-backdrop="static"
+                                            data-bs-keyboard="false" tabindex="-1" aria-labelledby="hapusSmartLabel"
+                                            aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-scrollable">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h1 class="modal-title fs-5" id="hapusSmartLabel">Hapus Hasil SMART
+                                                        </h1>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body text-center">
+                                                        <img src="{{ asset('dist/assets/img/bin.gif') }}" alt=""
+                                                            class="img-fluid w-25">
+                                                        <p>Yakin ingin menghapus data?</p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <a href="{{ route('smart.destroy', $item->id_hasil_bobot_total) }}" type="submit"
+                                                            class="btn btn-sm btn-danger">Hapus</a>
+                                                        <button type="button" class="btn btn-sm btn-secondary"
+                                                            data-bs-dismiss="modal">Batal</button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </tr>
-
+                                    </tr>
+                                @endforeach
                             </x-admin.table>
                         </div>
                     </div>

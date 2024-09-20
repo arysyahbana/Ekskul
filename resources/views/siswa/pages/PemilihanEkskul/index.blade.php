@@ -48,7 +48,7 @@
                                     role="progressbar">Prestasi</div>
                             </div>
 
-                            <form action="#" method="POST">
+                            <form action="{{route('pemilihan-ekskul.smart')}}" method="POST">
                                 @csrf
                                 <div class="mt-4" id="step1-content">
                                     <p class="fw-bold">Kriteria Umum</p>
@@ -59,27 +59,29 @@
                                         value="{{ $siswa->nama ?? '' }}" />
 
                                     <Label>Tinggi Badan</Label>
-                                    <select class="form-select mb-3" aria-label="Default select example" name="tinggi[]"
+                                    <select class="form-select mb-3" aria-label="Default select example" name="tinggi"
                                         id="tinggi">
                                         <option selected hidden>--- Pilih ---</option>
-                                        <option value="<151-160">
-                                            < 151 - 160</option>
+                                        <option value="1">< 151 - 160</option>
+                                        <option value="2">< 161 - 170</option>
+                                        <option value="3">> 170</option>
                                     </select>
 
                                     <Label>Berat Badan</Label>
-                                    <select class="form-select mb-3" aria-label="Default select example" name="berat[]"
+                                    <select class="form-select mb-3" aria-label="Default select example" name="berat"
                                         id="berat">
                                         <option selected hidden>--- Pilih ---</option>
-                                        <option value="46-50">
-                                            46 - 50</option>
+                                        <option value="1">< 40 - 45</option>
+                                        <option value="2"> 46 - 50</option>
+                                        <option value="3">> 51 - 70</option>
                                     </select>
 
                                     <Label>Riwayat Penyakit</Label>
-                                    <select class="form-select mb-3" aria-label="Default select example" name="riwayat[]"
+                                    <select class="form-select mb-3" aria-label="Default select example" name="riwayat"
                                         id="riwayat">
                                         <option selected hidden>--- Pilih ---</option>
-                                        <option value="Ada Riwayat">Ada Riwayat</option>
-                                        <option value="Tidak Ada Riwayat">Tidak Ada Riwayat</option>
+                                        <option value="1">Ada Riwayat</option>
+                                        <option value="2">Tidak Ada Riwayat</option>
                                     </select>
                                 </div>
 
@@ -89,13 +91,12 @@
                                     @foreach ($ekskul as $item)
                                         <Label>{{ $item->nama_ekskul ?? '' }}</Label>
                                         <select class="form-select mb-3" aria-label="Default select example"
-                                            name="minat{{ $item->nama_ekskul ?? '' }}[]"
+                                            name="minat{{ $item->nama_ekskul ?? '' }}"
                                             id="minat{{ $item->nama_ekskul ?? '' }}">
                                             <option selected hidden>--- Pilih ---</option>
-                                            <option value="Sangat Berminat">Sangat Berminat</option>
-                                            <option value="Berminat">Berminat</option>
-                                            <option value="Cukup Berminat">Cukup Berminat</option>
-                                            <option value="Tidak Berminat">Tidak Berminat</option>
+                                            <option value="1">Tidak Berminat</option>
+                                            <option value="2">Cukup Berminat</option>
+                                            <option value="3">Sangat Berminat</option>
                                         </select>
                                     @endforeach
                                 </div>
@@ -106,11 +107,11 @@
                                     @foreach ($ekskul as $item)
                                         <Label>{{ $item->nama_ekskul ?? '' }}</Label>
                                         <select class="form-select mb-3" aria-label="Default select example"
-                                            name="riwayat{{ $item->nama_ekskul ?? '' }}[]"
+                                            name="riwayat{{ $item->nama_ekskul ?? '' }}"
                                             id="riwayat{{ $item->nama_ekskul ?? '' }}">
                                             <option selected hidden>--- Pilih ---</option>
-                                            <option value="Pernah">Pernah</option>
-                                            <option value="Tidak Pernah">Tidak Pernah</option>
+                                            <option value="1">Tidak Pernah</option>
+                                            <option value="2">Pernah</option>
                                         </select>
                                     @endforeach
 
@@ -123,11 +124,11 @@
                                     @foreach ($ekskul as $item)
                                         <Label>{{ $item->nama_ekskul ?? '' }}</Label>
                                         <select class="form-select mb-3" aria-label="Default select example"
-                                            name="prestasi{{ $item->nama_ekskul ?? '' }}[]"
+                                            name="prestasi{{ $item->nama_ekskul ?? '' }}"
                                             id="prestasi{{ $item->nama_ekskul ?? '' }}">
                                             <option selected hidden>--- Pilih ---</option>
-                                            <option value="Ada Prestasi">Ada Prestasi</option>
-                                            <option value="Tidak Ada Prestasi">Tidak Ada Prestasi</option>
+                                            <option value="1">Tidak Ada Prestasi</option>
+                                            <option value="2">Ada Prestasi</option>
                                         </select>
                                     @endforeach
 

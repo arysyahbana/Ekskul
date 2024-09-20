@@ -66,7 +66,9 @@ Route::middleware(['auth', 'role:Admin'])->group(function () {
 
     Route::prefix('smart')->group(function () {
         Route::get('/show', [SmartController::class, 'index'])->name('smart.show');
-        Route::get('/detail', [SmartController::class, 'detail'])->name('smart.detail');
+        Route::get('/detail/{id}', [SmartController::class, 'detail'])->name('smart.detail');
+        Route::get('/destroy/{id}', [SmartController::class, 'destroy'])->name('smart.destroy');
+        Route::get('/download', [SmartController::class, 'download'])->name('smart.download');
     });
 
     Route::prefix('siswa')->group(function () {
@@ -94,6 +96,7 @@ Route::middleware(['auth', 'role:Siswa'])->group(function () {
 
     Route::prefix('pemilihan-ekskul')->group(function () {
         Route::get('/show', [PemilihanEkskulController::class, 'index'])->name('pemilihan-ekskul.show');
+        Route::post('/smart', [PemilihanEkskulController::class, 'smart'])->name('pemilihan-ekskul.smart');
         Route::get('/hasil', [PemilihanEkskulController::class, 'hasil'])->name('pemilihan-hasil.show');
     });
 

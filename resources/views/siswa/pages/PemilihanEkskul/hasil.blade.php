@@ -22,137 +22,63 @@
                             <x-admin.th>Nilai Prestasi</x-admin.th>
                         </tr>
                     @endslot
+                    @foreach ($hasilBobot as $item)
+                        <tr>
+                            <x-admin.td class="text-center">{{ $item->rEkstrakurikuler->nama_ekskul }}</x-admin.td>
+                            <x-admin.td class="text-center py-3">
+                                <span
+                                    class="bg-gradient-success py-2 px-3 rounded-pill text-light fw-bold">{{ $item->bobot_tinggi }}</span>
+                            </x-admin.td>
+                            <x-admin.td class="text-center py-3">
+                                <span
+                                    class="bg-gradient-success py-2 px-3 rounded-pill text-light fw-bold">{{ $item->bobot_berat }}</span>
+                            </x-admin.td>
+                            <x-admin.td class="text-center py-3">
+                                <span
+                                    class="bg-gradient-success py-2 px-3 rounded-pill text-light fw-bold">{{ $item->bobot_riwayat }}</span>
+                            </x-admin.td>
+                            <x-admin.td class="text-center py-3">
+                                <span
+                                    class="bg-gradient-success py-2 px-3 rounded-pill text-light fw-bold">{{ $item->bobot_minat }}</span>
+                            </x-admin.td>
+                            <x-admin.td class="text-center py-3">
+                                <span
+                                    class="bg-gradient-success py-2 px-3 rounded-pill text-light fw-bold">{{ $item->bobot_riwayat_ekskul }}</span>
+                            </x-admin.td>
+                            <x-admin.td class="text-center py-3">
+                                <span
+                                    class="bg-gradient-success py-2 px-3 rounded-pill text-light fw-bold">{{ $item->bobot_prestasi }}</span>
+                            </x-admin.td>
+                        </tr>
+                    @endforeach
 
-                    <tr>
-                        <x-admin.td class="text-center">Futsal</x-admin.td>
-                        <x-admin.td class="text-center py-3">
-                            <span class="bg-gradient-success py-2 px-3 rounded-pill text-light fw-bold">0</span>
-                        </x-admin.td>
-                        <x-admin.td class="text-center py-3">
-                            <span class="bg-gradient-success py-2 px-3 rounded-pill text-light fw-bold">0.5</span>
-                        </x-admin.td>
-                        <x-admin.td class="text-center py-3">
-                            <span class="bg-gradient-success py-2 px-3 rounded-pill text-light fw-bold">1</span>
-                        </x-admin.td>
-                        <x-admin.td class="text-center py-3">
-                            <span class="bg-gradient-success py-2 px-3 rounded-pill text-light fw-bold">0</span>
-                        </x-admin.td>
-                        <x-admin.td class="text-center py-3">
-                            <span class="bg-gradient-success py-2 px-3 rounded-pill text-light fw-bold">0</span>
-                        </x-admin.td>
-                        <x-admin.td class="text-center py-3">
-                            <span class="bg-gradient-success py-2 px-3 rounded-pill text-light fw-bold">0</span>
-                        </x-admin.td>
-                    </tr>
-
-                    <tr>
-                        <x-admin.td class="text-center">Basket</x-admin.td>
-                        <x-admin.td class="text-center py-3">
-                            <span class="bg-gradient-success py-2 px-3 rounded-pill text-light fw-bold">0</span>
-                        </x-admin.td>
-                        <x-admin.td class="text-center py-3">
-                            <span class="bg-gradient-success py-2 px-3 rounded-pill text-light fw-bold">0.5</span>
-                        </x-admin.td>
-                        <x-admin.td class="text-center py-3">
-                            <span class="bg-gradient-success py-2 px-3 rounded-pill text-light fw-bold">1</span>
-                        </x-admin.td>
-                        <x-admin.td class="text-center py-3">
-                            <span class="bg-gradient-success py-2 px-3 rounded-pill text-light fw-bold">0</span>
-                        </x-admin.td>
-                        <x-admin.td class="text-center py-3">
-                            <span class="bg-gradient-success py-2 px-3 rounded-pill text-light fw-bold">0</span>
-                        </x-admin.td>
-                        <x-admin.td class="text-center py-3">
-                            <span class="bg-gradient-success py-2 px-3 rounded-pill text-light fw-bold">0</span>
-                        </x-admin.td>
-                    </tr>
-
-                    <tr>
-                        <x-admin.td class="text-center">Renang</x-admin.td>
-                        <x-admin.td class="text-center py-3">
-                            <span class="bg-gradient-success py-2 px-3 rounded-pill text-light fw-bold">0</span>
-                        </x-admin.td>
-                        <x-admin.td class="text-center py-3">
-                            <span class="bg-gradient-success py-2 px-3 rounded-pill text-light fw-bold">0.5</span>
-                        </x-admin.td>
-                        <x-admin.td class="text-center py-3">
-                            <span class="bg-gradient-success py-2 px-3 rounded-pill text-light fw-bold">1</span>
-                        </x-admin.td>
-                        <x-admin.td class="text-center py-3">
-                            <span class="bg-gradient-success py-2 px-3 rounded-pill text-light fw-bold">0</span>
-                        </x-admin.td>
-                        <x-admin.td class="text-center py-3">
-                            <span class="bg-gradient-success py-2 px-3 rounded-pill text-light fw-bold">0</span>
-                        </x-admin.td>
-                        <x-admin.td class="text-center py-3">
-                            <span class="bg-gradient-success py-2 px-3 rounded-pill text-light fw-bold">0</span>
-                        </x-admin.td>
-                    </tr>
-
-                    <tr>
-                        <x-admin.td class="text-center">Paskibra</x-admin.td>
-                        <x-admin.td class="text-center py-3">
-                            <span class="bg-gradient-success py-2 px-3 rounded-pill text-light fw-bold">0</span>
-                        </x-admin.td>
-                        <x-admin.td class="text-center py-3">
-                            <span class="bg-gradient-success py-2 px-3 rounded-pill text-light fw-bold">0.5</span>
-                        </x-admin.td>
-                        <x-admin.td class="text-center py-3">
-                            <span class="bg-gradient-success py-2 px-3 rounded-pill text-light fw-bold">1</span>
-                        </x-admin.td>
-                        <x-admin.td class="text-center py-3">
-                            <span class="bg-gradient-success py-2 px-3 rounded-pill text-light fw-bold">0</span>
-                        </x-admin.td>
-                        <x-admin.td class="text-center py-3">
-                            <span class="bg-gradient-success py-2 px-3 rounded-pill text-light fw-bold">0</span>
-                        </x-admin.td>
-                        <x-admin.td class="text-center py-3">
-                            <span class="bg-gradient-success py-2 px-3 rounded-pill text-light fw-bold">0</span>
-                        </x-admin.td>
-                    </tr>
-
-                    <tr>
-                        <x-admin.td class="text-center">Pramuka</x-admin.td>
-                        <x-admin.td class="text-center py-3">
-                            <span class="bg-gradient-success py-2 px-3 rounded-pill text-light fw-bold">0</span>
-                        </x-admin.td>
-                        <x-admin.td class="text-center py-3">
-                            <span class="bg-gradient-success py-2 px-3 rounded-pill text-light fw-bold">0.5</span>
-                        </x-admin.td>
-                        <x-admin.td class="text-center py-3">
-                            <span class="bg-gradient-success py-2 px-3 rounded-pill text-light fw-bold">1</span>
-                        </x-admin.td>
-                        <x-admin.td class="text-center py-3">
-                            <span class="bg-gradient-success py-2 px-3 rounded-pill text-light fw-bold">0</span>
-                        </x-admin.td>
-                        <x-admin.td class="text-center py-3">
-                            <span class="bg-gradient-success py-2 px-3 rounded-pill text-light fw-bold">0</span>
-                        </x-admin.td>
-                        <x-admin.td class="text-center py-3">
-                            <span class="bg-gradient-success py-2 px-3 rounded-pill text-light fw-bold">0</span>
-                        </x-admin.td>
-                    </tr>
 
                     <tr>
                         <x-admin.td class="text-center"><span
                                 class="bg-gradient-danger py-2 px-3 rounded-pill text-light fw-bold">Total</span></x-admin.td>
                         <x-admin.td class="text-center py-3">
-                            <span class="bg-gradient-warning py-2 px-3 rounded-pill text-light fw-bold">0</span>
+                            <span
+                                class="bg-gradient-warning py-2 px-3 rounded-pill text-light fw-bold">{{ $hasilBobotTotal->bobot_tinggi_total }}</span>
                         </x-admin.td>
                         <x-admin.td class="text-center py-3">
-                            <span class="bg-gradient-warning py-2 px-3 rounded-pill text-light fw-bold">0.5</span>
+                            <span
+                                class="bg-gradient-warning py-2 px-3 rounded-pill text-light fw-bold">{{ $hasilBobotTotal->bobot_berat_total }}</span>
                         </x-admin.td>
                         <x-admin.td class="text-center py-3">
-                            <span class="bg-gradient-warning py-2 px-3 rounded-pill text-light fw-bold">1</span>
+                            <span
+                                class="bg-gradient-warning py-2 px-3 rounded-pill text-light fw-bold">{{ $hasilBobotTotal->bobot_riwayat_total }}</span>
                         </x-admin.td>
                         <x-admin.td class="text-center py-3">
-                            <span class="bg-gradient-warning py-2 px-3 rounded-pill text-light fw-bold">0</span>
+                            <span
+                                class="bg-gradient-warning py-2 px-3 rounded-pill text-light fw-bold">{{ $hasilBobotTotal->bobot_minat_total }}</span>
                         </x-admin.td>
                         <x-admin.td class="text-center py-3">
-                            <span class="bg-gradient-warning py-2 px-3 rounded-pill text-light fw-bold">0</span>
+                            <span
+                                class="bg-gradient-warning py-2 px-3 rounded-pill text-light fw-bold">{{ $hasilBobotTotal->bobot_riwayat_ekskul_total }}</span>
                         </x-admin.td>
                         <x-admin.td class="text-center py-3">
-                            <span class="bg-gradient-warning py-2 px-3 rounded-pill text-light fw-bold">0</span>
+                            <span
+                                class="bg-gradient-warning py-2 px-3 rounded-pill text-light fw-bold">{{ $hasilBobotTotal->bobot_prestasi_total }}</span>
                         </x-admin.td>
                     </tr>
                 </x-admin.table>
@@ -178,130 +104,33 @@
                         </tr>
                     @endslot
 
-                    <tr>
-                        <x-admin.td class="text-center">Futsal</x-admin.td>
-                        <x-admin.td class="text-center py-3">
-                            <span class="bg-gradient-success py-2 px-3 rounded-pill text-light fw-bold">0</span>
-                        </x-admin.td>
-                        <x-admin.td class="text-center py-3">
-                            <span class="bg-gradient-success py-2 px-3 rounded-pill text-light fw-bold">0.5</span>
-                        </x-admin.td>
-                        <x-admin.td class="text-center py-3">
-                            <span class="bg-gradient-success py-2 px-3 rounded-pill text-light fw-bold">1</span>
-                        </x-admin.td>
-                        <x-admin.td class="text-center py-3">
-                            <span class="bg-gradient-success py-2 px-3 rounded-pill text-light fw-bold">0</span>
-                        </x-admin.td>
-                        <x-admin.td class="text-center py-3">
-                            <span class="bg-gradient-success py-2 px-3 rounded-pill text-light fw-bold">0</span>
-                        </x-admin.td>
-                        <x-admin.td class="text-center py-3">
-                            <span class="bg-gradient-success py-2 px-3 rounded-pill text-light fw-bold">0</span>
-                        </x-admin.td>
-                        <x-admin.td class="text-center py-3">
-                            <span class="bg-gradient-warning py-2 px-3 rounded-pill text-light fw-bold">0.400</span>
-                        </x-admin.td>
-                    </tr>
+                    @foreach ($hasilNormalisasi as $item)
+                        <tr>
+                            <x-admin.td class="text-center">{{$item->rEkstrakurikuler->nama_ekskul}}</x-admin.td>
+                            <x-admin.td class="text-center py-3">
+                                <span class="bg-gradient-success py-2 px-3 rounded-pill text-light fw-bold">{{$item->normalisasi_tinggi}}</span>
+                            </x-admin.td>
+                            <x-admin.td class="text-center py-3">
+                                <span class="bg-gradient-success py-2 px-3 rounded-pill text-light fw-bold">{{$item->normalisasi_berat}}</span>
+                            </x-admin.td>
+                            <x-admin.td class="text-center py-3">
+                                <span class="bg-gradient-success py-2 px-3 rounded-pill text-light fw-bold">{{$item->normalisasi_riwayat}}</span>
+                            </x-admin.td>
+                            <x-admin.td class="text-center py-3">
+                                <span class="bg-gradient-success py-2 px-3 rounded-pill text-light fw-bold">{{$item->normalisasi_minat}}</span>
+                            </x-admin.td>
+                            <x-admin.td class="text-center py-3">
+                                <span class="bg-gradient-success py-2 px-3 rounded-pill text-light fw-bold">{{$item->normalisasi_riwayat_ekskul}}</span>
+                            </x-admin.td>
+                            <x-admin.td class="text-center py-3">
+                                <span class="bg-gradient-success py-2 px-3 rounded-pill text-light fw-bold">{{$item->normalisasi_prestasi}}</span>
+                            </x-admin.td>
+                            <x-admin.td class="text-center py-3">
+                                <span class="bg-gradient-warning py-2 px-3 rounded-pill text-light fw-bold">{{$item->hasil_utilities}}</span>
+                            </x-admin.td>
+                        </tr>
+                    @endforeach
 
-                    <tr>
-                        <x-admin.td class="text-center">Basket</x-admin.td>
-                        <x-admin.td class="text-center py-3">
-                            <span class="bg-gradient-success py-2 px-3 rounded-pill text-light fw-bold">0</span>
-                        </x-admin.td>
-                        <x-admin.td class="text-center py-3">
-                            <span class="bg-gradient-success py-2 px-3 rounded-pill text-light fw-bold">0.5</span>
-                        </x-admin.td>
-                        <x-admin.td class="text-center py-3">
-                            <span class="bg-gradient-success py-2 px-3 rounded-pill text-light fw-bold">1</span>
-                        </x-admin.td>
-                        <x-admin.td class="text-center py-3">
-                            <span class="bg-gradient-success py-2 px-3 rounded-pill text-light fw-bold">0</span>
-                        </x-admin.td>
-                        <x-admin.td class="text-center py-3">
-                            <span class="bg-gradient-success py-2 px-3 rounded-pill text-light fw-bold">0</span>
-                        </x-admin.td>
-                        <x-admin.td class="text-center py-3">
-                            <span class="bg-gradient-success py-2 px-3 rounded-pill text-light fw-bold">0</span>
-                        </x-admin.td>
-                        <x-admin.td class="text-center py-3">
-                            <span class="bg-gradient-warning py-2 px-3 rounded-pill text-light fw-bold">0.400</span>
-                        </x-admin.td>
-                    </tr>
-
-                    <tr>
-                        <x-admin.td class="text-center">Renang</x-admin.td>
-                        <x-admin.td class="text-center py-3">
-                            <span class="bg-gradient-success py-2 px-3 rounded-pill text-light fw-bold">0</span>
-                        </x-admin.td>
-                        <x-admin.td class="text-center py-3">
-                            <span class="bg-gradient-success py-2 px-3 rounded-pill text-light fw-bold">0.5</span>
-                        </x-admin.td>
-                        <x-admin.td class="text-center py-3">
-                            <span class="bg-gradient-success py-2 px-3 rounded-pill text-light fw-bold">1</span>
-                        </x-admin.td>
-                        <x-admin.td class="text-center py-3">
-                            <span class="bg-gradient-success py-2 px-3 rounded-pill text-light fw-bold">0</span>
-                        </x-admin.td>
-                        <x-admin.td class="text-center py-3">
-                            <span class="bg-gradient-success py-2 px-3 rounded-pill text-light fw-bold">0</span>
-                        </x-admin.td>
-                        <x-admin.td class="text-center py-3">
-                            <span class="bg-gradient-success py-2 px-3 rounded-pill text-light fw-bold">0</span>
-                        </x-admin.td>
-                        <x-admin.td class="text-center py-3">
-                            <span class="bg-gradient-warning py-2 px-3 rounded-pill text-light fw-bold">0.400</span>
-                        </x-admin.td>
-                    </tr>
-
-                    <tr>
-                        <x-admin.td class="text-center">Paskibra</x-admin.td>
-                        <x-admin.td class="text-center py-3">
-                            <span class="bg-gradient-success py-2 px-3 rounded-pill text-light fw-bold">0</span>
-                        </x-admin.td>
-                        <x-admin.td class="text-center py-3">
-                            <span class="bg-gradient-success py-2 px-3 rounded-pill text-light fw-bold">0.5</span>
-                        </x-admin.td>
-                        <x-admin.td class="text-center py-3">
-                            <span class="bg-gradient-success py-2 px-3 rounded-pill text-light fw-bold">1</span>
-                        </x-admin.td>
-                        <x-admin.td class="text-center py-3">
-                            <span class="bg-gradient-success py-2 px-3 rounded-pill text-light fw-bold">0</span>
-                        </x-admin.td>
-                        <x-admin.td class="text-center py-3">
-                            <span class="bg-gradient-success py-2 px-3 rounded-pill text-light fw-bold">0</span>
-                        </x-admin.td>
-                        <x-admin.td class="text-center py-3">
-                            <span class="bg-gradient-success py-2 px-3 rounded-pill text-light fw-bold">0</span>
-                        </x-admin.td>
-                        <x-admin.td class="text-center py-3">
-                            <span class="bg-gradient-warning py-2 px-3 rounded-pill text-light fw-bold">0.400</span>
-                        </x-admin.td>
-                    </tr>
-
-                    <tr>
-                        <x-admin.td class="text-center">Pramuka</x-admin.td>
-                        <x-admin.td class="text-center py-3">
-                            <span class="bg-gradient-success py-2 px-3 rounded-pill text-light fw-bold">0</span>
-                        </x-admin.td>
-                        <x-admin.td class="text-center py-3">
-                            <span class="bg-gradient-success py-2 px-3 rounded-pill text-light fw-bold">0.5</span>
-                        </x-admin.td>
-                        <x-admin.td class="text-center py-3">
-                            <span class="bg-gradient-success py-2 px-3 rounded-pill text-light fw-bold">1</span>
-                        </x-admin.td>
-                        <x-admin.td class="text-center py-3">
-                            <span class="bg-gradient-success py-2 px-3 rounded-pill text-light fw-bold">0</span>
-                        </x-admin.td>
-                        <x-admin.td class="text-center py-3">
-                            <span class="bg-gradient-success py-2 px-3 rounded-pill text-light fw-bold">0</span>
-                        </x-admin.td>
-                        <x-admin.td class="text-center py-3">
-                            <span class="bg-gradient-success py-2 px-3 rounded-pill text-light fw-bold">0</span>
-                        </x-admin.td>
-                        <x-admin.td class="text-center py-3">
-                            <span class="bg-gradient-warning py-2 px-3 rounded-pill text-light fw-bold">0.400</span>
-                        </x-admin.td>
-                    </tr>
                 </x-admin.table>
             </div>
         </div>
@@ -309,8 +138,8 @@
         <div class="card mb-4 bg-gradient-primary text-light text-center fw-bolder">
             <div class="card-body">
                 <p>Peminatan Ekstrakurikuler yang direkomendasikan untuk anda adalah</p>
-                <p class="fw-bold fs-2">"Renang"</p>
-                <p>Berdasarkan nilai SMART tertinggi yaitu <span class="fs-4">"2.4"</span></p>
+                <p class="fw-bold fs-2">"{{$rekomendasi[0]}}"</p>
+                <p>Berdasarkan nilai SMART tertinggi yaitu <span class="fs-4">"{{$rekomendasi[1]}}"</span></p>
             </div>
         </div>
     </div>

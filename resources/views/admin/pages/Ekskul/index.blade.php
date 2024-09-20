@@ -43,18 +43,16 @@
                                         </x-admin.td>
                                         <x-admin.td>
                                             <ul>
-                                                <li>Juara I Futsal memperebutkan piala Yanara tahun 2017</li>
-                                                <li>Juara I Futsal memperebutkan piala Yanara tahun 2017</li>
-                                                <li>Juara I Futsal memperebutkan piala Yanara tahun 2017</li>
+                                                @foreach ($item->rPrestasi as $item2)
+                                                    <li>{{ $item2->prestasi }}</li>
+                                                @endforeach
                                             </ul>
                                         </x-admin.td>
                                         <x-admin.td class="text-center">
-                                            <a href="{{ asset('dist/assets/img/ekskul/' . $item->image) }}"
-                                                target="_blank">Dokumentasi 1</a> <br>
-                                            <a href="{{ asset('dist/assets/img/ekskul/' . $item->image) }}"
-                                                target="_blank">Dokumentasi 2</a> <br>
-                                            <a href="{{ asset('dist/assets/img/ekskul/' . $item->image) }}"
-                                                target="_blank">Dokumentasi 3</a>
+                                            @foreach ($item->rDokumentasi as $item3)
+                                                <a href="{{ asset('dist/assets/img/ekskul/dokumentasi/' . $item3->dokumentasi) }}"
+                                                    target="_blank">Dokumentasi {{ $loop->iteration }}</a> <br>
+                                            @endforeach
                                         </x-admin.td>
                                         <x-admin.td>
                                             <a href="#" class="btn bg-gradient-info" data-bs-toggle="modal"
@@ -106,19 +104,46 @@
                                                             </textarea>
 
                                                             <div class="editPrestasi">
-                                                                <div class="row me-1">
-                                                                    <div class="col-10">
-                                                                        <x-admin.input type="text"
-                                                                            placeholder="Prestasi Ekskul" label="Prestasi"
-                                                                            name="prestasi[]" />
+                                                                @if ($item->rPrestasi->isEmpty())
+                                                                    <div class="row me-1">
+                                                                        <div class="col-10">
+                                                                            <x-admin.input type="text"
+                                                                                placeholder="Prestasi Ekskul"
+                                                                                label="Prestasi" name="prestasi[]" />
+                                                                        </div>
+                                                                        <div class="col-2 mt-3 pt-3">
+                                                                            <button type="button"
+                                                                                class="btn btn-sm btn-primary"
+                                                                                onclick="addInputText(this, true)">+</button>
+                                                                        </div>
                                                                     </div>
-                                                                    <div class="col-2 mt-3 pt-3">
-                                                                        <button type="button"
-                                                                            class="btn btn-sm btn-primary"
-                                                                            onclick="editPrestasi(this)">+</button>
-                                                                    </div>
-                                                                </div>
+                                                                @else
+                                                                    @foreach ($item->rPrestasi as $key => $value)
+                                                                        <div class="row me-1">
+                                                                            <div class="col-10">
+                                                                                <x-admin.input type="text"
+                                                                                    placeholder="Prestasi Ekskul"
+                                                                                    label="Prestasi" name="prestasi[]"
+                                                                                    value="{{ $value->prestasi }}" />
+                                                                            </div>
+                                                                            @if ($key === 0)
+                                                                                <div class="col-2 mt-3 pt-3">
+                                                                                    <button type="button"
+                                                                                        class="btn btn-sm btn-primary"
+                                                                                        onclick="addInputText(this, true)">+</button>
+                                                                                </div>
+                                                                            @else
+                                                                                <div class="col-2 mt-1">
+                                                                                    <button type="button"
+                                                                                        class="btn btn-sm btn-warning"
+                                                                                        onclick="deleteForm(this)">-</button>
+                                                                                </div>
+                                                                            @endif
+                                                                        </div>
+                                                                    @endforeach
+                                                                @endif
                                                             </div>
+
 
                                                             <div class="mb-3">
                                                                 <label for="formFile"
@@ -178,7 +203,7 @@
     <!-- Modal Add Ekskul -->
     <div class="modal fade" id="addEkskul" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="addEkskulLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="addEkskulLabel">Tambah Data Ekstrakurikuler</h1>
@@ -205,14 +230,14 @@
                                 </div>
                                 <div class="col-2 mt-3 pt-3">
                                     <button type="button" class="btn btn-sm btn-primary"
-                                        onclick="addPrestasi(this)">+</button>
+                                        onclick="addInputText(this)">+</button>
                                 </div>
                             </div>
                         </div>
 
                         <div class="mb-3">
                             <label for="formFile" class="form-label">Dokumentasi</label>
-                            <input class="form-control" type="file" id="formFile" name="dokumentasi" multiple>
+                            <input class="form-control" type="file" id="formFile" name="dokumentasi[]" multiple>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -243,50 +268,35 @@
     </script>
 
     <script>
-        function addPrestasi(element) {
-            var prestasiClass = element.closest('.addPrestasi');
-            var input = prestasiClass.querySelector('input');
-            var inputName = input.getAttribute('name');
-            var div = document.createElement('div');
-            div.className = 'row me-1';
-            div.innerHTML = `
-            <div class="col-10">
-                <input class="form-control" type="text" placeholder="Prestasi Ekskul"
-                    name="${inputName}" />
-            </div>
-            <div class="col-2 mt-1">
-                <button type="button" class="btn btn-sm btn-warning"
-                    onclick="deleteForm(this)">-</button>
-            </div>`;
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('editEkskulForm');
+            console.log(form);
+        });
 
-            prestasiClass.appendChild(div);
+        function addInputText(element, isEdit = false) {
+            console.log(form.innerHTML);
+            var containerClass = isEdit ? 'editPrestasi' : 'addPrestasi';
+            var container = $(element).closest(`.${containerClass}`);
+            var inputName = container.find('input').attr('name');
+
+            var html = `
+            <div class="row me-1">
+                <div class="col-10">
+                    <input type="text" class="form-control" placeholder="Prestasi Ekskul" value=""
+                        name="${inputName}" id=""/>
+                </div>
+                <div class="col-2 mt-1">
+                    <button type="button" class="btn btn-sm btn-warning"
+                        onclick="deleteForm(this)">-</button>
+                </div>
+            </div>
+            `;
+
+            container.append(html);
         }
+
 
         function deleteForm(element) {
-            var row = element.closest('.row');
-            row.remove();
-        }
-
-        function editPrestasi(element) {
-            var editPrestasiClass = element.closest('.editPrestasi');
-            var input = editPrestasiClass.querySelector('input');
-            var inputName = input.getAttribute('name');
-            var div = document.createElement('div');
-            div.className = 'row me-1';
-            div.innerHTML = `
-            <div class="col-10">
-                <input class="form-control" type="text" placeholder="Prestasi Ekskul"
-                    name="${inputName}" />
-            </div>
-            <div class="col-2 mt-1">
-                <button type="button" class="btn btn-sm btn-warning"
-                    onclick="deleteFormEdit(this)">-</button>
-            </div>`;
-
-            editPrestasiClass.appendChild(div);
-        }
-
-        function deleteFormEdit(element) {
             var row = element.closest('.row');
             row.remove();
         }

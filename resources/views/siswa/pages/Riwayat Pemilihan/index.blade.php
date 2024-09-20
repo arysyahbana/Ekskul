@@ -21,16 +21,18 @@
                                     </tr>
                                 @endslot
 
-                                <tr>
-                                    <x-admin.td class="text-center">2000</x-admin.td>
-                                    <x-admin.td class="text-center">Budi</x-admin.td>
-                                    <x-admin.td class="text-center">Pria</x-admin.td>
-                                    <x-admin.td class="text-center">01-01-2000</x-admin.td>
-                                    <x-admin.td class="text-center py-3">
-                                        <span
-                                            class="bg-gradient-success py-2 px-4 rounded-pill text-light fw-bold">Futsal</span>
-                                    </x-admin.td>
-                                </tr>
+                                @foreach ($rekomendasi as $item)
+                                    <tr>
+                                        <x-admin.td class="text-center">{{ Auth::user()->nis }}</x-admin.td>
+                                        <x-admin.td class="text-center">{{ Auth::user()->nama }}</x-admin.td>
+                                        <x-admin.td class="text-center">{{ Auth::user()->gender }}</x-admin.td>
+                                        <x-admin.td class="text-center">{{ Auth::user()->tgl_lahir }}</x-admin.td>
+                                        <x-admin.td class="text-center py-3">
+                                            <span
+                                                class="bg-gradient-success py-2 px-4 rounded-pill text-light fw-bold">{{$item->rEkstrakurikuler->nama_ekskul}}</span>
+                                        </x-admin.td>
+                                    </tr>
+                                @endforeach
                             </x-admin.table>
                         </div>
                     </div>

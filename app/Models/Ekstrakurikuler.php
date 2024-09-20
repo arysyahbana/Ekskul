@@ -14,5 +14,19 @@ class Ekstrakurikuler extends Model
         'nama_ekskul',
         'image',
         'informasi_ekskul',
+        'prestasi',
+        'dokumentasi'
     ];
+
+    public function rHasilSmart(){
+        return $this->hasMany(HasilSmart::class, 'kode_ekskul');
+    }
+
+    public function rPrestasi(){
+        return $this->hasMany(Prestasi::class, 'kd_ekskul', 'kode_ekskul');
+    }
+
+    public function rDokumentasi(){
+        return $this->hasMany(Dokumentasi::class, 'kd_ekskul', 'kode_ekskul');
+    }
 }

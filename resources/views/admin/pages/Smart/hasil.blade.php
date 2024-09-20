@@ -13,12 +13,12 @@
                             <tr>
                                 <td>NIS Siswa</td>
                                 <td class="px-2">:</td>
-                                <td>2000</td>
+                                <td>{{ $hasilSmart[0]->rSiswa->nis }}</td>
                             </tr>
                             <tr>
                                 <td>Nama Siswa</td>
                                 <td class="px-2">:</td>
-                                <td>Budi</td>
+                                <td>{{ $hasilSmart[0]->rSiswa->nama }}</td>
                             </tr>
                         </table>
                         <div class="table-responsive p-0">
@@ -30,46 +30,16 @@
                                         <x-admin.th>Nilai SMART</x-admin.th>
                                     </tr>
                                 @endslot
-                                <tr>
-                                    <x-admin.td class="text-center">1</x-admin.td>
-                                    <x-admin.td class="text-center py-3">
-                                        <span
-                                            class="bg-gradient-warning py-2 px-4 rounded-pill text-light fw-bold">Renang</span>
-                                    </x-admin.td>
-                                    <x-admin.td class="text-center">2.4</x-admin.td>
-                                </tr>
-                                <tr>
-                                    <x-admin.td class="text-center">2</x-admin.td>
-                                    <x-admin.td class="text-center py-3">
-                                        <span
-                                            class="bg-gradient-primary py-2 px-4 rounded-pill text-light fw-bold">Pramuka</span>
-                                    </x-admin.td>
-                                    <x-admin.td class="text-center">1.4</x-admin.td>
-                                </tr>
-                                <tr>
-                                    <x-admin.td class="text-center">3</x-admin.td>
-                                    <x-admin.td class="text-center py-3">
-                                        <span
-                                            class="bg-gradient-success py-2 px-4 rounded-pill text-light fw-bold">Futsal</span>
-                                    </x-admin.td>
-                                    <x-admin.td class="text-center">0.4</x-admin.td>
-                                </tr>
-                                <tr>
-                                    <x-admin.td class="text-center">4</x-admin.td>
-                                    <x-admin.td class="text-center py-3">
-                                        <span
-                                            class="bg-gradient-danger py-2 px-4 rounded-pill text-light fw-bold">Basket</span>
-                                    </x-admin.td>
-                                    <x-admin.td class="text-center">0.4</x-admin.td>
-                                </tr>
-                                <tr>
-                                    <x-admin.td class="text-center">5</x-admin.td>
-                                    <x-admin.td class="text-center py-3">
-                                        <span
-                                            class="bg-gradient-info py-2 px-4 rounded-pill text-light fw-bold">Paskibra</span>
-                                    </x-admin.td>
-                                    <x-admin.td class="text-center">0.4</x-admin.td>
-                                </tr>
+                                @foreach ($hasilSmart as $item)
+                                    <tr>
+                                        <x-admin.td class="text-center">{{ $loop->iteration }}</x-admin.td>
+                                        <x-admin.td class="text-center py-3">
+                                            <span
+                                                class="bg-gradient-warning py-2 px-4 rounded-pill text-light fw-bold">{{$item->rEkstrakurikuler->nama_ekskul}}</span>
+                                        </x-admin.td>
+                                        <x-admin.td class="text-center">{{$item->hasil_utilities}}</x-admin.td>
+                                    </tr>
+                                @endforeach
                             </x-admin.table>
                         </div>
                     </div>
