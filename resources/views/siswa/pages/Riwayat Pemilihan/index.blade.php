@@ -18,6 +18,7 @@
                                         <x-admin.th>Jenis Kelamin</x-admin.th>
                                         <x-admin.th>Tanggal Lahir</x-admin.th>
                                         <x-admin.th>Rekomendasi Ekskul</x-admin.th>
+                                        <x-admin.th>Cek Hasil Pemilihan</x-admin.th>
                                     </tr>
                                 @endslot
 
@@ -29,7 +30,13 @@
                                         <x-admin.td class="text-center">{{ Auth::user()->tgl_lahir }}</x-admin.td>
                                         <x-admin.td class="text-center py-3">
                                             <span
-                                                class="bg-gradient-success py-2 px-4 rounded-pill text-light fw-bold">{{$item->rEkstrakurikuler->nama_ekskul}}</span>
+                                                class="bg-gradient-success py-2 px-4 rounded-pill text-light fw-bold">{{ $item->rEkstrakurikuler->nama_ekskul }}</span>
+                                        </x-admin.td>
+                                        <x-admin.td class="text-center">
+                                            <a href="{{ route('riwayat-pemilihan.detail', $item->id) }}"
+                                                class="btn bg-gradient-info mt-3"><i class="bi bi-eye-fill"></i></i><span
+                                                    class="text-capitalize ms-1">Cek
+                                                    Detail Hasil</span></a>
                                         </x-admin.td>
                                     </tr>
                                 @endforeach

@@ -55,8 +55,7 @@
                                             @endforeach
                                         </x-admin.td>
                                         <x-admin.td>
-                                            <a href="#" class="btn bg-gradient-info" data-bs-toggle="modal"
-                                                data-bs-target="#editEkskul{{ $item->id }}"><i
+                                            <a href="{{ route('ekskul.edit', $item->id) }}" class="btn bg-gradient-info"><i
                                                     class="bi bi-pencil-fill"></i><span
                                                     class="text-capitalize ms-1">Edit</span></a>
                                             <a href="#" class="btn bg-gradient-danger" data-bs-toggle="modal"
@@ -64,104 +63,6 @@
                                                     class="bi bi-trash-fill"></i><span
                                                     class="text-capitalize ms-1">Hapus</span></a>
                                         </x-admin.td>
-
-                                        <!-- Modal Edit Ekskul -->
-                                        <div class="modal fade" id="editEkskul{{ $item->id }}"
-                                            data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-                                            aria-labelledby="editEkskulLabel" aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-scrollable">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h1 class="modal-title fs-5" id="editEkskulLabel">Edit Data
-                                                            Ekstrakurikuler</h1>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                            aria-label="Close"></button>
-                                                    </div>
-                                                    <form id="editEkskulForm{{ $item->id }}"
-                                                        action="{{ route('ekskul.update', $item->id) }}" method="post"
-                                                        enctype="multipart/form-data">
-                                                        @csrf
-                                                        <div class="modal-body">
-                                                            <p class="text-center">
-                                                                <img src="{{ asset('dist/assets/img/ekskul/' . $item->image) }}"
-                                                                    alt="" style="max-width: 400px">
-                                                            </p>
-                                                            <x-admin.input type="text" placeholder="Kode Ekskul"
-                                                                label="Kode" name="kode"
-                                                                value="{{ $item->kode_ekskul ?? '' }}" />
-                                                            <x-admin.input type="text" placeholder="Nama Ekskul"
-                                                                label="Nama" name="nama"
-                                                                value="{{ $item->nama_ekskul ?? '' }}" />
-                                                            <div class="mb-3">
-                                                                <label for="formFile" class="form-label">Perbarui
-                                                                    Foto</label>
-                                                                <input class="form-control" type="file" id="formFile"
-                                                                    name="image">
-                                                            </div>
-                                                            <label>Informasi Ekskul</label>
-                                                            <textarea class="form-control" name="info" id="info{{ $item->id }}" cols="20" rows="10">
-                                                                {{ trim($item->informasi_ekskul ?? '') }}
-                                                            </textarea>
-
-                                                            <div class="editPrestasi">
-                                                                @if ($item->rPrestasi->isEmpty())
-                                                                    <div class="row me-1">
-                                                                        <div class="col-10">
-                                                                            <x-admin.input type="text"
-                                                                                placeholder="Prestasi Ekskul"
-                                                                                label="Prestasi" name="prestasi[]" />
-                                                                        </div>
-                                                                        <div class="col-2 mt-3 pt-3">
-                                                                            <button type="button"
-                                                                                class="btn btn-sm btn-primary"
-                                                                                onclick="addInputText(this, true)">+</button>
-                                                                        </div>
-                                                                    </div>
-                                                                @else
-                                                                    @foreach ($item->rPrestasi as $key => $value)
-                                                                        <div class="row me-1">
-                                                                            <div class="col-10">
-                                                                                <x-admin.input type="text"
-                                                                                    placeholder="Prestasi Ekskul"
-                                                                                    label="Prestasi" name="prestasi[]"
-                                                                                    value="{{ $value->prestasi }}" />
-                                                                            </div>
-                                                                            @if ($key === 0)
-                                                                                <div class="col-2 mt-3 pt-3">
-                                                                                    <button type="button"
-                                                                                        class="btn btn-sm btn-primary"
-                                                                                        onclick="addInputText(this, true)">+</button>
-                                                                                </div>
-                                                                            @else
-                                                                                <div class="col-2 mt-1">
-                                                                                    <button type="button"
-                                                                                        class="btn btn-sm btn-warning"
-                                                                                        onclick="deleteForm(this)">-</button>
-                                                                                </div>
-                                                                            @endif
-                                                                        </div>
-                                                                    @endforeach
-                                                                @endif
-                                                            </div>
-
-
-                                                            <div class="mb-3">
-                                                                <label for="formFile"
-                                                                    class="form-label">Dokumentasi</label>
-                                                                <input class="form-control" type="file" id="formFile"
-                                                                    name="dokumentasi" multiple>
-                                                            </div>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="submit"
-                                                                class="btn btn-sm btn-success">Update</button>
-                                                            <button type="button" class="btn btn-sm btn-secondary"
-                                                                data-bs-dismiss="modal">Batal</button>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
 
                                         <!-- Modal Hapus Ekskul -->
                                         <div class="modal fade" id="hapusEkskul{{ $item->id }}"
@@ -209,8 +110,7 @@
                     <h1 class="modal-title fs-5" id="addEkskulLabel">Tambah Data Ekstrakurikuler</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form id="addEkskulForm" action="{{ route('ekskul.store') }}" method="post"
-                    enctype="multipart/form-data">
+                <form id="addEkskulForm" action="{{ route('ekskul.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="modal-body">
                         <x-admin.input type="text" placeholder="Kode Ekskul" label="Kode" name="kode" />
@@ -230,7 +130,7 @@
                                 </div>
                                 <div class="col-2 mt-3 pt-3">
                                     <button type="button" class="btn btn-sm btn-primary"
-                                        onclick="addInputText(this)">+</button>
+                                        onclick="addPrestasi(this)">+</button>
                                 </div>
                             </div>
                         </div>
@@ -248,6 +148,7 @@
             </div>
         </div>
     </div>
+
     <script>
         document.getElementById('addEkskulForm').addEventListener('submit', function(event) {
             var textarea = document.getElementById('info');
@@ -268,33 +169,24 @@
     </script>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const form = document.getElementById('editEkskulForm');
-            console.log(form);
-        });
-
-        function addInputText(element, isEdit = false) {
-            console.log(form.innerHTML);
-            var containerClass = isEdit ? 'editPrestasi' : 'addPrestasi';
-            var container = $(element).closest(`.${containerClass}`);
-            var inputName = container.find('input').attr('name');
-
-            var html = `
-            <div class="row me-1">
-                <div class="col-10">
-                    <input type="text" class="form-control" placeholder="Prestasi Ekskul" value=""
-                        name="${inputName}" id=""/>
-                </div>
-                <div class="col-2 mt-1">
-                    <button type="button" class="btn btn-sm btn-warning"
-                        onclick="deleteForm(this)">-</button>
-                </div>
+        function addPrestasi(element) {
+            var prestasiClass = element.closest('.addPrestasi');
+            var input = prestasiClass.querySelector('input');
+            var inputName = input.getAttribute('name');
+            var div = document.createElement('div');
+            div.className = 'row me-1';
+            div.innerHTML = `
+            <div class="col-10">
+                <input class="form-control" type="text" placeholder="Prestasi Ekskul"
+                    name="${inputName}" />
             </div>
-            `;
+            <div class="col-2 mt-1">
+                <button type="button" class="btn btn-sm btn-warning"
+                    onclick="deleteForm(this)">-</button>
+            </div>`;
 
-            container.append(html);
+            prestasiClass.appendChild(div);
         }
-
 
         function deleteForm(element) {
             var row = element.closest('.row');

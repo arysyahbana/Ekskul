@@ -99,9 +99,11 @@
                 <img src="{{ asset('dist/assets/img/ekskul.jpg') }}" alt=""
                     class="object-cover shadow-lg rounded-xl h-[250px] w-full" data-aos="fade-up"
                     data-aos-duration="1000" />
-                <img src="{{ asset('dist/assets/img/futsal.jpg') }}" alt=""
-                    class="object-cover shadow-lg rounded-xl h-[250px] w-full" data-aos="fade-up"
-                    data-aos-duration="1100" />
+                <video class="object-cover shadow-lg rounded-xl h-[250px] w-full" controls data-aos="fade-up"
+                    data-aos-duration="1100">
+                    <source src="{{ asset('dist/assets/img/video.mp4') }}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
                 <img src="{{ asset('dist/assets/img/basket.jpg') }}" alt=""
                     class="object-cover shadow-lg rounded-xl h-[250px] w-full" data-aos="fade-up"
                     data-aos-duration="1200" />

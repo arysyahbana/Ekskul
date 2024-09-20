@@ -51,6 +51,7 @@ Route::middleware(['auth', 'role:Admin'])->group(function () {
     Route::prefix('ekskul')->group(function () {
         Route::get('/show', [EkskulController::class, 'index'])->name('ekskul.show');
         Route::post('/store', [EkskulController::class, 'store'])->name('ekskul.store');
+        Route::get('/edit/{id}', [EkskulController::class, 'edit'])->name('ekskul.edit');
         Route::post('/update/{id}', [EkskulController::class, 'update'])->name('ekskul.update');
         Route::get('/destroy/{id}', [EkskulController::class, 'destroy'])->name('ekskul.destroy');
         Route::get('/download', [EkskulController::class, 'download'])->name('ekskul.download');
@@ -102,6 +103,7 @@ Route::middleware(['auth', 'role:Siswa'])->group(function () {
 
     Route::prefix('riwayat-pemilihan')->group(function () {
         Route::get('/show', [RiwayatPemilihanController::class, 'index'])->name('riwayat-pemilihan.show');
+        Route::get('/detail/{id}', [RiwayatPemilihanController::class, 'detail'])->name('riwayat-pemilihan.detail');
     });
 });
 

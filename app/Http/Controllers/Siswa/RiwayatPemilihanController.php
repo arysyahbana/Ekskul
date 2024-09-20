@@ -19,4 +19,10 @@ class RiwayatPemilihanController extends Controller
 
         return view('siswa.pages.Riwayat Pemilihan.index', compact('page', 'rekomendasi'));
     }
+
+    public function detail($idBobotTotal)
+    {
+        $page = "Riwayat Pemilihan";
+        return view('siswa.pages.Riwayat Pemilihan.detail', compact('page'));
+    }
 }

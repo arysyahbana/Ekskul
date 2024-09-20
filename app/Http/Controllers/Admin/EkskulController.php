@@ -99,9 +99,16 @@ class EkskulController extends Controller
         return back()->with('success', 'Data ekskul berhasil ditambahkan');
     }
 
+    public function edit($id)
+    {
+        $page = 'Ekskul';
+        $ekskul = Ekstrakurikuler::with('rPrestasi', 'rDokumentasi')->findOrFail($id);
+        // return $ekskul;
+        return view('admin.pages.Ekskul.edit', compact('page', 'ekskul'));
+    }
     public function update(Request $request, $id)
     {
-        dd($request->all());
+        // dd($request->all());
         // $prestasiArray = $request->input('prestasi', []);
         // dd($prestasiArray);
         $this->validasiInputData($request, 'sometimes');
@@ -156,7 +163,7 @@ class EkskulController extends Controller
             }
         }
 
-        return back()->with('success', 'Data ekskul berhasil diubah');
+        return redirect()->route('ekskul.show')->with('success', 'Data ekskul berhasil diubah');
     }
 
     public function destroy($id)

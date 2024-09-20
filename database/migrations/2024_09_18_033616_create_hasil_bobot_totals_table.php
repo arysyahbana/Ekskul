@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('hasil_bobot_totals', function (Blueprint $table) {
             $table->id();
-            $table->string('id_hasil_bobot');
+            // $table->string('id_hasil_bobot');
             $table->float('bobot_tinggi_total')->default(0);
             $table->float('bobot_berat_total')->default(0);
             $table->float('bobot_riwayat_total')->default(0);
