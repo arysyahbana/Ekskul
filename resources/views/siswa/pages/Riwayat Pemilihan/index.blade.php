@@ -33,7 +33,7 @@
                                                 class="bg-gradient-success py-2 px-4 rounded-pill text-light fw-bold">{{ $item->rEkstrakurikuler->nama_ekskul }}</span>
                                         </x-admin.td>
                                         <x-admin.td class="text-center">
-                                            <a href="{{ route('riwayat-pemilihan.detail', $item->id) }}"
+                                            <a href="{{ route('riwayat-pemilihan.detail', $item->id_hasil_bobot_total) }}"
                                                 class="btn bg-gradient-info mt-3"><i class="bi bi-eye-fill"></i></i><span
                                                     class="text-capitalize ms-1">Cek
                                                     Detail Hasil</span></a>

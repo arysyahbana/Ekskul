@@ -26,11 +26,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $ekskul = App\Models\Ekstrakurikuler::all();
+    return view('welcome', compact('ekskul'));
 })->name('welcome');
 
-Route::get('/detail-ekskul', function () {
-    return view('detailEkskul');
+Route::get('/detail-ekskul/{id}', function () {
+    $ekskul = App\Models\Ekstrakurikuler::with('rPrestasi', 'rDokumentasi')->where('nama_ekskul', request()->id)->first();
+    return view('detailEkskul', compact('ekskul'));
 })->name('detail-ekskul');
 
 
@@ -98,7 +100,7 @@ Route::middleware(['auth', 'role:Siswa'])->group(function () {
     Route::prefix('pemilihan-ekskul')->group(function () {
         Route::get('/show', [PemilihanEkskulController::class, 'index'])->name('pemilihan-ekskul.show');
         Route::post('/smart', [PemilihanEkskulController::class, 'smart'])->name('pemilihan-ekskul.smart');
-        Route::get('/hasil', [PemilihanEkskulController::class, 'hasil'])->name('pemilihan-hasil.show');
+        Route::get('/hasil/{id}', [PemilihanEkskulController::class, 'hasil'])->name('pemilihan-hasil.show');
     });
 
     Route::prefix('riwayat-pemilihan')->group(function () {

@@ -13,12 +13,12 @@
                             <tr>
                                 <td>NIS Siswa</td>
                                 <td class="px-2">:</td>
-                                {{-- <td>{{ $hasilSmart[0]->rSiswa->nis }}</td> --}}
+                                <td>{{ $hasilSmart[0]->rSiswa->nis }}</td>
                             </tr>
                             <tr>
                                 <td>Nama Siswa</td>
                                 <td class="px-2">:</td>
-                                {{-- <td>{{ $hasilSmart[0]->rSiswa->nama }}</td> --}}
+                                <td>{{ $hasilSmart[0]->rSiswa->nama }}</td>
                             </tr>
                         </table>
                         <div class="table-responsive p-0">
@@ -30,7 +30,7 @@
                                         <x-admin.th>Nilai SMART</x-admin.th>
                                     </tr>
                                 @endslot
-                                {{-- @foreach ($hasilSmart as $item)
+                                @foreach ($hasilSmart as $item)
                                     <tr>
                                         <x-admin.td class="text-center">{{ $loop->iteration }}</x-admin.td>
                                         <x-admin.td class="text-center py-3">
@@ -39,7 +39,7 @@
                                         </x-admin.td>
                                         <x-admin.td class="text-center">{{ $item->hasil_utilities }}</x-admin.td>
                                     </tr>
-                                @endforeach --}}
+                                @endforeach
                             </x-admin.table>
                         </div>
                     </div>

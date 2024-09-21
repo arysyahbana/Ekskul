@@ -24,7 +24,7 @@ class SmartController extends Controller
     {
         $page = "SMART";
 
-        $hasilSmart = HasilNormalisasiDanUtilities::with('rEkstrakurikuler','rSiswa')->where('id_hasil_bobot_total', $idBobotTotal)->get();
+        $hasilSmart = HasilNormalisasiDanUtilities::with('rEkstrakurikuler','rSiswa')->where('id_hasil_bobot_total', $idBobotTotal)->orderBy('hasil_utilities','DESC')->get();
         // return $hasilSmart[0]->rSiswa->nama;
         return view('admin.pages.Smart.hasil', compact('page','hasilSmart'));
     }

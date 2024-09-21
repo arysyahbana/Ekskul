@@ -70,7 +70,7 @@
 
                                 <div class="mb-5">
                                     <label for="formFile" class="form-label">Dokumentasi</label>
-                                    <input class="form-control" type="file" id="formFile" name="dokumentasi" multiple>
+                                    <input class="form-control" type="file" id="formFile" name="dokumentasi[]" multiple>
                                 </div>
 
                                 <div class="d-flex justify-content-end">

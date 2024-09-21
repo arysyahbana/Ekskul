@@ -106,101 +106,27 @@
             <p class="text-center text-3xl font-bold text-[#4C3BCF]">DAFTAR EKSTRAKURIKULER</p>
             <p class="text-center text-orange-500">
                 Berikut Adalah Informasi Singkat Tentang Ekstrakurikuler
-                Yayasan Pendidikan SingosariDelitua.
+                Yayasan Pendidikan Singosari Delitua.
             </p>
+
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 mt-5 justify-items-center">
-                <a href="{{ route('detail-ekskul') }}">
-                    <div class="bg-gray-100 hover:bg-gray-200 max-w-lg rounded-xl shadow-xl" target="blank"
-                        data-aos="fade-up" data-aos-duration="1000">
-                        <div class="p-5 overflow-hidden rounded-xl">
-                            <img src="{{ asset('dist/assets/img/ekskul.jpg') }}" alt=""
-                                class="object-cover shadow-lg rounded-xl h-[180px] w-full" />
-                            <p class="text-xl font-bold text-[#4C3BCF] my-2">
-                                Ekstrakurikuler
-                            </p>
-                            <p class="text-sm desc">
-                                Ekstrakurikuler adalah kegiatan non pelajaran formal yang dilakukan peserta didik
-                                sekolah,
-                                umumnya di luar jam belajar kurikulum standar.
-                            </p>
+                @foreach ($ekskul as $item)
+                    <a href="{{ route('detail-ekskul', $item->nama_ekskul) }}">
+                        <div class="bg-gray-100 hover:bg-gray-200 max-w-lg rounded-xl shadow-xl" target="blank"
+                            data-aos="fade-up" data-aos-duration="1000">
+                            <div class="p-5 overflow-hidden rounded-xl">
+                                <img src="{{ asset('dist/assets/img/ekskul.jpg') }}" alt=""
+                                    class="object-cover shadow-lg rounded-xl h-[180px] w-full" />
+                                <p class="text-xl font-bold text-[#4C3BCF] my-2">
+                                    {{$item->nama_ekskul}}
+                                </p>
+                                <p class="text-sm desc">
+                                    {{$item->informasi_ekskul}}
+                                </p>
+                            </div>
                         </div>
-                    </div>
-                </a>
-
-                <div class="bg-gray-100 hover:bg-gray-200 max-w-lg rounded-xl shadow-xl" target="blank"
-                    data-aos="fade-up" data-aos-duration="1000">
-                    <div class="p-5 overflow-hidden rounded-xl">
-                        <img src="{{ asset('dist/assets/img/futsal.jpg') }}" alt=""
-                            class="object-cover shadow-lg rounded-xl h-[180px] w-full" />
-                        <p class="text-xl font-bold text-[#4C3BCF] my-2">
-                            Futsal
-                        </p>
-                        <p class="text-sm desc">
-                            Ekstrakurikuler futsal adalah kegiatan ekstrakurikuler di sekolah yang menawarkan kesempatan
-                            bagi siswa untuk belajar dan mengembangkan keterampilan dalam bermain futsal.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="bg-gray-100 hover:bg-gray-200 max-w-lg rounded-xl shadow-lg" target="blank"
-                    data-aos="fade-up" data-aos-duration="1000">
-                    <div class="p-5 overflow-hidden rounded-xl">
-                        <img src="{{ asset('dist/assets/img/basket.jpg') }}" alt=""
-                            class="object-cover shadow-lg rounded-xl h-[180px] w-full" />
-                        <p class="text-xl font-bold text-[#4C3BCF] my-2">
-                            Basket
-                        </p>
-                        <p class="text-sm desc">
-                            Ekstrakurikuler basket adalah kegiatan ekstrakurikuler di sekolah yang menawarkan kesempatan
-                            bagi siswa untuk belajar dan mengembangkan keterampilan dalam bermain basket.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="bg-gray-100 hover:bg-gray-200 max-w-lg rounded-xl shadow-lg" target="blank"
-                    data-aos="fade-up" data-aos-duration="1000">
-                    <div class="p-5 overflow-hidden rounded-xl">
-                        <img src="{{ asset('dist/assets/img/renang.jpg') }}" alt=""
-                            class="object-cover shadow-lg rounded-xl h-[180px] w-full" />
-                        <p class="text-xl font-bold text-[#4C3BCF] my-2">
-                            Renang
-                        </p>
-                        <p class="text-sm desc">
-                            Ekstrakurikuler renang adalah kegiatan ekstrakurikuler di sekolah yang menawarkan kesempatan
-                            bagi siswa untuk belajar dan mengembangkan keterampilan dalam olahraga renang.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="bg-gray-100 hover:bg-gray-200 max-w-lg rounded-xl shadow-lg" target="blank"
-                    data-aos="fade-up" data-aos-duration="1000">
-                    <div class="p-5 overflow-hidden rounded-xl">
-                        <img src="{{ asset('dist/assets/img/paskibra.jpg') }}" alt=""
-                            class="object-cover shadow-lg rounded-xl h-[180px] w-full" />
-                        <p class="text-xl font-bold text-[#4C3BCF] my-2">
-                            Paskibra
-                        </p>
-                        <p class="text-sm desc">
-                            Ekstrakurikuler paskibra merupakan suatu kegiatan atau aktivitas di sekolah atau lembaga
-                            pendidikan yang dilaksanakan di luar jam pelajaran yang bertugas sebagai pengibar bendera.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="bg-gray-100 hover:bg-gray-200 max-w-lg rounded-xl shadow-lg" target="blank"
-                    data-aos="fade-up" data-aos-duration="1000">
-                    <div class="p-5 overflow-hidden rounded-xl">
-                        <img src="{{ asset('dist/assets/img/pramuka.jpg') }}" alt=""
-                            class="object-cover shadow-lg rounded-xl h-[180px] w-full" />
-                        <p class="text-xl font-bold text-[#4C3BCF] my-2">
-                            Pramuka
-                        </p>
-                        <p class="text-sm desc">
-                            Ekstrakurikuler pramuka merupakan salah satu kegiatan ekstrakurikuler yang dapat membentuk
-                            karakter dan jiwa kepemimpinan dalam diri peserta didik.
-                        </p>
-                    </div>
-                </div>
+                    </a>
+                @endforeach
             </div>
         </section>
     </main>

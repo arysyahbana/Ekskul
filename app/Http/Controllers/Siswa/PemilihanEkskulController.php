@@ -176,7 +176,7 @@ class PemilihanEkskulController extends Controller
             'id_ekskul' => $ekskulSmart,
         ]);
 
-        return redirect()->route('riwayat-pemilihan.show')->with('success', 'Nilai SMART berhasil ditambahkan');
+        return redirect()->route('pemilihan-hasil.show', $hasilBobotTotal->id)->with('success', 'Nilai SMART berhasil ditambahkan');
     }
 
     /**
@@ -184,13 +184,10 @@ class PemilihanEkskulController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function hasil()
+    public function hasil($idBobotTotal)
     {
         // Page title
         $page = 'Pemilihan Ekskul';
-
-        // ID of the total bobot
-        $idBobotTotal = 23;
 
         // Get the hasil bobot data
         $hasilBobot = HasilBobot::with(['rEkstrakurikuler', 'rHasilBobotTotal'])

@@ -146,6 +146,7 @@ class EkskulController extends Controller
 
         // Update dokumentasi
         $dokumentasiFiles = $request->file('dokumentasi');
+        // dd($dokumentasiFiles);die;
         if ($dokumentasiFiles) {
             // Delete old dokumentasi
             $oldDokumentasi = Dokumentasi::where('kd_ekskul', $ekskul->kode_ekskul)->get();

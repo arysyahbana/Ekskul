@@ -23,6 +23,8 @@ class RiwayatPemilihanController extends Controller
     public function detail($idBobotTotal)
     {
         $page = "Riwayat Pemilihan";
-        return view('siswa.pages.Riwayat Pemilihan.detail', compact('page'));
+        $hasilSmart = HasilNormalisasiDanUtilities::with('rEkstrakurikuler','rSiswa')->where('id_hasil_bobot_total', $idBobotTotal)->orderBy('hasil_utilities','DESC')->get();
+        // dd($idBobotTotal);die;
+        return view('siswa.pages.Riwayat Pemilihan.detail', compact('page','hasilSmart'));
     }
 }

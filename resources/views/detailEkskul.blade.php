@@ -58,64 +58,63 @@
         <section id="ekskul" class="grid grid-cols-1">
             <div class="py-8">
                 <p class="text-3xl font-bold text-[#4C3BCF]">
-                    EKSTRAKURIKULER FUTSAL
+                    EKSTRAKURIKULER {{ Str::upper($ekskul->nama_ekskul) }}
                 </p>
                 <p class="text-slate-500 mt-2">
-                    Ekstrakurikuler futsal adalah kegiatan ekstrakurikuler di sekolah yang menawarkan kesempatan
-                    bagi siswa untuk belajar dan mengembangkan keterampilan dalam bermain futsal.
+                    {{ $ekskul->informasi_ekskul }}
                 </p>
             </div>
             <div class="overflow-hidden" data-aos="fade-up" data-aos-duration="1200">
-                <img src="{{ asset('dist/assets/img/futsal.jpg') }}" alt=""
+                <img src="{{ asset('dist/assets/img/ekskul/' . $ekskul->image) }}" alt=""
                     class="object-cover rounded-3xl max-h-[600px] w-full" />
             </div>
         </section>
 
         <!-- prestasi -->
         <section id="prestasi" class="mt-32">
-            <p class="text-3xl font-bold text-[#4C3BCF]">PRESTASI EKSTRAKURIKULER FUTSAL</p>
+            <p class="text-3xl font-bold text-[#4C3BCF]">PRESTASI EKSTRAKURIKULER {{Str::upper($ekskul->nama_ekskul) }}</p>
             <p class="text-slate-500">
-                Berikut Adalah Prestasi Ekstrakurikuler Futsal
+                Berikut Adalah Prestasi Ekstrakurikuler {{ $ekskul->nama_ekskul }}
                 Yayasan Pendidikan Singosari Delitua.
             </p>
 
             <div class="mx-5">
                 <ul class="list-decimal">
-                    <li>Juara I Futsal memperebutkan piala Yanara tahun 2017</li>
-                    <li>Juara I Futsal Open tournament Futsal Delitua 2017</li>
-                    <li>Juara I Futsal tingkat SMP se kota medan COPI SU II tahun 2013</li>
+                    @foreach ($ekskul->rPrestasi as $item)
+                        <li>{{ $item->prestasi }}</li>
+                    @endforeach
                 </ul>
             </div>
         </section>
 
         <!-- dokumentasi -->
         <section id="dokumentasi" class="mt-32">
-            <p class="text-center text-3xl font-bold text-[#4C3BCF]">DOKUMENTASI EKSTRAKURIKULER FUTSAL</p>
+            <p class="text-center text-3xl font-bold text-[#4C3BCF]">DOKUMENTASI EKSTRAKURIKULER
+                {{ Str::upper($ekskul->nama_ekskul) }}</p>
             <p class="text-center text-orange-500">
-                Berikut Adalah Dokumentasi Tentang Ekstrakurikuler Futsal
+                Berikut Adalah Dokumentasi Tentang Ekstrakurikuler {{ $ekskul->nama_ekskul }}
                 Yayasan Pendidikan Singosari Delitua.
             </p>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-1 mt-5 justify-items-center">
-                <img src="{{ asset('dist/assets/img/ekskul.jpg') }}" alt=""
-                    class="object-cover shadow-lg rounded-xl h-[250px] w-full" data-aos="fade-up"
-                    data-aos-duration="1000" />
-                <video class="object-cover shadow-lg rounded-xl h-[250px] w-full" controls data-aos="fade-up"
-                    data-aos-duration="1100">
-                    <source src="{{ asset('dist/assets/img/video.mp4') }}" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-                <img src="{{ asset('dist/assets/img/basket.jpg') }}" alt=""
-                    class="object-cover shadow-lg rounded-xl h-[250px] w-full" data-aos="fade-up"
-                    data-aos-duration="1200" />
-                <img src="{{ asset('dist/assets/img/renang.jpg') }}" alt=""
-                    class="object-cover shadow-lg rounded-xl h-[250px] w-full" data-aos="fade-up"
-                    data-aos-duration="1300" />
-                <img src="{{ asset('dist/assets/img/paskibra.jpg') }}" alt=""
-                    class="object-cover shadow-lg rounded-xl h-[250px] w-full" data-aos="fade-up"
-                    data-aos-duration="1400" />
-                <img src="{{ asset('dist/assets/img/pramuka.jpg') }}" alt=""
-                    class="object-cover shadow-lg rounded-xl h-[250px] w-full" data-aos="fade-up"
-                    data-aos-duration="1500" />
+                @foreach ($ekskul->rDokumentasi as $item2)
+                    @php
+                        $extension = pathinfo($item2->dokumentasi, PATHINFO_EXTENSION);
+                    @endphp
+                    @if (in_array($extension, ['jpg', 'jpeg', 'png', 'gif', 'svg']))
+                        <!-- Add formats you want to check -->
+                        <img src="{{ asset('dist/assets/img/ekskul/dokumentasi/' . $item2->dokumentasi) }}" alt=""
+                            class="object-cover shadow-lg rounded-xl h-[250px] w-full" data-aos="fade-up"
+                            data-aos-duration="1000" />
+                    @else
+                        <video class="object-cover shadow-lg rounded-xl h-[250px] w-full" controls data-aos="fade-up"
+                            data-aos-duration="1100">
+                            <source src="{{ asset('dist/assets/img/ekskul/dokumentasi/' . $item2->dokumentasi) }}"
+                                type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    @endif
+                @endforeach
+
             </div>
         </section>
     </main>
