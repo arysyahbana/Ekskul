@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('prestasis', function (Blueprint $table) {
             $table->id();
-            $table->string('kd_ekskul');
-            $table->string('prestasi');
+            $table->string('kd_ekskul')->nullable();
+            $table->string('prestasi')->nullable();
             $table->timestamps();
         });
     }

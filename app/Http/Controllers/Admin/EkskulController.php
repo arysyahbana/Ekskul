@@ -64,7 +64,7 @@ class EkskulController extends Controller
 
     public function store(Request $request)
     {
-        dd($request->all());
+        // dd($request->all());
         // $prestasiArray = $request->input('prestasi', []);
         // dd($prestasiArray);
         $this->validasiInputData($request, 'required');
@@ -78,12 +78,17 @@ class EkskulController extends Controller
             'image' => $image,
             'informasi_ekskul' => trim($request->info),
         ]);
-
-        foreach ($prestasi as $item) {
-            Prestasi::create([
-                'kd_ekskul' => $request->kode,
-                'prestasi' => $item,
-            ]);
+        // dd($prestasi);
+        if ($prestasi != null) {
+            foreach ($prestasi as $item) {
+                if (!empty($item)) {
+                    // Check if the item is not null or empty
+                    Prestasi::create([
+                        'kd_ekskul' => $request->kode,
+                        'prestasi' => $item,
+                    ]);
+                }
+            }
         }
 
         if ($dokumentasiFiles) {
@@ -134,15 +139,20 @@ class EkskulController extends Controller
 
         // Update prestasi
         $prestasi = $request->prestasi ?? [];
-        // Delete old prestasi
-        Prestasi::where('kd_ekskul', $ekskul->kode_ekskul)->delete();
-        // Create new prestasi
-        foreach ($prestasi as $item) {
-            Prestasi::create([
-                'kd_ekskul' => $ekskul->kode_ekskul,
-                'prestasi' => $item,
-            ]);
+
+        if ($prestasi != null) {
+            Prestasi::where('kd_ekskul', $ekskul->kode_ekskul)->delete();
+            foreach ($prestasi as $item) {
+                if (!empty($item)) {
+                    // Check if the item is not null or empty
+                    Prestasi::create([
+                        'kd_ekskul' => $request->kode,
+                        'prestasi' => $item,
+                    ]);
+                }
+            }
         }
+        // Delete old prestasi
 
         // Update dokumentasi
         $dokumentasiFiles = $request->file('dokumentasi');
