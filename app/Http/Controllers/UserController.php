@@ -84,6 +84,7 @@ class UserController extends Controller
             'email' => $request->email,
             'role' => $request->role,
         ];
+        // dd($data);
         if ($request->password == null) {
             User::updateOrCreate(['id' => $update->id], $data);
         } else {

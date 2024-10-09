@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Pelatih;
 
 use App\Http\Controllers\Controller;
+use App\Models\Ekstrakurikuler;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -18,7 +19,8 @@ class DataSiswaController extends Controller
     public function kepsek()
     {
         $page = "Data Siswa";
-        return view('kepsek.dataSiswa.index', compact('page'));
+        $ekskul = Ekstrakurikuler::all();
+        return view('kepsek.dataSiswa.index', compact('page', 'ekskul'));
     }
 
     public function waliKelas()

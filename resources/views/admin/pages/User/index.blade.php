@@ -118,7 +118,7 @@
                                                                 <select class="form-select mb-3"
                                                                     aria-label="Default select example" name="jenjang"
                                                                     id="jenjangSelect{{ $item->id }}">
-                                                                    <option selected hidden>--- Pilih Jenjang Pendidikan ---
+                                                                    <option selected hidden value="">--- Pilih Jenjang Pendidikan ---
                                                                     </option>
                                                                     <option value="SMA"
                                                                         {{ $item->jenjang == 'SMA' ? 'selected' : '' }}>SMA
@@ -131,7 +131,7 @@
                                                                 <select class="form-select mb-3"
                                                                     aria-label="Default select example" name="jurusan"
                                                                     id="jurusanSelect{{ $item->id }}" disabled>
-                                                                    <option selected hidden>--- Pilih Jurusan ---</option>
+                                                                    <option selected hidden value="">--- Pilih Jurusan ---</option>
                                                                     <option value="IPA"
                                                                         {{ $item->jurusan == 'IPA' ? 'selected' : '' }}>IPA
                                                                     </option>
@@ -245,7 +245,7 @@
                             <Label>Jenjang</Label>
                             <select class="form-select mb-3" aria-label="Default select example" name="jenjang"
                                 id="jenjangSelect">
-                                <option selected hidden>--- Pilih Jenjang Pendidikan ---</option>
+                                <option selected hidden value="">--- Pilih Jenjang Pendidikan ---</option>
                                 <option value="SMA">SMA</option>
                                 <option value="SMK">SMK</option>
                             </select>
@@ -253,7 +253,7 @@
                             <Label>Jurusan</Label>
                             <select class="form-select mb-3" aria-label="Default select example" name="jurusan"
                                 id="jurusanSelect" disabled>
-                                <option selected hidden>--- Pilih Jurusan ---</option>
+                                <option selected hidden value="">--- Pilih Jurusan ---</option>
                                 <option value="IPA">IPA</option>
                                 <option value="IPS">IPS</option>
                                 <option value="TKJ">TKJ</option>
