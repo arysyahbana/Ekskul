@@ -92,14 +92,30 @@
                                                                     {{ $item->role == 'Wali Kelas' ? 'selected' : '' }}>
                                                                     Wali Kelas</option>
                                                             </select>
+                                                            <div id="ekstrakurikulerContainerEdit{{ $item->id }}"
+                                                                style="display: none;">
+                                                                <Label>Ekstrakurikuler</Label>
+                                                                <select class="form-select mb-3"
+                                                                    aria-label="Default select example" name="ekskul"
+                                                                    id="ekskulSelect">
+                                                                    <option hidden>--- Pilih ---</option>
+                                                                    @foreach ($ekskuls as $ekskul)
+                                                                        <option value="{{ $ekskul->id }}">
+                                                                            {{ $ekskul->nama_ekskul }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
                                                             <x-admin.input type="text" placeholder="Nama" label="Nama"
-                                                                name="nama" value="{{ $item->nama ?? '' }}" />
+                                                                name="nama" value="{{ $item->nama ?? '' }}"
+                                                                id="namaEdit{{ $item->id }}" />
                                                             <x-admin.input type="date" placeholder="Tanggal Lahir"
                                                                 label="Tanggal Lahir" name="tgl_lahir"
-                                                                value="{{ $item->tgl_lahir ?? '' }}" />
+                                                                value="{{ $item->tgl_lahir ?? '' }}"
+                                                                id="tglLahirEdit{{ $item->id }}" />
                                                             <Label>Jenis Kelamin</Label>
                                                             <select class="form-select mb-3"
-                                                                aria-label="Default select example" name="gender">
+                                                                aria-label="Default select example" name="gender"
+                                                                id="genderEdit{{ $item->id }}">
                                                                 <option hidden>--- Pilih ---</option>
                                                                 <option value="Pria" @selected($item->gender == 'Pria')>Pria
                                                                 </option>
@@ -107,50 +123,77 @@
                                                                 </option>
                                                             </select>
                                                             <div class="opsional">
-                                                                <x-admin.input type="text"
-                                                                    placeholder="Dikosongkan selain siswa" label="NIS"
-                                                                    name="nis" value="{{ $item->nis ?? '' }}"
-                                                                    id="nisEdit{{ $item->id }}" />
-                                                                <x-admin.input type="number" label="Kelas" name="kelas"
-                                                                    value="{{ $item->kelas ?? '10' }}"
-                                                                    id="kelasEdit{{ $item->id }}" readonly />
-                                                                <Label>Jenjang</Label>
-                                                                <select class="form-select mb-3"
-                                                                    aria-label="Default select example" name="jenjang"
-                                                                    id="jenjangSelect{{ $item->id }}">
-                                                                    <option selected hidden value="">--- Pilih Jenjang Pendidikan ---
-                                                                    </option>
-                                                                    <option value="SMA"
-                                                                        {{ $item->jenjang == 'SMA' ? 'selected' : '' }}>SMA
-                                                                    </option>
-                                                                    <option value="SMK"
-                                                                        {{ $item->jenjang == 'SMK' ? 'selected' : '' }}>SMK
-                                                                    </option>
-                                                                </select>
-                                                                <Label>Jurusan</Label>
-                                                                <select class="form-select mb-3"
-                                                                    aria-label="Default select example" name="jurusan"
-                                                                    id="jurusanSelect{{ $item->id }}" disabled>
-                                                                    <option selected hidden value="">--- Pilih Jurusan ---</option>
-                                                                    <option value="IPA"
-                                                                        {{ $item->jurusan == 'IPA' ? 'selected' : '' }}>IPA
-                                                                    </option>
-                                                                    <option value="IPS"
-                                                                        {{ $item->jurusan == 'IPS' ? 'selected' : '' }}>IPS
-                                                                    </option>
-                                                                    <option value="TKJ"
-                                                                        {{ $item->jurusan == 'TKJ' ? 'selected' : '' }}>TKJ
-                                                                    </option>
-                                                                    <option value="TSM"
-                                                                        {{ $item->jurusan == 'TSM' ? 'selected' : '' }}>TSM
-                                                                    </option>
-                                                                </select>
+                                                                <div id="nisContainerEdit{{ $item->id }}"
+                                                                    style="display: none">
+                                                                    <x-admin.input type="text"
+                                                                        placeholder="Dikosongkan selain siswa"
+                                                                        label="NIS" name="nis"
+                                                                        value="{{ $item->nis ?? '' }}" />
+                                                                </div>
+
+                                                                <div id="kelasContainerEdit{{ $item->id }}"
+                                                                    style="display: none">
+                                                                    <x-admin.input type="number"
+                                                                        placeholder="Dikosongkan selain siswa"
+                                                                        label="Kelas" name="kelas"
+                                                                        value="{{ $item->kelas ?? '10' }}" readonly />
+                                                                </div>
+
+                                                                <div id="jenjangContainerEdit{{ $item->id }}"
+                                                                    style="display: none">
+                                                                    <Label>Jenjang</Label>
+                                                                    <select class="form-select mb-3"
+                                                                        aria-label="Default select example"
+                                                                        name="jenjang">
+                                                                        <option selected hidden value="">--- Pilih
+                                                                            Jenjang Pendidikan ---
+                                                                        </option>
+                                                                        <option value="SMA"
+                                                                            {{ $item->jenjang == 'SMA' ? 'selected' : '' }}>
+                                                                            SMA
+                                                                        </option>
+                                                                        <option value="SMK"
+                                                                            {{ $item->jenjang == 'SMK' ? 'selected' : '' }}>
+                                                                            SMK
+                                                                        </option>
+                                                                    </select>
+                                                                </div>
+
+                                                                <div id="jurusanContainerEdit{{ $item->id }}"
+                                                                    style="display: none">
+                                                                    <Label>Jurusan</Label>
+                                                                    <select class="form-select mb-3"
+                                                                        aria-label="Default select example" name="jurusan"
+                                                                        disabled>
+                                                                        <option selected hidden value="">--- Pilih
+                                                                            Jurusan ---</option>
+                                                                        <option value="IPA"
+                                                                            {{ $item->jurusan == 'IPA' ? 'selected' : '' }}>
+                                                                            IPA
+                                                                        </option>
+                                                                        <option value="IPS"
+                                                                            {{ $item->jurusan == 'IPS' ? 'selected' : '' }}>
+                                                                            IPS
+                                                                        </option>
+                                                                        <option value="TKJ"
+                                                                            {{ $item->jurusan == 'TKJ' ? 'selected' : '' }}>
+                                                                            TKJ
+                                                                        </option>
+                                                                        <option value="TSM"
+                                                                            {{ $item->jurusan == 'TSM' ? 'selected' : '' }}>
+                                                                            TSM
+                                                                        </option>
+                                                                    </select>
+                                                                </div>
+
                                                             </div>
                                                             <x-admin.input type="email" placeholder="Email"
                                                                 label="Email" name="email"
-                                                                value="{{ $item->email ?? '' }}" />
+                                                                value="{{ $item->email ?? '' }}"
+                                                                id="emailEdit{{ $item->id }}" />
                                                             <x-admin.input type="password" placeholder="********"
-                                                                label="Password" name="password" />
+                                                                label="Password" name="password"
+                                                                id="passwordEdit{{ $item->id }}" />
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="submit"
@@ -223,46 +266,69 @@
                             <option value="Wali Kelas">Wali Kelas</option>
                         </select>
 
-                        <x-admin.input type="text" placeholder="Nama" label="Nama" name="nama" />
+                        <div id="ekstrakurikulerContainer" style="display: none;">
+                            <Label>Ekstrakurikuler</Label>
+                            <select class="form-select mb-3" aria-label="Default select example" name="ekskul"
+                                id="ekskulSelect">
+                                <option hidden>--- Pilih ---</option>
+                                @foreach ($ekskuls as $ekskul)
+                                    <option value="{{ $ekskul->id }}">{{ $ekskul->nama_ekskul }}</option>
+                                @endforeach
+                            </select>
+                        </div>
 
-                        <x-admin.input type="date" placeholder="Tanggal Lahir" label="Tanggal Lahir"
-                            name="tgl_lahir" />
+                        <x-admin.input type="text" placeholder="Nama" label="Nama" name="nama"
+                            id="nama" />
+
+                        <x-admin.input type="date" placeholder="Tanggal Lahir" label="Tanggal Lahir" name="tgl_lahir"
+                            id="tgl_lahir" />
 
                         <Label>Jenis Kelamin</Label>
-                        <select class="form-select mb-3" aria-label="Default select example" name="gender">
+                        <select class="form-select mb-3" aria-label="Default select example" name="gender"
+                            id="gender">
                             <option hidden>--- Pilih ---</option>
                             <option value="Pria">Pria</option>
                             <option value="Wanita">Wanita</option>
                         </select>
 
                         <div class="opsional">
-                            <x-admin.input type="text" placeholder="Dikosongkan selain siswa" label="NIS"
-                                name="nis" id="nis" />
+                            <div id="nisContainer" style="display: none">
+                                <x-admin.input type="text" placeholder="Dikosongkan selain siswa" label="NIS"
+                                    name="nis" id="nis" />
+                            </div>
 
-                            <x-admin.input type="number" placeholder="Dikosongkan selain siswa" label="Kelas"
-                                name="kelas" value="10" readonly id="kelas" />
+                            <div id="kelasContainer" style="display: none">
+                                <x-admin.input type="number" placeholder="Dikosongkan selain siswa" label="Kelas"
+                                    name="kelas" value="10" readonly id="kelas" />
+                            </div>
 
-                            <Label>Jenjang</Label>
-                            <select class="form-select mb-3" aria-label="Default select example" name="jenjang"
-                                id="jenjangSelect">
-                                <option selected hidden value="">--- Pilih Jenjang Pendidikan ---</option>
-                                <option value="SMA">SMA</option>
-                                <option value="SMK">SMK</option>
-                            </select>
+                            <div id="jenjangContainer" style="display: none">
+                                <Label>Jenjang</Label>
+                                <select class="form-select mb-3" aria-label="Default select example" name="jenjang"
+                                    id="jenjangSelect">
+                                    <option selected hidden value="">--- Pilih Jenjang Pendidikan ---</option>
+                                    <option value="SMA">SMA</option>
+                                    <option value="SMK">SMK</option>
+                                </select>
+                            </div>
 
-                            <Label>Jurusan</Label>
-                            <select class="form-select mb-3" aria-label="Default select example" name="jurusan"
-                                id="jurusanSelect" disabled>
-                                <option selected hidden value="">--- Pilih Jurusan ---</option>
-                                <option value="IPA">IPA</option>
-                                <option value="IPS">IPS</option>
-                                <option value="TKJ">TKJ</option>
-                                <option value="TSM">TSM</option>
-                            </select>
+                            <div id="jurusanContainer" style="display: none">
+                                <Label>Jurusan</Label>
+                                <select class="form-select mb-3" aria-label="Default select example" name="jurusan"
+                                    id="jurusanSelect" disabled>
+                                    <option selected hidden value="">--- Pilih Jurusan ---</option>
+                                    <option value="IPA">IPA</option>
+                                    <option value="IPS">IPS</option>
+                                    <option value="TKJ">TKJ</option>
+                                    <option value="TSM">TSM</option>
+                                </select>
+                            </div>
                         </div>
 
-                        <x-admin.input type="email" placeholder="Email" label="Email" name="email" />
-                        <x-admin.input type="password" placeholder="********" label="Password" name="password" />
+                        <x-admin.input type="email" placeholder="Email" label="Email" name="email"
+                            id="email" />
+                        <x-admin.input type="password" placeholder="********" label="Password" name="password"
+                            id="password" />
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-sm btn-success">Simpan</button>
@@ -272,115 +338,275 @@
             </div>
         </div>
 
-        <script>
-            document.addEventListener("DOMContentLoaded", function() {
-                // Fungsi untuk menampilkan/menyembunyikan input berdasarkan role
-                function handleRoleChange(roleSelectId, nisId, kelasId, jenjangId, jurusanId) {
-                    const roleSelect = document.getElementById(roleSelectId);
-                    const nisInput = document.getElementById(nisId);
-                    const kelasInput = document.getElementById(kelasId);
-                    const jenjangSelect = document.getElementById(jenjangId);
-                    const jurusanSelect = document.getElementById(jurusanId);
+    </div>
 
-                    roleSelect.addEventListener('change', function() {
-                        const role = this.value;
+    <script>
+        document.getElementById('roleAdd').addEventListener('change', function() {
+            const selectedRole = this.value;
+            const ekskulContainer = document.getElementById('ekstrakurikulerContainer');
+            const nisContainer = document.getElementById('nisContainer');
+            const kelasContainer = document.getElementById('kelasContainer');
+            const jenjangContainer = document.getElementById('jenjangContainer');
+            const jurusanContainer = document.getElementById('jurusanContainer');
 
-                        if (role === 'Siswa') {
-                            // Tampilkan NIS, Kelas, Jenjang, Jurusan
-                            nisInput.parentElement.style.display = 'block';
-                            kelasInput.parentElement.style.display = 'block';
-                            jenjangSelect.parentElement.style.display = 'block';
-                            jurusanSelect.parentElement.style.display = 'block';
-                        } else if (role === 'Wali Kelas') {
-                            // Tampilkan Kelas, Jenjang, Jurusan, sembunyikan NIS
-                            nisInput.parentElement.style.display = 'none';
-                            kelasInput.parentElement.style.display = 'block';
-                            jenjangSelect.parentElement.style.display = 'block';
-                            jurusanSelect.parentElement.style.display = 'block';
-                        } else {
-                            // Sembunyikan NIS, Kelas, Jenjang, Jurusan
-                            nisInput.parentElement.style.display = 'none';
-                            kelasInput.parentElement.style.display = 'none';
-                            jenjangSelect.parentElement.style.display = 'none';
-                            jurusanSelect.parentElement.style.display = 'none';
-                        }
-                    });
+            // modal Add
+            if (selectedRole === 'Pelatih') {
+                ekskulContainer.style.display = 'block';
+                nisContainer.style.display = 'none';
+                kelasContainer.style.display = 'none';
+                jenjangContainer.style.display = 'none';
+                jurusanContainer.style.display = 'none';
 
-                    // Trigger perubahan awal
-                    roleSelect.dispatchEvent(new Event('change'));
+            } else if (selectedRole === 'Wali Kelas') {
+                ekskulContainer.style.display = 'none';
+                nisContainer.style.display = 'none';
+                kelasContainer.style.display = 'block';
+                jenjangContainer.style.display = 'block';
+                jurusanContainer.style.display = 'block';
+
+            } else if (selectedRole === 'Siswa') {
+                ekskulContainer.style.display = 'none';
+                nisContainer.style.display = 'block';
+                kelasContainer.style.display = 'block';
+                jenjangContainer.style.display = 'block';
+                jurusanContainer.style.display = 'block';
+
+            } else {
+                ekskulContainer.style.display = 'none';
+                nisContainer.style.display = 'none';
+                kelasContainer.style.display = 'none';
+                jenjangContainer.style.display = 'none';
+                jurusanContainer.style.display = 'none';
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('[id^=roleEdit]').forEach(function(roleSelect) {
+                const userId = roleSelect.id.replace('roleEdit', '');
+                const ekskulContainerEdit = document.getElementById('ekstrakurikulerContainerEdit' +
+                    userId);
+                const nisContainerEdit = document.getElementById('nisContainerEdit' + userId);
+                const kelasContainerEdit = document.getElementById('kelasContainerEdit' + userId);
+                const jenjangContainerEdit = document.getElementById('jenjangContainerEdit' + userId);
+                const jurusanContainerEdit = document.getElementById('jurusanContainerEdit' + userId);
+
+                // Fungsi untuk menampilkan input berdasarkan role yang dipilih
+                function updateFormBasedOnRole(selectedRole) {
+                    if (selectedRole === 'Pelatih') {
+                        ekskulContainerEdit.style.display = 'block';
+                        nisContainerEdit.style.display = 'none';
+                        kelasContainerEdit.style.display = 'none';
+                        jenjangContainerEdit.style.display = 'none';
+                        jurusanContainerEdit.style.display = 'none';
+                    } else if (selectedRole === 'Wali Kelas') {
+                        ekskulContainerEdit.style.display = 'none';
+                        nisContainerEdit.style.display = 'none';
+                        kelasContainerEdit.style.display = 'block';
+                        jenjangContainerEdit.style.display = 'block';
+                        jurusanContainerEdit.style.display = 'block';
+                    } else if (selectedRole === 'Siswa') {
+                        ekskulContainerEdit.style.display = 'none';
+                        nisContainerEdit.style.display = 'block';
+                        kelasContainerEdit.style.display = 'block';
+                        jenjangContainerEdit.style.display = 'block';
+                        jurusanContainerEdit.style.display = 'block';
+                    } else {
+                        ekskulContainerEdit.style.display = 'none';
+                        nisContainerEdit.style.display = 'none';
+                        kelasContainerEdit.style.display = 'none';
+                        jenjangContainerEdit.style.display = 'none';
+                        jurusanContainerEdit.style.display = 'none';
+                    }
                 }
 
-                // Untuk Modal Add
-                handleRoleChange('roleAdd', 'nis', 'kelas', 'jenjangSelect', 'jurusanSelect');
+                // Jalankan saat modal dibuka
+                const modalEdit = document.getElementById('editUsers' + userId);
+                modalEdit.addEventListener('shown.bs.modal', function() {
+                    const selectedRole = roleSelect.value;
+                    updateFormBasedOnRole(
+                        selectedRole); // Langsung update berdasarkan role saat modal dibuka
+                });
 
-                // Untuk Modal Edit (looping melalui setiap user)
-                @foreach ($users as $item)
-                    handleRoleChange('roleEdit{{ $item->id }}', 'nisEdit{{ $item->id }}',
-                        'kelasEdit{{ $item->id }}', 'jenjangSelect{{ $item->id }}',
-                        'jurusanSelect{{ $item->id }}');
-                @endforeach
+                // Jalankan saat role diubah
+                roleSelect.addEventListener('change', function() {
+                    const selectedRole = this.value;
+                    updateFormBasedOnRole(selectedRole);
+                });
             });
+        });
 
+        // Select Jurusan dan Jenjang
+        document.addEventListener('DOMContentLoaded', function() {
+            const jenjangSelect = document.getElementById('jenjangSelect');
+            const jurusanContainer = document.getElementById('jurusanContainer');
+            const jurusanSelect = document.getElementById('jurusanSelect');
 
-            document.addEventListener("DOMContentLoaded", function() {
-                // Fungsi umum untuk menangani dropdown jenjang dan jurusan
-                function handleJenjangJurusan(jenjangId, jurusanId) {
-                    const jenjangSelect = document.getElementById(jenjangId);
-                    const jurusanSelect = document.getElementById(jurusanId);
+            jenjangSelect.addEventListener('change', function() {
+                // Menghapus semua opsi jurusan yang ada
+                jurusanSelect.innerHTML = '<option selected hidden value="">--- Pilih Jurusan ---</option>';
 
-                    // Disable jurusan dropdown saat halaman dimuat
-                    jurusanSelect.disabled = true;
+                // Mengaktifkan jurusanContainer
+                jurusanContainer.style.display = 'block';
+                jurusanSelect.disabled = false; // Menghilangkan disabled
 
-                    jenjangSelect.addEventListener('change', function() {
-                        jurusanSelect.disabled = !this
-                            .value; // Enable/disable jurusan dropdown sesuai pilihan jenjang
-                    });
+                if (this.value === 'SMA') {
+                    // Menambahkan opsi jurusan untuk SMA
+                    jurusanSelect.innerHTML += '<option value="IPA">IPA</option>';
+                    jurusanSelect.innerHTML += '<option value="IPS">IPS</option>';
+                } else if (this.value === 'SMK') {
+                    // Menambahkan opsi jurusan untuk SMK
+                    jurusanSelect.innerHTML += '<option value="TKJ">TKJ</option>';
+                    jurusanSelect.innerHTML += '<option value="TSM">TSM</option>';
                 }
-
-                // Untuk Modal Add
-                handleJenjangJurusan('jenjangSelect', 'jurusanSelect');
-
-                // Untuk Modal Edit (looping melalui setiap user)
-                @foreach ($users as $item)
-                    handleJenjangJurusan('jenjangSelect{{ $item->id }}', 'jurusanSelect{{ $item->id }}');
-                @endforeach
             });
+        });
 
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('[id^=jenjangContainerEdit]').forEach(function(container) {
+                const jenjangSelect = container.querySelector('select[name="jenjang"]');
+                const jurusanContainer = document.getElementById('jurusanContainerEdit' + container.id
+                    .replace('jenjangContainerEdit', ''));
+                const jurusanSelect = jurusanContainer.querySelector('select[name="jurusan"]');
 
-            function handleJenjangChange(jenjangSelectId, jurusanSelectId) {
-                var jenjang = document.getElementById(jenjangSelectId).value;
-                var jurusanSelect = document.getElementById(jurusanSelectId);
-                if (jenjang === 'SMA') {
-                    jurusanSelect.innerHTML = `
+                jenjangSelect.addEventListener('change', function() {
+                    const selectedJenjang = this.value;
+
+                    // Hapus status disabled dan reset jurusan
+                    jurusanSelect.disabled = false;
+                    jurusanSelect.innerHTML =
+                        `<option selected hidden value="">--- Pilih Jurusan ---</option>`;
+
+                    // Menampilkan jurusan berdasarkan jenjang yang dipilih
+                    if (selectedJenjang === 'SMA') {
+                        jurusanSelect.innerHTML += `
                     <option value="IPA">IPA</option>
                     <option value="IPS">IPS</option>
                 `;
-                } else if (jenjang === 'SMK') {
-                    jurusanSelect.innerHTML = `
+                    } else if (selectedJenjang === 'SMK') {
+                        jurusanSelect.innerHTML += `
                     <option value="TKJ">TKJ</option>
                     <option value="TSM">TSM</option>
                 `;
-                } else {
-                    jurusanSelect.innerHTML = `<option selected hidden>--- Pilih Jurusan ---</option>`;
-                }
-            }
-
-            // Event listener untuk modal edit
-            @foreach ($users as $item)
-                document.getElementById('jenjangSelect{{ $item->id }}').addEventListener('change', function() {
-                    handleJenjangChange('jenjangSelect{{ $item->id }}', 'jurusanSelect{{ $item->id }}');
-                });
-            @endforeach
-
-            // Event listener untuk modal add
-            var addModal = document.getElementById('addUsers');
-            addModal.addEventListener('shown.bs.modal', function() {
-                var addJenjangSelect = document.getElementById('jenjangSelect');
-                var addJurusanSelect = document.getElementById('jurusanSelect');
-                addJenjangSelect.addEventListener('change', function() {
-                    handleJenjangChange(addJenjangSelect.id, addJurusanSelect.id);
+                    }
                 });
             });
-        </script>
-    </div>
+        });
+    </script>
+
+
+    {{-- <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Fungsi untuk menampilkan/menyembunyikan input berdasarkan role
+            function handleRoleChange(roleSelectId, nisId, kelasId, jenjangId, jurusanId) {
+                const roleSelect = document.getElementById(roleSelectId);
+                const nisInput = document.getElementById(nisId);
+                const kelasInput = document.getElementById(kelasId);
+                const jenjangSelect = document.getElementById(jenjangId);
+                const jurusanSelect = document.getElementById(jurusanId);
+
+                roleSelect.addEventListener('change', function() {
+                    const role = this.value;
+
+                    if (role === 'Siswa') {
+                        // Tampilkan NIS, Kelas, Jenjang, Jurusan
+                        nisInput.parentElement.style.display = 'block';
+                        kelasInput.parentElement.style.display = 'block';
+                        jenjangSelect.parentElement.style.display = 'block';
+                        jurusanSelect.parentElement.style.display = 'block';
+                    } else if (role === 'Wali Kelas') {
+                        // Tampilkan Kelas, Jenjang, Jurusan, sembunyikan NIS
+                        nisInput.parentElement.style.display = 'none';
+                        kelasInput.parentElement.style.display = 'block';
+                        jenjangSelect.parentElement.style.display = 'block';
+                        jurusanSelect.parentElement.style.display = 'block';
+                    } else if (role === 'Pelatih') {
+                        nisInput.parentElement.style.display = 'none';
+                        kelasInput.parentElement.style.display = 'none';
+                        jenjangSelect.parentElement.style.display = 'none';
+                        jurusanSelect.parentElement.style.display = 'none';;
+                    } else {
+                        // Sembunyikan NIS, Kelas, Jenjang, Jurusan
+                        nisInput.parentElement.style.display = 'none';
+                        kelasInput.parentElement.style.display = 'none';
+                        jenjangSelect.parentElement.style.display = 'none';
+                        jurusanSelect.parentElement.style.display = 'none';
+                    }
+                });
+
+                // Trigger perubahan awal
+                roleSelect.dispatchEvent(new Event('change'));
+            }
+
+            // Untuk Modal Add
+            handleRoleChange('roleAdd', 'nis', 'kelas', 'jenjangSelect', 'jurusanSelect');
+
+            // Untuk Modal Edit (looping melalui setiap user)
+            @foreach ($users as $item)
+                handleRoleChange('roleEdit{{ $item->id }}', 'nisEdit{{ $item->id }}',
+                    'kelasEdit{{ $item->id }}', 'jenjangSelect{{ $item->id }}',
+                    'jurusanSelect{{ $item->id }}');
+            @endforeach
+        });
+
+
+        document.addEventListener("DOMContentLoaded", function() {
+            // Fungsi umum untuk menangani dropdown jenjang dan jurusan
+            function handleJenjangJurusan(jenjangId, jurusanId) {
+                const jenjangSelect = document.getElementById(jenjangId);
+                const jurusanSelect = document.getElementById(jurusanId);
+
+                // Disable jurusan dropdown saat halaman dimuat
+                jurusanSelect.disabled = true;
+
+                jenjangSelect.addEventListener('change', function() {
+                    jurusanSelect.disabled = !this
+                        .value; // Enable/disable jurusan dropdown sesuai pilihan jenjang
+                });
+            }
+
+            // Untuk Modal Add
+            handleJenjangJurusan('jenjangSelect', 'jurusanSelect');
+
+            // Untuk Modal Edit (looping melalui setiap user)
+            @foreach ($users as $item)
+                handleJenjangJurusan('jenjangSelect{{ $item->id }}', 'jurusanSelect{{ $item->id }}');
+            @endforeach
+        });
+
+
+        function handleJenjangChange(jenjangSelectId, jurusanSelectId) {
+            var jenjang = document.getElementById(jenjangSelectId).value;
+            var jurusanSelect = document.getElementById(jurusanSelectId);
+            if (jenjang === 'SMA') {
+                jurusanSelect.innerHTML = `
+                    <option value="IPA">IPA</option>
+                    <option value="IPS">IPS</option>
+                `;
+            } else if (jenjang === 'SMK') {
+                jurusanSelect.innerHTML = `
+                    <option value="TKJ">TKJ</option>
+                    <option value="TSM">TSM</option>
+                `;
+            } else {
+                jurusanSelect.innerHTML = `<option selected hidden>--- Pilih Jurusan ---</option>`;
+            }
+        }
+
+        // Event listener untuk modal edit
+        @foreach ($users as $item)
+            document.getElementById('jenjangSelect{{ $item->id }}').addEventListener('change', function() {
+                handleJenjangChange('jenjangSelect{{ $item->id }}', 'jurusanSelect{{ $item->id }}');
+            });
+        @endforeach
+
+        // Event listener untuk modal add
+        var addModal = document.getElementById('addUsers');
+        addModal.addEventListener('shown.bs.modal', function() {
+            var addJenjangSelect = document.getElementById('jenjangSelect');
+            var addJurusanSelect = document.getElementById('jurusanSelect');
+            addJenjangSelect.addEventListener('change', function() {
+                handleJenjangChange(addJenjangSelect.id, addJurusanSelect.id);
+            });
+        });
+    </script> --}}
 @endsection

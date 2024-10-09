@@ -71,21 +71,25 @@
         </section>
 
         <!-- prestasi -->
-        <section id="prestasi" class="mt-32">
-            <p class="text-3xl font-bold text-[#4C3BCF]">PRESTASI EKSTRAKURIKULER {{Str::upper($ekskul->nama_ekskul) }}</p>
-            <p class="text-slate-500">
-                Berikut Adalah Prestasi Ekstrakurikuler {{ $ekskul->nama_ekskul }}
-                Yayasan Pendidikan Singosari Delitua.
-            </p>
+        @if ($ekskul->rPrestasi)
+            <section id="prestasi" class="mt-32">
+                <p class="text-3xl font-bold text-[#4C3BCF]">PRESTASI EKSTRAKURIKULER
+                    {{ Str::upper($ekskul->nama_ekskul) }}</p>
+                <p class="text-slate-500">
+                    Berikut Adalah Prestasi Ekstrakurikuler {{ $ekskul->nama_ekskul }}
+                    Yayasan Pendidikan Singosari Delitua.
+                </p>
 
-            <div class="mx-5">
-                <ul class="list-decimal">
-                    @foreach ($ekskul->rPrestasi as $item)
-                        <li>{{ $item->prestasi }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        </section>
+                <div class="mx-5">
+                    <ul class="list-decimal">
+                        @foreach ($ekskul->rPrestasi as $item)
+                            <li>{{ $item->prestasi }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            </section>
+        @else
+        @endif
 
         <!-- dokumentasi -->
         <section id="dokumentasi" class="mt-32">
@@ -100,10 +104,10 @@
                     @php
                         $extension = pathinfo($item2->dokumentasi, PATHINFO_EXTENSION);
                     @endphp
-                    @if (in_array($extension, ['jpg', 'jpeg', 'png', 'gif', 'svg']))
+                    @if (in_array($extension, ['jpg', 'jpeg', 'png', 'gif', 'svg', 'webp', 'JPG', 'JPEG', 'PNG', 'GIF', 'SVG', 'WEBP']))
                         <!-- Add formats you want to check -->
-                        <img src="{{ asset('dist/assets/img/ekskul/dokumentasi/' . $item2->dokumentasi) }}" alt=""
-                            class="object-cover shadow-lg rounded-xl h-[250px] w-full" data-aos="fade-up"
+                        <img src="{{ asset('dist/assets/img/ekskul/dokumentasi/' . $item2->dokumentasi) }}"
+                            alt="" class="object-cover shadow-lg rounded-xl h-[250px] w-full" data-aos="fade-up"
                             data-aos-duration="1000" />
                     @else
                         <video class="object-cover shadow-lg rounded-xl h-[250px] w-full" controls data-aos="fade-up"

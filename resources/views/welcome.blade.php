@@ -109,25 +109,26 @@
                 Yayasan Pendidikan Singosari Delitua.
             </p>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 mt-5 justify-items-center">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 mt-5 justify-items-center border gap-5">
                 @foreach ($ekskul as $item)
-                    <a href="{{ route('detail-ekskul', $item->nama_ekskul) }}">
-                        <div class="bg-gray-100 hover:bg-gray-200 max-w-lg rounded-xl shadow-xl" target="blank"
-                            data-aos="fade-up" data-aos-duration="1000">
-                            <div class="p-5 overflow-hidden rounded-xl">
-                                <img src="{{ asset('dist/assets/img/ekskul.jpg') }}" alt=""
+                    <a href="{{ route('detail-ekskul', $item->nama_ekskul) }}" class="w-full max-w-lg">
+                        <div class="bg-gray-100 hover:bg-gray-200 rounded-xl shadow-xl border h-full flex flex-col"
+                            target="blank" data-aos="fade-up" data-aos-duration="1000">
+                            <div class="p-5 overflow-hidden rounded-xl flex-grow">
+                                <img src="{{ asset('dist/assets/img/ekskul/' . $item->image) }}" alt=""
                                     class="object-cover shadow-lg rounded-xl h-[180px] w-full" />
                                 <p class="text-xl font-bold text-[#4C3BCF] my-2">
-                                    {{$item->nama_ekskul}}
+                                    {{ $item->nama_ekskul }}
                                 </p>
                                 <p class="text-sm desc">
-                                    {{$item->informasi_ekskul}}
+                                    {{ $item->informasi_ekskul }}
                                 </p>
                             </div>
                         </div>
                     </a>
                 @endforeach
             </div>
+
         </section>
     </main>
 

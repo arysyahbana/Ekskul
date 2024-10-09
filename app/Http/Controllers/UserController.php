@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exports\UserExport;
+use App\Models\Ekstrakurikuler;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -45,7 +46,8 @@ class UserController extends Controller
     {
         $page = 'Users';
         $users = User::get();
-        return view('admin.pages.User.index', compact('page', 'users'));
+        $ekskuls = Ekstrakurikuler::get();
+        return view('admin.pages.User.index', compact('page', 'users', 'ekskuls'));
     }
 
     public function store(Request $request)
