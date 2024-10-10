@@ -48,7 +48,7 @@
                                     role="progressbar">Prestasi</div>
                             </div>
 
-                            <form action="{{route('pemilihan-ekskul.smart')}}" method="POST">
+                            <form action="{{ route('pemilihan-ekskul.smart') }}" method="POST">
                                 @csrf
                                 <div class="mt-4" id="step1-content">
                                     <p class="fw-bold">Kriteria Umum</p>
@@ -61,17 +61,20 @@
                                     <Label>Tinggi Badan</Label>
                                     <select class="form-select mb-3" aria-label="Default select example" name="tinggi"
                                         id="tinggi">
-                                        <option selected hidden>--- Pilih ---</option>
-                                        <option value="1">< 151 - 160</option>
-                                        <option value="2">< 161 - 170</option>
+                                        {{-- <option selected hidden>--- Pilih ---</option> --}}
+                                        <option value="1">
+                                            < 151 - 160</option>
+                                        <option value="2">
+                                            < 161 - 170</option>
                                         <option value="3">> 170</option>
                                     </select>
 
                                     <Label>Berat Badan</Label>
                                     <select class="form-select mb-3" aria-label="Default select example" name="berat"
                                         id="berat">
-                                        <option selected hidden>--- Pilih ---</option>
-                                        <option value="1">< 40 - 45</option>
+                                        {{-- <option selected hidden>--- Pilih ---</option> --}}
+                                        <option value="1">
+                                            < 40 - 45</option>
                                         <option value="2"> 46 - 50</option>
                                         <option value="3">> 51 - 70</option>
                                     </select>
@@ -79,7 +82,7 @@
                                     <Label>Riwayat Penyakit</Label>
                                     <select class="form-select mb-3" aria-label="Default select example" name="riwayat"
                                         id="riwayat">
-                                        <option selected hidden>--- Pilih ---</option>
+                                        {{-- <option selected hidden>--- Pilih ---</option> --}}
                                         <option value="1">Ada Riwayat</option>
                                         <option value="2">Tidak Ada Riwayat</option>
                                     </select>
@@ -93,7 +96,7 @@
                                         <select class="form-select mb-3" aria-label="Default select example"
                                             name="minat{{ $item->nama_ekskul ?? '' }}"
                                             id="minat{{ $item->nama_ekskul ?? '' }}">
-                                            <option selected hidden>--- Pilih ---</option>
+                                            {{-- <option selected hidden>--- Pilih ---</option> --}}
                                             <option value="1">Tidak Berminat</option>
                                             <option value="2">Cukup Berminat</option>
                                             <option value="3">Sangat Berminat</option>
@@ -109,7 +112,7 @@
                                         <select class="form-select mb-3" aria-label="Default select example"
                                             name="riwayat{{ $item->nama_ekskul ?? '' }}"
                                             id="riwayat{{ $item->nama_ekskul ?? '' }}">
-                                            <option selected hidden>--- Pilih ---</option>
+                                            {{-- <option selected hidden>--- Pilih ---</option> --}}
                                             <option value="1">Tidak Pernah</option>
                                             <option value="2">Pernah</option>
                                         </select>
@@ -126,7 +129,7 @@
                                         <select class="form-select mb-3" aria-label="Default select example"
                                             name="prestasi{{ $item->nama_ekskul ?? '' }}"
                                             id="prestasi{{ $item->nama_ekskul ?? '' }}">
-                                            <option selected hidden>--- Pilih ---</option>
+                                            {{-- <option selected hidden>--- Pilih ---</option> --}}
                                             <option value="1">Tidak Ada Prestasi</option>
                                             <option value="2">Ada Prestasi</option>
                                         </select>

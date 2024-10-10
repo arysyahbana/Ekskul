@@ -18,6 +18,10 @@ class Ekstrakurikuler extends Model
         'dokumentasi'
     ];
 
+    public function rPelatih(){
+        return $this->belongsTo(User::class, 'id_pelatih');
+    }
+
     public function rHasilSmart(){
         return $this->hasMany(HasilSmart::class, 'kode_ekskul');
     }

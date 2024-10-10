@@ -93,16 +93,27 @@ class PemilihanEkskulController extends Controller
     private function cariNilaiUtilities($ekskul, $normalizedWeights)
     {
         $utilities = [];
-
+        $utilityCount = [];
         foreach ($ekskul as $e) {
-            $utility = 0;
+            $utility = round(array_sum($normalizedWeights[$e]), 2);
 
-            $utility += round(array_sum($normalizedWeights[$e]), 2);
-
+            if (!isset($utilityCount[$utility])) {
+                $utilityCount[$utility] = [];
+            }
+            $utilityCount[$utility][] = $e;
             $utilities[$e] = $utility;
         }
 
+        foreach ($utilityCount as $utility => $items) {
+            if (count($items) > 1) {
+                $randomKey = array_rand($items);
+                $randomItem = $items[$randomKey];
+                $utilities[$randomItem] += 0.1;
+            }
+        }
+
         return $utilities;
+
     }
 
     public function index()
@@ -202,10 +213,10 @@ class PemilihanEkskulController extends Controller
         $hasilNormalisasi = HasilNormalisasiDanUtilities::with('rEkstrakurikuler')->where('id_siswa', Auth::id())->where('id_hasil_bobot_total', $idBobotTotal)->get();
 
         // Find the rekomendasi
-        $rekomendasi = $hasilNormalisasi->max(function ($item) {
-            return [$item->rEkstrakurikuler->nama_ekskul, $item->hasil_utilities];
-        });
-
+        $rekomendasi = HasilSmart::where('id_hasil_bobot_total', $idBobotTotal)->first();
+        // $rekomendasi = $hasilNormalisasi->max(function ($item) {
+        //     return [$item->rEkstrakurikuler->nama_ekskul, $item->hasil_utilities];
+        // });
         // Return the view
         return view('siswa.pages.PemilihanEkskul.hasil', compact('page', 'hasilBobot', 'hasilBobotTotal', 'hasilNormalisasi', 'rekomendasi'));
     }

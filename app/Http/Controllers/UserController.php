@@ -54,7 +54,7 @@ class UserController extends Controller
     {
         $this->validasiInputData($request, 'required');
 
-        user::create([
+        $user = user::create([
             'nis' => $request->nis,
             'nama' => $request->nama,
             'gender' => $request->gender,
@@ -67,6 +67,11 @@ class UserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
+        $ekskul = $request->ekskul;
+        $role = $request->role;
+        if($ekskul){
+            Ekstrakurikuler::where('kode_ekskul', $ekskul)->update(['id_pelatih' => $user->id]);
+        }
         return redirect()->route('users.show')->with('success', 'Data user berhasil ditambahkan.');
     }
 
@@ -86,6 +91,10 @@ class UserController extends Controller
             'email' => $request->email,
             'role' => $request->role,
         ];
+        $ekskul = $request->ekskul;
+        if($ekskul){
+            Ekstrakurikuler::where('kode_ekskul', $ekskul)->update(['id_pelatih' => $id]);
+        }
         // dd($data);
         if ($request->password == null) {
             User::updateOrCreate(['id' => $update->id], $data);
