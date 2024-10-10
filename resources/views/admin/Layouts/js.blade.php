@@ -9,22 +9,10 @@
  <script src="https://cdn.datatables.net/2.1.0/js/dataTables.js"></script>
  <script>
      $(document).ready(function() {
-         $('#datatable').DataTable();
-     });
-     $(document).ready(function() {
-         $('#ekskul1').DataTable();
-     });
-     $(document).ready(function() {
-         $('#ekskul2').DataTable();
-     });
-     $(document).ready(function() {
-         $('#ekskul3').DataTable();
-     });
-     $(document).ready(function() {
-         $('#ekskul4').DataTable();
-     });
-     $(document).ready(function() {
-         $('#ekskul5').DataTable();
+         // Cari semua elemen table yang memiliki id dimulai dengan "ekskul"
+         $('table[id^="ekskultes"]').each(function() {
+             $(this).DataTable(); // Inisialisasi DataTables untuk tiap tabel yang ditemukan
+         });
      });
  </script>
  <script>

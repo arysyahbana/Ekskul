@@ -9,353 +9,51 @@
                 <h6>Data Siswa Ekskul</h6>
                 <div class="card mb-4">
                     <div class="card-header pb-0 d-flex justify-content-end">
-                        <a href="#" class="btn bg-gradient-success"><i class="bi bi-plus-circle"></i><span
-                                class="text-capitalize ms-1">Unduh Rekap Data</span></a>
+                        <a href="#" class="btn bg-gradient-success">
+                            <i class="bi bi-plus-circle"></i>
+                            <span class="text-capitalize ms-1">Unduh Rekap Data</span>
+                        </a>
                     </div>
                     <div class="card-body pb-5 px-5">
                         <ul class="nav nav-tabs">
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Renang</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Pramuka</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Futsal</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Basket</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Paskibra</a>
-                            </li>
+                            @foreach ($ekskul as $item)
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#"
+                                        data-ekskul="{{ $item->nama_ekskul }}">{{ $item->nama_ekskul }}</a>
+                                </li>
+                            @endforeach
                         </ul>
                         <div class="table-responsive p-0">
-                            <div id="renang-content">
-                                <table class="my-3 text-dark text-sm">
-                                    <tr>
-                                        <td>
-                                            Nama Pelatih
-                                        </td>
-                                        <td class="px-2">
-                                            :
-                                        </td>
-                                        <td>
-                                            Hartono
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            No HP Pelatih
-                                        </td>
-                                        <td class="px-2">
-                                            :
-                                        </td>
-                                        <td>
-                                            08726534512
-                                        </td>
-                                    </tr>
-                                </table>
-
-                                <x-admin.table id="ekskul1">
-                                    @slot('header')
+                            @foreach ($ekskul as $item)
+                                <div id="{{ $item->nama_ekskul }}-content" class="content-section" style="display: none;">
+                                    <table id="ekskul{{ $loop->index }}" class="my-3 text-dark text-sm">
                                         <tr>
-                                            <x-admin.th>No</x-admin.th>
-                                            <x-admin.th>NIS</x-admin.th>
-                                            <x-admin.th>Nama Siswa</x-admin.th>
-                                            <x-admin.th>Jenis Kelamin</x-admin.th>
-                                            <x-admin.th>Kelas</x-admin.th>
-                                            <x-admin.th>Jenjang</x-admin.th>
+                                            <td>Nama Pelatih</td>
+                                            <td class="px-2">:</td>
+                                            <td>Budiono Siregar {{ $item->nama_ekskul }}</td>
                                         </tr>
-                                    @endslot
-
-                                    <tr>
-                                        <x-admin.td class="text-center">1</x-admin.td>
-                                        <x-admin.td class="text-center">2000</x-admin.td>
-                                        <x-admin.td class="text-center">Rina</x-admin.td>
-                                        <x-admin.td class="text-center">Pria</x-admin.td>
-                                        <x-admin.td class="text-center">11</x-admin.td>
-                                        <x-admin.td class="text-center">SMA</x-admin.td>
-                                    </tr>
-                                    <tr>
-                                        <x-admin.td class="text-center">1</x-admin.td>
-                                        <x-admin.td class="text-center">2000</x-admin.td>
-                                        <x-admin.td class="text-center">Roni</x-admin.td>
-                                        <x-admin.td class="text-center">Pria</x-admin.td>
-                                        <x-admin.td class="text-center">11</x-admin.td>
-                                        <x-admin.td class="text-center">SMA</x-admin.td>
-                                    </tr>
-                                    <tr>
-                                        <x-admin.td class="text-center">1</x-admin.td>
-                                        <x-admin.td class="text-center">2000</x-admin.td>
-                                        <x-admin.td class="text-center">Ria</x-admin.td>
-                                        <x-admin.td class="text-center">Pria</x-admin.td>
-                                        <x-admin.td class="text-center">11</x-admin.td>
-                                        <x-admin.td class="text-center">SMA</x-admin.td>
-                                    </tr>
-                                </x-admin.table>
-                            </div>
-
-                            <div id="pramuka-content">
-                                <table class="my-3 text-dark text-sm">
-                                    <tr>
-                                        <td>
-                                            Nama Pelatih
-                                        </td>
-                                        <td class="px-2">
-                                            :
-                                        </td>
-                                        <td>
-                                            Budiono
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            No HP Pelatih
-                                        </td>
-                                        <td class="px-2">
-                                            :
-                                        </td>
-                                        <td>
-                                            08726534512
-                                        </td>
-                                    </tr>
-                                </table>
-
-                                <x-admin.table id="ekskul2">
-                                    @slot('header')
                                         <tr>
-                                            <x-admin.th>No</x-admin.th>
-                                            <x-admin.th>NIS</x-admin.th>
-                                            <x-admin.th>Nama Siswa</x-admin.th>
-                                            <x-admin.th>Jenis Kelamin</x-admin.th>
-                                            <x-admin.th>Kelas</x-admin.th>
-                                            <x-admin.th>Jenjang</x-admin.th>
+                                            <td>No HP Pelatih</td>
+                                            <td class="px-2">:</td>
+                                            <td>08898798</td>
                                         </tr>
-                                    @endslot
+                                    </table>
 
-                                    <tr>
-                                        <x-admin.td class="text-center">1</x-admin.td>
-                                        <x-admin.td class="text-center">2000</x-admin.td>
-                                        <x-admin.td class="text-center">Budi</x-admin.td>
-                                        <x-admin.td class="text-center">Pria</x-admin.td>
-                                        <x-admin.td class="text-center">11</x-admin.td>
-                                        <x-admin.td class="text-center">SMA</x-admin.td>
-                                    </tr>
-                                    <tr>
-                                        <x-admin.td class="text-center">1</x-admin.td>
-                                        <x-admin.td class="text-center">2000</x-admin.td>
-                                        <x-admin.td class="text-center">Boke</x-admin.td>
-                                        <x-admin.td class="text-center">Pria</x-admin.td>
-                                        <x-admin.td class="text-center">11</x-admin.td>
-                                        <x-admin.td class="text-center">SMA</x-admin.td>
-                                    </tr>
-                                    <tr>
-                                        <x-admin.td class="text-center">1</x-admin.td>
-                                        <x-admin.td class="text-center">2000</x-admin.td>
-                                        <x-admin.td class="text-center">Toli</x-admin.td>
-                                        <x-admin.td class="text-center">Pria</x-admin.td>
-                                        <x-admin.td class="text-center">11</x-admin.td>
-                                        <x-admin.td class="text-center">SMA</x-admin.td>
-                                    </tr>
-                                </x-admin.table>
-                            </div>
-
-                            <div id="futsal-content">
-                                <table class="my-3 text-dark text-sm">
-                                    <tr>
-                                        <td>
-                                            Nama Pelatih
-                                        </td>
-                                        <td class="px-2">
-                                            :
-                                        </td>
-                                        <td>
-                                            Gokidu
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            No HP Pelatih
-                                        </td>
-                                        <td class="px-2">
-                                            :
-                                        </td>
-                                        <td>
-                                            08726534512
-                                        </td>
-                                    </tr>
-                                </table>
-
-                                <x-admin.table id="ekskul3">
-                                    @slot('header')
-                                        <tr>
-                                            <x-admin.th>No</x-admin.th>
-                                            <x-admin.th>NIS</x-admin.th>
-                                            <x-admin.th>Nama Siswa</x-admin.th>
-                                            <x-admin.th>Jenis Kelamin</x-admin.th>
-                                            <x-admin.th>Kelas</x-admin.th>
-                                            <x-admin.th>Jenjang</x-admin.th>
-                                        </tr>
-                                    @endslot
-
-                                    <tr>
-                                        <x-admin.td class="text-center">1</x-admin.td>
-                                        <x-admin.td class="text-center">2000</x-admin.td>
-                                        <x-admin.td class="text-center">Budi</x-admin.td>
-                                        <x-admin.td class="text-center">Pria</x-admin.td>
-                                        <x-admin.td class="text-center">11</x-admin.td>
-                                        <x-admin.td class="text-center">SMA</x-admin.td>
-                                    </tr>
-                                    <tr>
-                                        <x-admin.td class="text-center">1</x-admin.td>
-                                        <x-admin.td class="text-center">2000</x-admin.td>
-                                        <x-admin.td class="text-center">Boke</x-admin.td>
-                                        <x-admin.td class="text-center">Pria</x-admin.td>
-                                        <x-admin.td class="text-center">11</x-admin.td>
-                                        <x-admin.td class="text-center">SMA</x-admin.td>
-                                    </tr>
-                                    <tr>
-                                        <x-admin.td class="text-center">1</x-admin.td>
-                                        <x-admin.td class="text-center">2000</x-admin.td>
-                                        <x-admin.td class="text-center">Toli</x-admin.td>
-                                        <x-admin.td class="text-center">Pria</x-admin.td>
-                                        <x-admin.td class="text-center">11</x-admin.td>
-                                        <x-admin.td class="text-center">SMA</x-admin.td>
-                                    </tr>
-                                </x-admin.table>
-                            </div>
-
-                            <div id="basket-content">
-                                <table class="my-3 text-dark text-sm">
-                                    <tr>
-                                        <td>
-                                            Nama Pelatih
-                                        </td>
-                                        <td class="px-2">
-                                            :
-                                        </td>
-                                        <td>
-                                            Fadli
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            No HP Pelatih
-                                        </td>
-                                        <td class="px-2">
-                                            :
-                                        </td>
-                                        <td>
-                                            08726534512
-                                        </td>
-                                    </tr>
-                                </table>
-
-                                <x-admin.table id="ekskul4">
-                                    @slot('header')
-                                        <tr>
-                                            <x-admin.th>No</x-admin.th>
-                                            <x-admin.th>NIS</x-admin.th>
-                                            <x-admin.th>Nama Siswa</x-admin.th>
-                                            <x-admin.th>Jenis Kelamin</x-admin.th>
-                                            <x-admin.th>Kelas</x-admin.th>
-                                            <x-admin.th>Jenjang</x-admin.th>
-                                        </tr>
-                                    @endslot
-
-                                    <tr>
-                                        <x-admin.td class="text-center">1</x-admin.td>
-                                        <x-admin.td class="text-center">2000</x-admin.td>
-                                        <x-admin.td class="text-center">Budi</x-admin.td>
-                                        <x-admin.td class="text-center">Pria</x-admin.td>
-                                        <x-admin.td class="text-center">11</x-admin.td>
-                                        <x-admin.td class="text-center">SMA</x-admin.td>
-                                    </tr>
-                                    <tr>
-                                        <x-admin.td class="text-center">1</x-admin.td>
-                                        <x-admin.td class="text-center">2000</x-admin.td>
-                                        <x-admin.td class="text-center">Boke</x-admin.td>
-                                        <x-admin.td class="text-center">Pria</x-admin.td>
-                                        <x-admin.td class="text-center">11</x-admin.td>
-                                        <x-admin.td class="text-center">SMA</x-admin.td>
-                                    </tr>
-                                    <tr>
-                                        <x-admin.td class="text-center">1</x-admin.td>
-                                        <x-admin.td class="text-center">2000</x-admin.td>
-                                        <x-admin.td class="text-center">Toli</x-admin.td>
-                                        <x-admin.td class="text-center">Pria</x-admin.td>
-                                        <x-admin.td class="text-center">11</x-admin.td>
-                                        <x-admin.td class="text-center">SMA</x-admin.td>
-                                    </tr>
-                                </x-admin.table>
-                            </div>
-
-                            <div id="paskibra-content">
-                                <table class="my-3 text-dark text-sm">
-                                    <tr>
-                                        <td>
-                                            Nama Pelatih
-                                        </td>
-                                        <td class="px-2">
-                                            :
-                                        </td>
-                                        <td>
-                                            Judi
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            No HP Pelatih
-                                        </td>
-                                        <td class="px-2">
-                                            :
-                                        </td>
-                                        <td>
-                                            08726534512
-                                        </td>
-                                    </tr>
-                                </table>
-
-                                <x-admin.table id="ekskul5">
-                                    @slot('header')
-                                        <tr>
-                                            <x-admin.th>No</x-admin.th>
-                                            <x-admin.th>NIS</x-admin.th>
-                                            <x-admin.th>Nama Siswa</x-admin.th>
-                                            <x-admin.th>Jenis Kelamin</x-admin.th>
-                                            <x-admin.th>Kelas</x-admin.th>
-                                            <x-admin.th>Jenjang</x-admin.th>
-                                        </tr>
-                                    @endslot
-
-                                    <tr>
-                                        <x-admin.td class="text-center">1</x-admin.td>
-                                        <x-admin.td class="text-center">2000</x-admin.td>
-                                        <x-admin.td class="text-center">Budi</x-admin.td>
-                                        <x-admin.td class="text-center">Pria</x-admin.td>
-                                        <x-admin.td class="text-center">11</x-admin.td>
-                                        <x-admin.td class="text-center">SMA</x-admin.td>
-                                    </tr>
-                                    <tr>
-                                        <x-admin.td class="text-center">1</x-admin.td>
-                                        <x-admin.td class="text-center">2000</x-admin.td>
-                                        <x-admin.td class="text-center">Boke</x-admin.td>
-                                        <x-admin.td class="text-center">Pria</x-admin.td>
-                                        <x-admin.td class="text-center">11</x-admin.td>
-                                        <x-admin.td class="text-center">SMA</x-admin.td>
-                                    </tr>
-                                    <tr>
-                                        <x-admin.td class="text-center">1</x-admin.td>
-                                        <x-admin.td class="text-center">2000</x-admin.td>
-                                        <x-admin.td class="text-center">Toli</x-admin.td>
-                                        <x-admin.td class="text-center">Pria</x-admin.td>
-                                        <x-admin.td class="text-center">11</x-admin.td>
-                                        <x-admin.td class="text-center">SMA</x-admin.td>
-                                    </tr>
-                                </x-admin.table>
-                            </div>
-
+                                    <x-admin.table id="ekskultes{{ $loop->index }}_table">
+                                        @slot('header')
+                                            <tr>
+                                                <x-admin.th>No</x-admin.th>
+                                                <x-admin.th>NIS</x-admin.th>
+                                                <x-admin.th>Nama Siswa</x-admin.th>
+                                                <x-admin.th>Jenis Kelamin</x-admin.th>
+                                                <x-admin.th>Kelas</x-admin.th>
+                                                <x-admin.th>Jenjang</x-admin.th>
+                                            </tr>
+                                        @endslot
+                                        {{-- Ntar data siswanya lu foreach aja disini --}}
+                                    </x-admin.table>
+                                </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -365,52 +63,31 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Ambil semua elemen tab
             const tabs = document.querySelectorAll('.nav-tabs .nav-link');
-            const contents = {
-                'Renang': document.getElementById('renang-content'),
-                'Pramuka': document.getElementById('pramuka-content'),
-                'Futsal': document.getElementById('futsal-content'),
-                'Basket': document.getElementById('basket-content'),
-                'Paskibra': document.getElementById('paskibra-content')
-            };
+            const contentSections = document.querySelectorAll('.content-section');
 
-            // Fungsi untuk menampilkan konten yang sesuai dengan tab yang aktif
             function showContent(tabName) {
-                for (const contentKey in contents) {
-                    if (contentKey === tabName) {
-                        contents[contentKey].style.display = 'block';
+                contentSections.forEach(content => {
+                    if (content.id === tabName + '-content') {
+                        content.style.display = 'block';
                     } else {
-                        contents[contentKey].style.display = 'none';
+                        content.style.display = 'none';
                     }
-                }
+                });
             }
 
-            // Pasang event listener pada setiap tab
             tabs.forEach(tab => {
                 tab.addEventListener('click', function(e) {
                     e.preventDefault();
-
-                    // Hilangkan kelas 'active' dari semua tab di dalam nav-tabs
-                    tabs.forEach(tab => tab.classList.remove('active'));
-
-                    // Tambahkan kelas 'active' pada tab yang diklik
+                    tabs.forEach(t => t.classList.remove('active'));
                     this.classList.add('active');
-
-                    // Tampilkan konten yang sesuai
-                    showContent(this.textContent);
+                    showContent(this.getAttribute('data-ekskul'));
                 });
             });
 
-            // Tampilkan konten pertama kali sesuai tab yang aktif saat halaman dimuat
-            const activeTab = document.querySelector('.nav-tabs .nav-link.active');
-            if (activeTab) {
-                showContent(activeTab.textContent);
-            } else {
-                // Jika tidak ada tab yang aktif, aktifkan tab pertama dan tampilkan kontennya
-                tabs[0].classList.add('active');
-                showContent(tabs[0].textContent);
-            }
+            // Tampilkan ekskul pertama secara default
+            tabs[0].classList.add('active');
+            showContent(tabs[0].getAttribute('data-ekskul'));
         });
     </script>
 @endsection
