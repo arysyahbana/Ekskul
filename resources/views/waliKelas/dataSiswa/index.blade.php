@@ -11,7 +11,7 @@
                     <div class="card-header pb-0 d-flex justify-content-between">
                         <p class="pt-2 fs-5 fw-bold">Wali Kelas 10 {{ Auth::user()->jurusan }} <span
                                 class="text-success">({{ Auth::user()->jenjang }})</span></p>
-                        <a href="#" class="btn bg-gradient-success"><i class="bi bi-plus-circle"></i><span
+                        <a href="{{ route('download.wali') }}" class="btn bg-gradient-success"><i class="bi bi-plus-circle"></i><span
                                 class="text-capitalize ms-1">Unduh Rekap Data</span></a>
                     </div>
                     <div class="card-body pb-5 px-5">
