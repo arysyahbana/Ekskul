@@ -14,11 +14,21 @@
                     </div>
                     <div class="card-body pb-5 px-5">
                         <ul class="nav nav-tabs">
-                            @foreach ($ekskul as $item)
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">{{$item->nama_ekskul}}</a>
-                                </li>
-                            @endforeach
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Renang</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Pramuka</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Futsal</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Basket</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Paskibra</a>
+                            </li>
                         </ul>
                         <div class="table-responsive p-0">
                             <div id="renang-content">
@@ -86,7 +96,7 @@
                                 </x-admin.table>
                             </div>
 
-                            <div id="paskibra-content">
+                            <div id="pramuka-content">
                                 <table class="my-3 text-dark text-sm">
                                     <tr>
                                         <td>
@@ -150,6 +160,202 @@
                                     </tr>
                                 </x-admin.table>
                             </div>
+
+                            <div id="futsal-content">
+                                <table class="my-3 text-dark text-sm">
+                                    <tr>
+                                        <td>
+                                            Nama Pelatih
+                                        </td>
+                                        <td class="px-2">
+                                            :
+                                        </td>
+                                        <td>
+                                            Gokidu
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            No HP Pelatih
+                                        </td>
+                                        <td class="px-2">
+                                            :
+                                        </td>
+                                        <td>
+                                            08726534512
+                                        </td>
+                                    </tr>
+                                </table>
+
+                                <x-admin.table id="ekskul3">
+                                    @slot('header')
+                                        <tr>
+                                            <x-admin.th>No</x-admin.th>
+                                            <x-admin.th>NIS</x-admin.th>
+                                            <x-admin.th>Nama Siswa</x-admin.th>
+                                            <x-admin.th>Jenis Kelamin</x-admin.th>
+                                            <x-admin.th>Kelas</x-admin.th>
+                                            <x-admin.th>Jenjang</x-admin.th>
+                                        </tr>
+                                    @endslot
+
+                                    <tr>
+                                        <x-admin.td class="text-center">1</x-admin.td>
+                                        <x-admin.td class="text-center">2000</x-admin.td>
+                                        <x-admin.td class="text-center">Budi</x-admin.td>
+                                        <x-admin.td class="text-center">Pria</x-admin.td>
+                                        <x-admin.td class="text-center">11</x-admin.td>
+                                        <x-admin.td class="text-center">SMA</x-admin.td>
+                                    </tr>
+                                    <tr>
+                                        <x-admin.td class="text-center">1</x-admin.td>
+                                        <x-admin.td class="text-center">2000</x-admin.td>
+                                        <x-admin.td class="text-center">Boke</x-admin.td>
+                                        <x-admin.td class="text-center">Pria</x-admin.td>
+                                        <x-admin.td class="text-center">11</x-admin.td>
+                                        <x-admin.td class="text-center">SMA</x-admin.td>
+                                    </tr>
+                                    <tr>
+                                        <x-admin.td class="text-center">1</x-admin.td>
+                                        <x-admin.td class="text-center">2000</x-admin.td>
+                                        <x-admin.td class="text-center">Toli</x-admin.td>
+                                        <x-admin.td class="text-center">Pria</x-admin.td>
+                                        <x-admin.td class="text-center">11</x-admin.td>
+                                        <x-admin.td class="text-center">SMA</x-admin.td>
+                                    </tr>
+                                </x-admin.table>
+                            </div>
+
+                            <div id="basket-content">
+                                <table class="my-3 text-dark text-sm">
+                                    <tr>
+                                        <td>
+                                            Nama Pelatih
+                                        </td>
+                                        <td class="px-2">
+                                            :
+                                        </td>
+                                        <td>
+                                            Fadli
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            No HP Pelatih
+                                        </td>
+                                        <td class="px-2">
+                                            :
+                                        </td>
+                                        <td>
+                                            08726534512
+                                        </td>
+                                    </tr>
+                                </table>
+
+                                <x-admin.table id="ekskul4">
+                                    @slot('header')
+                                        <tr>
+                                            <x-admin.th>No</x-admin.th>
+                                            <x-admin.th>NIS</x-admin.th>
+                                            <x-admin.th>Nama Siswa</x-admin.th>
+                                            <x-admin.th>Jenis Kelamin</x-admin.th>
+                                            <x-admin.th>Kelas</x-admin.th>
+                                            <x-admin.th>Jenjang</x-admin.th>
+                                        </tr>
+                                    @endslot
+
+                                    <tr>
+                                        <x-admin.td class="text-center">1</x-admin.td>
+                                        <x-admin.td class="text-center">2000</x-admin.td>
+                                        <x-admin.td class="text-center">Budi</x-admin.td>
+                                        <x-admin.td class="text-center">Pria</x-admin.td>
+                                        <x-admin.td class="text-center">11</x-admin.td>
+                                        <x-admin.td class="text-center">SMA</x-admin.td>
+                                    </tr>
+                                    <tr>
+                                        <x-admin.td class="text-center">1</x-admin.td>
+                                        <x-admin.td class="text-center">2000</x-admin.td>
+                                        <x-admin.td class="text-center">Boke</x-admin.td>
+                                        <x-admin.td class="text-center">Pria</x-admin.td>
+                                        <x-admin.td class="text-center">11</x-admin.td>
+                                        <x-admin.td class="text-center">SMA</x-admin.td>
+                                    </tr>
+                                    <tr>
+                                        <x-admin.td class="text-center">1</x-admin.td>
+                                        <x-admin.td class="text-center">2000</x-admin.td>
+                                        <x-admin.td class="text-center">Toli</x-admin.td>
+                                        <x-admin.td class="text-center">Pria</x-admin.td>
+                                        <x-admin.td class="text-center">11</x-admin.td>
+                                        <x-admin.td class="text-center">SMA</x-admin.td>
+                                    </tr>
+                                </x-admin.table>
+                            </div>
+
+                            <div id="paskibra-content">
+                                <table class="my-3 text-dark text-sm">
+                                    <tr>
+                                        <td>
+                                            Nama Pelatih
+                                        </td>
+                                        <td class="px-2">
+                                            :
+                                        </td>
+                                        <td>
+                                            Judi
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            No HP Pelatih
+                                        </td>
+                                        <td class="px-2">
+                                            :
+                                        </td>
+                                        <td>
+                                            08726534512
+                                        </td>
+                                    </tr>
+                                </table>
+
+                                <x-admin.table id="ekskul5">
+                                    @slot('header')
+                                        <tr>
+                                            <x-admin.th>No</x-admin.th>
+                                            <x-admin.th>NIS</x-admin.th>
+                                            <x-admin.th>Nama Siswa</x-admin.th>
+                                            <x-admin.th>Jenis Kelamin</x-admin.th>
+                                            <x-admin.th>Kelas</x-admin.th>
+                                            <x-admin.th>Jenjang</x-admin.th>
+                                        </tr>
+                                    @endslot
+
+                                    <tr>
+                                        <x-admin.td class="text-center">1</x-admin.td>
+                                        <x-admin.td class="text-center">2000</x-admin.td>
+                                        <x-admin.td class="text-center">Budi</x-admin.td>
+                                        <x-admin.td class="text-center">Pria</x-admin.td>
+                                        <x-admin.td class="text-center">11</x-admin.td>
+                                        <x-admin.td class="text-center">SMA</x-admin.td>
+                                    </tr>
+                                    <tr>
+                                        <x-admin.td class="text-center">1</x-admin.td>
+                                        <x-admin.td class="text-center">2000</x-admin.td>
+                                        <x-admin.td class="text-center">Boke</x-admin.td>
+                                        <x-admin.td class="text-center">Pria</x-admin.td>
+                                        <x-admin.td class="text-center">11</x-admin.td>
+                                        <x-admin.td class="text-center">SMA</x-admin.td>
+                                    </tr>
+                                    <tr>
+                                        <x-admin.td class="text-center">1</x-admin.td>
+                                        <x-admin.td class="text-center">2000</x-admin.td>
+                                        <x-admin.td class="text-center">Toli</x-admin.td>
+                                        <x-admin.td class="text-center">Pria</x-admin.td>
+                                        <x-admin.td class="text-center">11</x-admin.td>
+                                        <x-admin.td class="text-center">SMA</x-admin.td>
+                                    </tr>
+                                </x-admin.table>
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -162,7 +368,10 @@
             // Ambil semua elemen tab
             const tabs = document.querySelectorAll('.nav-tabs .nav-link');
             const contents = {
+                'Renang': document.getElementById('renang-content'),
                 'Pramuka': document.getElementById('pramuka-content'),
+                'Futsal': document.getElementById('futsal-content'),
+                'Basket': document.getElementById('basket-content'),
                 'Paskibra': document.getElementById('paskibra-content')
             };
 
