@@ -28,11 +28,11 @@
                                 @foreach ($siswa as $item)
                                     <tr>
                                         <x-admin.td class="text-center">{{ $loop->iteration }}</x-admin.td>
-                                        <x-admin.td class="text-center">{{ $item->nis ?? '' }}</x-admin.td>
-                                        <x-admin.td class="text-center">{{ $item->nama ?? '' }}</x-admin.td>
-                                        <x-admin.td class="text-center">{{ $item->gender ?? '' }}</x-admin.td>
-                                        <x-admin.td class="text-center">{{ $item->kelas ?? '' }}</x-admin.td>
-                                        <x-admin.td class="text-center">{{ $item->jenjang ?? '' }}</x-admin.td>
+                                        <x-admin.td class="text-center">{{ $item->rSiswa->nis ?? '' }}</x-admin.td>
+                                        <x-admin.td class="text-center">{{ $item->rSiswa->nama ?? '' }}</x-admin.td>
+                                        <x-admin.td class="text-center">{{ $item->rSiswa->gender ?? '' }}</x-admin.td>
+                                        <x-admin.td class="text-center">{{ $item->rSiswa->kelas ?? '' }}</x-admin.td>
+                                        <x-admin.td class="text-center">{{ $item->rSiswa->jenjang ?? '' }}</x-admin.td>
                                     </tr>
                                 @endforeach
 

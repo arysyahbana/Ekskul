@@ -98,9 +98,9 @@
                                                                 <select class="form-select mb-3"
                                                                     aria-label="Default select example" name="ekskul"
                                                                     id="ekskulSelect">
-                                                                    <option hidden>--- Pilih ---</option>
+                                                                    <option hidden value="">--- Pilih ---</option>
                                                                     @foreach ($ekskuls as $ekskul)
-                                                                        <option value="{{ $ekskul->id }}">
+                                                                        <option value="{{ $ekskul->kode_ekskul }}">
                                                                             {{ $ekskul->nama_ekskul }}</option>
                                                                     @endforeach
                                                                 </select>
@@ -270,9 +270,9 @@
                             <Label>Ekstrakurikuler</Label>
                             <select class="form-select mb-3" aria-label="Default select example" name="ekskul"
                                 id="ekskulSelect">
-                                <option hidden>--- Pilih ---</option>
+                                <option hidden value="">--- Pilih ---</option>
                                 @foreach ($ekskuls as $ekskul)
-                                    <option value="{{ $ekskul->id }}">{{ $ekskul->nama_ekskul }}</option>
+                                    <option value="{{ $ekskul->kode_ekskul }}">{{ $ekskul->nama_ekskul }}</option>
                                 @endforeach
                             </select>
                         </div>

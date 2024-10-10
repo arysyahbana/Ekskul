@@ -138,8 +138,8 @@
         <div class="card mb-4 bg-gradient-primary text-light text-center fw-bolder">
             <div class="card-body">
                 <p>Peminatan Ekstrakurikuler yang direkomendasikan untuk anda adalah</p>
-                <p class="fw-bold fs-2">"{{$rekomendasi[0]}}"</p>
-                <p>Berdasarkan nilai SMART tertinggi yaitu <span class="fs-4">"{{$rekomendasi[1]}}"</span></p>
+                <p class="fw-bold fs-2">"{{$rekomendasi->hasil_smart}}"</p>
+                <p>Berdasarkan nilai SMART tertinggi yaitu <span class="fs-4">"{{$rekomendasi->rEkstrakurikuler->nama_ekskul}}"</span></p>
             </div>
         </div>
     </div>
