@@ -111,14 +111,18 @@ Route::middleware(['auth', 'role:Siswa'])->group(function () {
 
 Route::middleware(['auth', 'role:Pelatih'])->group(function () {
     Route::get('/data-siswa/pelatih/ekskul', [DataSiswaController::class, 'index'])->name('data-siswa.ekskul');
+    Route::get('/pelatih/download', [DataSiswaController::class, 'downloadPelatih'])->name('download.pelatih');
 });
 
 Route::middleware(['auth', 'role:Kepala Sekolah'])->group(function () {
     Route::get('/data-siswa/kepsek', [DataSiswaController::class, 'kepsek'])->name('data-siswa.kepsek');
+    Route::get('/kepsek/download', [DataSiswaController::class, 'downloadKepsek'])->name('download.kepsek');
 });
 
 Route::middleware(['auth', 'role:Wali Kelas'])->group(function () {
     Route::get('/data-siswa/waliKelas', [DataSiswaController::class, 'waliKelas'])->name('data-siswa.waliKelas');
+    Route::get('/wali/download', [DataSiswaController::class, 'downloadWali'])->name('download.wali');
+
 });
 
 require __DIR__ . '/auth.php';

@@ -9,7 +9,7 @@
             <h6>Data Siswa Ekskul</h6>
             <div class="card mb-4">
                 <div class="card-header pb-0 d-flex justify-content-end">
-                    <a href="#" class="btn bg-gradient-success">
+                    <a href="{{ route('download.kepsek') }}" class="btn bg-gradient-success">
                         <i class="bi bi-plus-circle"></i>
                         <span class="text-capitalize ms-1">Unduh Rekap Data</span>
                     </a>
