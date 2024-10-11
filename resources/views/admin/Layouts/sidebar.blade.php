@@ -70,7 +70,7 @@
                 </li>
 
                 {{-- Kriteria --}}
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a class="nav-link {{ $page == 'Kriteria' ? 'active' : '' }}" href="{{ route('kriteria.show') }}">
                         <div
                             class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -96,7 +96,7 @@
                         </div>
                         <span class="nav-link-text ms-1">Data Kriteria</span>
                     </a>
-                </li>
+                </li> --}}
 
                 {{-- Hasil SMART --}}
                 <li class="nav-item">
@@ -225,7 +225,7 @@
                 </li>
 
                 {{-- Informasi Kriteria --}}
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a class="nav-link {{ $page == 'Informasi Kriteria' ? 'active' : '' }}"
                         href="{{ route('info-kriteria.show') }}">
                         <div
@@ -252,7 +252,7 @@
                         </div>
                         <span class="nav-link-text ms-1">Informasi Kriteria</span>
                     </a>
-                </li>
+                </li> --}}
 
                 {{-- Pemilihan Ekskul --}}
                 <li class="nav-item">
