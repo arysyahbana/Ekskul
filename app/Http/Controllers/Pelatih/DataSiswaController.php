@@ -111,7 +111,7 @@ class DataSiswaController extends Controller
     public function waliKelas()
     {
         $page = 'Data Siswa';
-        $ekskul = Ekstrakurikuler::all();
+        $ekskul = Ekstrakurikuler::with('rPelatih')->get();
         $wali = $this->idUser;
         $siswa = [];
 

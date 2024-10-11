@@ -11,82 +11,58 @@
                     <div class="card-header pb-0 d-flex justify-content-between">
                         <p class="pt-2 fs-5 fw-bold">Wali Kelas 10 {{ Auth::user()->jurusan }} <span
                                 class="text-success">({{ Auth::user()->jenjang }})</span></p>
-                        <a href="{{ route('download.wali') }}" class="btn bg-gradient-success"><i class="bi bi-plus-circle"></i><span
-                                class="text-capitalize ms-1">Unduh Rekap Data</span></a>
+                        <a href="{{ route('download.wali') }}" class="btn bg-gradient-success"><i
+                                class="bi bi-plus-circle"></i><span class="text-capitalize ms-1">Unduh Rekap Data</span></a>
                     </div>
                     <div class="card-body pb-5 px-5">
                         <ul class="nav nav-tabs">
                             @foreach ($ekskul as $item)
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">{{ $item->nama_ekskul }}</a>
+                                    <a class="nav-link" href="#"
+                                        data-ekskul="{{ $item->kode_ekskul }}">{{ $item->nama_ekskul }}</a>
                                 </li>
                             @endforeach
                         </ul>
                         <div class="table-responsive p-0">
-                            <div id="renang-content">
-                                <table class="my-3 text-dark text-sm">
-                                    <tr>
-                                        <td>
-                                            Nama Pelatih
-                                        </td>
-                                        <td class="px-2">
-                                            :
-                                        </td>
-                                        <td>
-                                            Hartono
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            No HP Pelatih
-                                        </td>
-                                        <td class="px-2">
-                                            :
-                                        </td>
-                                        <td>
-                                            08726534512
-                                        </td>
-                                    </tr>
-                                </table>
-
-                                <x-admin.table id="ekskul1">
-                                    @slot('header')
+                            @foreach ($ekskul as $item)
+                                <div id="{{ $item->kode_ekskul }}-content" class="content-section" style="display: none;">
+                                    <table class="my-3 text-dark text-sm">
                                         <tr>
-                                            <x-admin.th>No</x-admin.th>
-                                            <x-admin.th>NIS</x-admin.th>
-                                            <x-admin.th>Nama Siswa</x-admin.th>
-                                            <x-admin.th>Jenis Kelamin</x-admin.th>
-                                            <x-admin.th>Kelas</x-admin.th>
-                                            <x-admin.th>Jenjang</x-admin.th>
+                                            <td>Nama Pelatih</td>
+                                            <td class="px-2">:</td>
+                                            <td>{{ $item->rPelatih->nama }}</td>
                                         </tr>
-                                    @endslot
+                                        <tr>
+                                            <td>No HP Pelatih</td>
+                                            <td class="px-2">:</td>
+                                            <td>08898798</td>
+                                        </tr>
+                                    </table>
 
-                                    <tr>
-                                        <x-admin.td class="text-center">1</x-admin.td>
-                                        <x-admin.td class="text-center">2000</x-admin.td>
-                                        <x-admin.td class="text-center">Rina</x-admin.td>
-                                        <x-admin.td class="text-center">Pria</x-admin.td>
-                                        <x-admin.td class="text-center">11</x-admin.td>
-                                        <x-admin.td class="text-center">SMA</x-admin.td>
-                                    </tr>
-                                    <tr>
-                                        <x-admin.td class="text-center">1</x-admin.td>
-                                        <x-admin.td class="text-center">2000</x-admin.td>
-                                        <x-admin.td class="text-center">Roni</x-admin.td>
-                                        <x-admin.td class="text-center">Pria</x-admin.td>
-                                        <x-admin.td class="text-center">11</x-admin.td>
-                                        <x-admin.td class="text-center">SMA</x-admin.td>
-                                    </tr>
-                                    <tr>
-                                        <x-admin.td class="text-center">1</x-admin.td>
-                                        <x-admin.td class="text-center">2000</x-admin.td>
-                                        <x-admin.td class="text-center">Ria</x-admin.td>
-                                        <x-admin.td class="text-center">Pria</x-admin.td>
-                                        <x-admin.td class="text-center">11</x-admin.td>
-                                        <x-admin.td class="text-center">SMA</x-admin.td>
-                                    </tr>
-                                </x-admin.table>
-                            </div>
+                                    <x-admin.table id="ekskultes{{ $loop->index }}_table">
+                                        @slot('header')
+                                            <tr>
+                                                <x-admin.th>No</x-admin.th>
+                                                <x-admin.th>NIS</x-admin.th>
+                                                <x-admin.th>Nama Siswa</x-admin.th>
+                                                <x-admin.th>Jenis Kelamin</x-admin.th>
+                                                <x-admin.th>Kelas</x-admin.th>
+                                                <x-admin.th>Jenjang</x-admin.th>
+                                            </tr>
+                                        @endslot
+                                        @foreach ($siswa[$item->kode_ekskul] as $siswa1)
+                                            <tr>
+                                                <x-admin.td class="text-center">{{ $loop->iteration }}</x-admin.td>
+                                                <x-admin.td class="text-center">{{ $siswa1['nis'] }}</x-admin.td>
+                                                <x-admin.td class="text-center">{{ $siswa1['nama'] }}</x-admin.td>
+                                                <x-admin.td class="text-center">{{ $siswa1['gender'] }}</x-admin.td>
+                                                <x-admin.td class="text-center">{{ $siswa1['kelas'] }}</x-admin.td>
+                                                <x-admin.td class="text-center">{{ $siswa1['jenjang'] }}</x-admin.td>
+                                            </tr>
+                                        @endforeach
+                                    </x-admin.table>
+                                </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -96,52 +72,37 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Ambil semua elemen tab
             const tabs = document.querySelectorAll('.nav-tabs .nav-link');
-            const contents = {
-                'Renang': document.getElementById('renang-content'),
-                'Pramuka': document.getElementById('pramuka-content'),
-                'Futsal': document.getElementById('futsal-content'),
-                'Basket': document.getElementById('basket-content'),
-                'Paskibra': document.getElementById('paskibra-content')
-            };
+            const contentSections = document.querySelectorAll('.content-section');
 
-            // Fungsi untuk menampilkan konten yang sesuai dengan tab yang aktif
             function showContent(tabName) {
-                for (const contentKey in contents) {
-                    if (contentKey === tabName) {
-                        contents[contentKey].style.display = 'block';
+                contentSections.forEach(content => {
+                    if (content.id === tabName + '-content') {
+                        content.style.display = 'block';
                     } else {
-                        contents[contentKey].style.display = 'none';
+                        content.style.display = 'none';
                     }
-                }
+                });
             }
 
-            // Pasang event listener pada setiap tab
             tabs.forEach(tab => {
                 tab.addEventListener('click', function(e) {
                     e.preventDefault();
-
-                    // Hilangkan kelas 'active' dari semua tab di dalam nav-tabs
-                    tabs.forEach(tab => tab.classList.remove('active'));
-
-                    // Tambahkan kelas 'active' pada tab yang diklik
+                    tabs.forEach(t => t.classList.remove('active'));
                     this.classList.add('active');
-
-                    // Tampilkan konten yang sesuai
-                    showContent(this.textContent);
+                    showContent(this.getAttribute('data-ekskul'));
                 });
             });
 
-            // Tampilkan konten pertama kali sesuai tab yang aktif saat halaman dimuat
-            const activeTab = document.querySelector('.nav-tabs .nav-link.active');
-            if (activeTab) {
-                showContent(activeTab.textContent);
-            } else {
-                // Jika tidak ada tab yang aktif, aktifkan tab pertama dan tampilkan kontennya
-                tabs[0].classList.add('active');
-                showContent(tabs[0].textContent);
-            }
+            // Show the first ekskul content by default
+            tabs[0].classList.add('active');
+            showContent(tabs[0].getAttribute('data-ekskul'));
+
+            // Initialize DataTables for each table
+            const tables = document.querySelectorAll('table[id^="ekskultes"]');
+            tables.forEach(table => {
+                $(table).DataTable();
+            });
         });
     </script>
 @endsection
