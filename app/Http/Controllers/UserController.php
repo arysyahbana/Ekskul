@@ -58,7 +58,7 @@ class UserController extends Controller
             'nis' => $request->nis,
             'nama' => $request->nama,
             'gender' => $request->gender,
-            'kelas' => $request->kelas,
+            // 'kelas' => $request->kelas,
             'jenjang' => $request->jenjang,
             'jurusan' => $request->jurusan,
             'tgl_lahir' => $request->tgl_lahir,
@@ -66,7 +66,13 @@ class UserController extends Controller
             'role' => $request->role,
             'password' => Hash::make($request->password),
         ]);
-
+        $role = $request->role;
+        $kelas = $request->kelas;
+        if($role == 'Siswa' || $role == 'Wali Kelas'){
+            $kelas = 10;
+        }else{
+            $kelas = null;
+        }
         $ekskul = $request->ekskul;
         $role = $request->role;
         if($ekskul){
