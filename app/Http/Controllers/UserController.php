@@ -53,19 +53,6 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $this->validasiInputData($request, 'required');
-
-        $user = user::create([
-            'nis' => $request->nis,
-            'nama' => $request->nama,
-            'gender' => $request->gender,
-            // 'kelas' => $request->kelas,
-            'jenjang' => $request->jenjang,
-            'jurusan' => $request->jurusan,
-            'tgl_lahir' => $request->tgl_lahir,
-            'email' => $request->email,
-            'role' => $request->role,
-            'password' => Hash::make($request->password),
-        ]);
         $role = $request->role;
         $kelas = $request->kelas;
         if($role == 'Siswa' || $role == 'Wali Kelas'){
@@ -73,6 +60,18 @@ class UserController extends Controller
         }else{
             $kelas = null;
         }
+        $user = user::create([
+            'nis' => $request->nis,
+            'nama' => $request->nama,
+            'gender' => $request->gender,
+            'kelas' => $kelas,
+            'jenjang' => $request->jenjang,
+            'jurusan' => $request->jurusan,
+            'tgl_lahir' => $request->tgl_lahir,
+            'email' => $request->email,
+            'role' => $request->role,
+            'password' => Hash::make($request->password),
+        ]);
         $ekskul = $request->ekskul;
         $role = $request->role;
         if($ekskul){
