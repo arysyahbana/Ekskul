@@ -31,7 +31,7 @@ class RegisteredUserController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'nis' => 'required|integer',
+            'nis' => 'required|integer|digits_between:1,10|unique:users',
             'nama' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             // 'username' => ['required', 'string', 'max:255', 'unique:' . User::class],
