@@ -30,7 +30,7 @@
                                         <tr>
                                             <td>Nama Pelatih</td>
                                             <td class="px-2">:</td>
-                                            <td>{{ $item->rPelatih->nama }}</td>
+                                            <td>{{ $item->rPelatih?->nama }}</td>
                                         </tr>
                                         <tr>
                                             <td>No HP Pelatih</td>

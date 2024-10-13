@@ -16,7 +16,7 @@ class UserController extends Controller
         $request->validate(
             [
                 'nis' => 'sometimes',
-                'nama' => 'required|alpha',
+                'nama' => 'required|regex:/^[a-zA-Z\s]+$/',
                 'gender' => 'required',
                 // 'kelas' => 'sometimes|integer|between:1,12',
                 'jenjang' => 'sometimes',
